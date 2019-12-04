@@ -1,25 +1,30 @@
 # shiyanlou
 
 ## Project setup
+
 ```
 npm install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 npm run serve
 ```
 
 ### Compiles and minifies for production
+
 ```
 npm run build
 ```
 
 ### Customize configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).
 aaaaa
 
-###目录结构
+### 目录结构
+
 ```bash
 api		存放各类需要与后端交互获取数据的api
 
