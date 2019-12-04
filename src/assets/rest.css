@@ -57,8 +57,9 @@ address {
 body {
   height: 100%;
   background: #f9f9f9;
-  font-size: 13px;
-  line-height: 1.4285;
+  scroll-behavior: smooth;
+  font-size: 1rem;
+  line-height: 1.5;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC,
     Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei,
     sans-serif;
