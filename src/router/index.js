@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Paths from "../views/nav/Paths.vue";
+import Bootcamp from "../views/nav/Bootcamp.vue";
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,11 @@ const routes = [
     path: "/paths",
     name: "paths",
     component: Paths
+  },
+  {
+    path: "/bootcamp",
+    name: "bootcamp",
+    component: Bootcamp
   }
 ];
 
