@@ -1,35 +1,107 @@
 <template>
-  <div class="login-wrap" v-show="isclick">
-    <div class="login">
-      <div class="nav_bar">
-        <div class="close_log_div">
-          <span class="close_log_span">×</span>
+  <transition name="fade">
+    <div class="login-wrap" v-show="isclick">
+      <transition name="slide-fade">
+        <div class="login" v-show="isclick">
+          <div class="nav_bar">
+            <div class="close_log_div">
+              <span class="close_log_span" @click="close_login()">×</span>
+            </div>
+            <ul class="nav_bar_ul">
+              <li
+                class="nav_bar_li"
+                :class="on_or_up == 'on' ? 'nav_bar_li_active' : ''"
+              >
+                <a
+                  href="#"
+                  :class="on_or_up == 'on' ? 'nav_bar_a ' : ''"
+                  @click="on_or_up = 'on'"
+                  >登录</a
+                >
+              </li>
+              <li
+                class="nav_bar_li"
+                :class="on_or_up == 'up' ? 'nav_bar_li_active' : ''"
+              >
+                <a
+                  href="#"
+                  :class="on_or_up == 'up' ? 'nav_bar_a ' : ''"
+                  @click="on_or_up = 'up'"
+                  >注册</a
+                >
+              </li>
+            </ul>
+            <!-- <div class="alert_msg">用户名或者密码错误</div> -->
+          </div>
+          <Signon v-show="on_or_up == 'on'"></Signon>
+          <Signup v-show="on_or_up == 'up'"></Signup>
         </div>
-        <ul class="nav_bar_ul">
-          <li class="nav_bar_li">
-            <a href="javascript:viod(0);" class="nav_bar_a">登录</a>
-          </li>
-          <li class="nav_bar_li">
-            <a href="javascript:viod(0)" class="nav_bar_a">注册</a>
-          </li>
-        </ul>
-      </div>
+      </transition>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
+import Signon from "./Signon";
+import Signup from "./Signup";
+import { mapState } from "vuex";
 export default {
   name: "Login",
   data() {
     return {
-      isclick: true
+      isclick: true,
+      on_or_up: "on"
     };
+  },
+  computed: {
+    // ...mapState({
+    //   on_or_up: state => state.login.on_or_up
+    // })
+  },
+  components: {
+    Signon,
+    Signup
+  },
+  methods: {
+    logclick() {
+      this.on_or_up = "on";
+    },
+    regclick() {
+      this.on_or_up = "up";
+    },
+    close_login() {
+      this.isclick = false;
+    }
   }
 };
 </script>
 
-<style>
+<style scoped>
+/* 屏幕淡入淡出 */
+.fade-leave-active {
+  transition: all 0.4s ease-out;
+}
+.fade-leave-active {
+  opacity: 1;
+}
+.fade-leave-active {
+  opacity: 0;
+}
+.slide-fade-enter-active .slide-fade-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translate(0, -35%);
+  opacity: 0.3;
+}
+.slide-fade-enter-to,
+.slide-fade-leave {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+
 .login-wrap {
   width: 100%;
   height: 100%;
@@ -44,8 +116,7 @@ export default {
 .login {
   opacity: 1;
   width: 350px;
-  margin: 80px auto;
-  margin-top: 50px;
+  margin: 120px auto 80px;
   background: #fff;
   padding: 10px 20px;
   border-radius: 4px;
@@ -58,11 +129,52 @@ export default {
   cursor: pointer;
   height: 20px;
 }
+
 .nav_bar_ul {
   display: flex;
   justify-content: space-around;
   border: none;
   border-bottom: 1px solid #eee;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  height: 58px;
+}
+
+.nav_bar_li {
+  width: 25%;
+  text-align: center;
+}
+.nav_bar_li a {
+  display: block;
+  padding: 15px;
+  font-size: 18px;
+  color: #555;
+}
+.nav_bar_li .nav_bar_a {
+  display: block;
+  padding: 15px;
+  font-size: 18px;
+  color: #0c9;
+}
+
+.nav_bar_li_active {
+  border-bottom: 1px solid #0c9;
+  color: #0c9;
+}
+.alert_msg {
+  color: #853535;
+  background-color: #ffe0e0;
+  border-color: #ffd4d4;
+  position: absolute;
+  min-width: 200px;
+  text-align: center;
+  font-weight: 400px;
+  color: #212529;
+  font-size: 16px;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  top: 5rem;
+  margin-left: 5rem;
 }
 </style>
