@@ -19,8 +19,6 @@
       </div>
       <div class="category_div company_description">
         <p class="main_category">公司</p>
-        <a href class="single_item_a">关于我们</a>
-        <a href class="single_item_a">加入我们</a>
       </div>
       <div class="category_div cooperation_div">
         <p class="main_category">合作</p>
@@ -30,14 +28,9 @@
       </div>
       <div class="category_div learning_path_div">
         <p class="main_category">学习路径</p>
-        <a href class="single_item_a">加入我们</a>
-        <a href class="single_item_a">加入我们</a>
-        <a href class="single_item_a">加入我们</a>
-        <a href class="single_item_a">加入我们</a>
-        <a href class="single_item_a">加入我们</a>
       </div>
     </div>
-    <div class="site_information">xyz</div>
+    <div class="site_information">小龙设计团队专属打造</div>
   </div>
 </template>
 
@@ -49,6 +42,7 @@ export default {};
 .footer {
   background: #333;
   padding-top: 20px;
+  margin-top: 400px;
 }
 
 .footer_div {
@@ -56,7 +50,6 @@ export default {};
   margin: 0 auto;
   padding: 0 15px;
   display: flex;
-  /*position: relative;*/
 }
 
 /* */
