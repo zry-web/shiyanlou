@@ -4,18 +4,17 @@
     <transition name="header_transition">
       <Header></Header>
     </transition>
-    <!-- <Hometop></Hometop> -->
-    <!-- <keep-alive :include="cache_router"> -->
+
     <router-view></router-view>
-    <!-- </keep-alive> -->
+
     <Footer></Footer>
   </div>
 </template>
 
 <script>
 import Login from "./views/login/Login";
-import Header from "./compents/header/header";
-import Footer from "./compents/layout/footer";
+import Header from "./components/header/header";
+import Footer from "./components/layout/footer";
 
 export default {
   name: "App",

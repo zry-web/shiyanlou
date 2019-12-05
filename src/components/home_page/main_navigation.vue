@@ -82,7 +82,6 @@
             v-for="(ad,index) in index_banner"
             :class="current_index==index ? 'slide_ads_li_adtive':''"
             :key="index"
-            @mouseover="tab_ad(index)"
           ></li>
         </ul>
       </div>
@@ -91,8 +90,6 @@
 </template>
 
 <script type="text/javascript">
-import { mapState } from "vuex";
-
 export default {};
 </script>
 
