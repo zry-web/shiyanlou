@@ -7,7 +7,9 @@
             <div class="col" style="height:150px">
               <h1 class="title">来一场高效又实战的训练</h1>
               <p class="btn">
-                <button type="button" class="btn btn-btn btn-join btn-warning">立即加入</button>
+                <button type="button" class="btn btn-btn btn-join btn-warning">
+                  立即加入
+                </button>
               </p>
             </div>
           </div>
@@ -70,14 +72,20 @@
           <div class="course-pic col-3">
             <a href target="_blank" class="course-link">
               <div class="course-item">
-                <img src="https://dn-simplecloud.shiyanlou.com/1501207033286.png" alt />
+                <img
+                  src="https://dn-simplecloud.shiyanlou.com/1501207033286.png"
+                  alt
+                />
                 <div class="course-body">
                   <p class="course-name">Vue.js 实现富文本编辑器</p>
                   <p class="course-dec">
-                    本训练营项目是使用 Vue.js 实现一个简易的富文本编辑器应用。通过本项目的实战学习，
-                    你将掌握 Vue.js 框架使用，数据绑定操作，组件式开发等。课程将涉及 Vuex 的使用，
-                    让你了解全局状态管理的作用与优势。与其他 Vue 项目不同，这是一个纯前端的项目，
-                    主要学习 Vue 框架的使用与原生 JS 编写，同时了解 DOM 的相关知识。
+                    本训练营项目是使用 Vue.js
+                    实现一个简易的富文本编辑器应用。通过本项目的实战学习，
+                    你将掌握 Vue.js
+                    框架使用，数据绑定操作，组件式开发等。课程将涉及 Vuex
+                    的使用， 让你了解全局状态管理的作用与优势。与其他 Vue
+                    项目不同，这是一个纯前端的项目， 主要学习 Vue
+                    框架的使用与原生 JS 编写，同时了解 DOM 的相关知识。
                   </p>
                 </div>
                 <div class="course-footer">
@@ -100,29 +108,27 @@
         </div>
         <div class="bc-pages">
           <nav>
-            <ul>
-              <li>
-                <a href>
-                  <span>《</span>上一页
-                </a>
+            <ul class="pages-number">
+              <li class="page-item">
+                <a class="page-link" href=""> <span>《</span>上一页 </a>
               </li>
-              <li>
-                <a href>1</a>
+              <li class="page-item">
+                <a class="page-link active" href="">1</a>
               </li>
-              <li>
-                <a href>2</a>
+              <li class="page-item">
+                <a class="page-link" href="">2</a>
               </li>
-              <li>
-                <a href>3</a>
+              <li class="page-item">
+                <a class="page-link" href="">3</a>
               </li>
-              <li>
-                <a href>4</a>
+              <li class="page-item">
+                <a class="page-link" href="">4</a>
               </li>
-              <li>
-                <a href>5</a>
+              <li class="page-item">
+                <a class="page-link" href="">5</a>
               </li>
-              <li>
-                <a href>
+              <li class="page-item">
+                <a class="page-link" href="">
                   下一页
                   <span>》</span>
                 </a>
@@ -324,4 +330,43 @@ export default {
   font-size: 18px;
   font-weight: 400;
 }
+.bc-pages {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  margin: 10px 0 0;
+}
+.pages-number {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 0.25rem;
+}
+.page-item {
+  margin: 0 4px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+}
+.page-link {
+  background: #fff;
+  color: #565a61;
+  border: 0;
+  font-size: 14px;
+  position: relative;
+  display: block;
+  padding: 8px 12px;
+  margin-left: -1px;
+  line-height: 1.25;
+}
+.active {
+  background: #08bf91;
+  color: #fff;
+}
+.page-link:hover{
+  background: #08bf91;
+  color: #fff;
+}
+
 </style>
