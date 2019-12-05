@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="login-wrap" v-show="isclick">
+    <div class="login-wrap" v-show="false">
       <transition name="slide-fade">
         <div class="login" v-show="isclick">
           <div class="nav_bar">

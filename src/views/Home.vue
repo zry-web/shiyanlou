@@ -1,20 +1,21 @@
 <template>
   <div id="home_page">
     <Hometop></Hometop>
-
-    <Navigtion></Navigtion>
+    <Banner></Banner>
+    <!-- <Navigation></Navigation> -->
   </div>
 </template>
 
 <script type="text/javascript">
 import Hometop from "../components/home_page/home_top";
-import Navigtion from "../components/home_page/main_navigation";
+import Banner from "../components/home_page/banner";
+// import Navigation from "../components/home_page/main_navigation";
 
 export default {
   name: "Home",
   components: {
     Hometop,
-    Navigtion
+    Banner
   }
 };
 </script>
