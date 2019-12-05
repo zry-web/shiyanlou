@@ -44,8 +44,12 @@
 
 <script>
 import { login } from "../../api/login/login";
-
+import { mapState, mapActions } from "vuex";
+import Vue from "vue";
+import VueCookies from "vue-cookies";
 import Qulick from "./Quicklog";
+$cookies.config("0", "/");
+Vue.use(VueCookies);
 export default {
   data() {
     return {
@@ -57,16 +61,26 @@ export default {
       isMsg: false
     };
   },
+  computed: {
+    // ...mapState("login", ["isclick"])
+  },
   components: {
     Qulick
   },
+
   methods: {
+    ...mapActions("login", ["clickclose"]),
     loginhandl() {
+      // console.log(clickclose);
       login(this.user).then(res => {
         if (res.data.code == 1) {
+          $cookies.set("token", res.data.token);
+          this.clickclose("true");
+
+          // this.$router();
         } else {
           this.msg = res.data.msg;
-          this.isMsg = "ture";
+          this.isMsg = "true";
         }
       });
     }

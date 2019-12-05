@@ -3,6 +3,6 @@ import axios from "axios";
 export function login(logdata) {
   return post("/user/login", logdata);
 }
-export function reg(data) {
-  return post("/user/save");
+export function reg(regdata) {
+  return post("/user/save", regdata);
 }

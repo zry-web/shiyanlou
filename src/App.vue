@@ -16,13 +16,15 @@
 import Login from "./views/login/Login";
 import Header from "./compents/header/header";
 import Footer from "./compents/layout/footer";
+import Puls from "./views/plus/Plus";
 
 export default {
   name: "App",
   components: {
     Login,
     Footer,
-    Header
+    Header,
+    Puls
   },
   data() {
     return {

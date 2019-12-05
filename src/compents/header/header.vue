@@ -30,11 +30,7 @@
             <a tag="a" id="trail_button" class="scroll_sub_selection_a">路径</a>
           </li>
           <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li">
-            <a
-              href="https://www.shiyanlou.com/louplus/"
-              id="lou_puls_button"
-              class="scroll_sub_selection_a"
-            >楼+</a>
+            <a id="lou_puls_button" class="scroll_sub_selection_a">楼+</a>
           </li>
           <li id="trail_li" class="scroll_sub_selection_li scroll_navigation_li">
             <a
