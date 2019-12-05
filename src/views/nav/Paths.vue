@@ -38,7 +38,10 @@
       <div class="path-r path-vip">
         <div class="paths path-icon">
           <a href>
-            <img src="https://static.shiyanlou.com/frontend/dist/img/2a64526.png" alt="会员" />
+            <img
+              src="https://static.shiyanlou.com/frontend/dist/img/2a64526.png"
+              alt="会员"
+            />
           </a>
         </div>
         <div class="path-content vip-content">开通会员，即刻开始学习</div>
@@ -47,22 +50,34 @@
       <div class="path-r path-webchat">
         <div class="paths path-icon">
           <a href>
-            <img src="https://static.shiyanlou.com/frontend/dist/img/3494656.png" alt="会员" />
+            <img
+              src="https://static.shiyanlou.com/frontend/dist/img/3494656.png"
+              alt="会员"
+            />
           </a>
         </div>
         <div class="path-content image-content1">
-          <img src="https://static.shiyanlou.com/frontend/dist/img/ba1ade2.png" alt />
+          <img
+            src="https://static.shiyanlou.com/frontend/dist/img/ba1ade2.png"
+            alt
+          />
         </div>
       </div>
 
       <div class="path-r path-program">
         <div class="paths path-icon">
           <a href>
-            <img src="https://static.shiyanlou.com/frontend/dist/img/06f781d.png" alt="会员" />
+            <img
+              src="https://static.shiyanlou.com/frontend/dist/img/06f781d.png"
+              alt="会员"
+            />
           </a>
         </div>
         <div class="path-content image-content2">
-          <img src="https://static.shiyanlou.com/frontend/dist/img/a1f633f.png" alt />
+          <img
+            src="https://static.shiyanlou.com/frontend/dist/img/a1f633f.png"
+            alt
+          />
         </div>
       </div>
     </div>
@@ -70,9 +85,20 @@
 </template>
 
 <script>
+import {allMessage} from "../../services/movie"
 export default {
   name: "paths",
-  components: {}
+  components: {},
+  data(){
+    return {
+      list:[]
+    }
+  },
+  async created() {
+    // 使用async/await优化Promise请求
+    const res = await allMessage();
+    this.list = res.data.category;
+  }
 };
 </script>
 
