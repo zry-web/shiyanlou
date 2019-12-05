@@ -1,8 +1,8 @@
 import { post, get } from "../../utils/request";
 import axios from "axios";
 export function login(logdata) {
-  return post("/user/p", lodata);
+  return post("/user/login", logdata);
 }
-export function reg() {
-  return post("/user/p");
+export function reg(data) {
+  return post("/user/save");
 }

@@ -8,30 +8,21 @@
               <span class="close_log_span" @click="close_login()">×</span>
             </div>
             <ul class="nav_bar_ul">
-              <li
-                class="nav_bar_li"
-                :class="on_or_up == 'on' ? 'nav_bar_li_active' : ''"
-              >
+              <li class="nav_bar_li" :class="on_or_up == 'on' ? 'nav_bar_li_active' : ''">
                 <a
                   href="#"
                   :class="on_or_up == 'on' ? 'nav_bar_a ' : ''"
                   @click="on_or_up = 'on'"
-                  >登录</a
-                >
+                >登录</a>
               </li>
-              <li
-                class="nav_bar_li"
-                :class="on_or_up == 'up' ? 'nav_bar_li_active' : ''"
-              >
+              <li class="nav_bar_li" :class="on_or_up == 'up' ? 'nav_bar_li_active' : ''">
                 <a
                   href="#"
                   :class="on_or_up == 'up' ? 'nav_bar_a ' : ''"
                   @click="on_or_up = 'up'"
-                  >注册</a
-                >
+                >注册</a>
               </li>
             </ul>
-            <!-- <div class="alert_msg">用户名或者密码错误</div> -->
           </div>
           <Signon v-show="on_or_up == 'on'"></Signon>
           <Signup v-show="on_or_up == 'up'"></Signup>
@@ -159,22 +150,5 @@ export default {
 .nav_bar_li_active {
   border-bottom: 1px solid #0c9;
   color: #0c9;
-}
-.alert_msg {
-  color: #853535;
-  background-color: #ffe0e0;
-  border-color: #ffd4d4;
-  position: absolute;
-  min-width: 200px;
-  text-align: center;
-  font-weight: 400px;
-  color: #212529;
-  font-size: 16px;
-  padding: 0.75rem 1.25rem;
-  margin-bottom: 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
-  top: 5rem;
-  margin-left: 5rem;
 }
 </style>

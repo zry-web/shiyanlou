@@ -8,16 +8,24 @@
         <input class="form-control text_input" type="password" placeholder="请输入密码" />
       </div>
     </div>
-    <a class="enter_button" href="javascript:;">注册</a>
+    <a class="enter_button" href="javascript:;" @click="reghandl()">注册</a>
     <Qulick></Qulick>
   </div>
 </template>
 
 <script>
 import Qulick from "./Quicklog";
+import { reg } from "../../api/login/login";
 export default {
   components: {
     Qulick
+  },
+  methods: {
+    reghandl() {
+      reg().then(res => {
+        console.log(res);
+      });
+    }
   }
 };
 </script>
