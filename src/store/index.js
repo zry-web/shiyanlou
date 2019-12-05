@@ -5,6 +5,9 @@ import login from "./modules/login/login";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  state: {
+    isLoged: false
+  },
   modules: {
     login
   }

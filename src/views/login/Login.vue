@@ -5,21 +5,21 @@
         <div class="login" v-show="isclick">
           <div class="nav_bar">
             <div class="close_log_div">
-              <span class="close_log_span" @click="close_login()">×</span>
+              <span class="close_log_span" @click="clickclose(isclick)">×</span>
             </div>
             <ul class="nav_bar_ul">
               <li class="nav_bar_li" :class="on_or_up == 'on' ? 'nav_bar_li_active' : ''">
                 <a
                   href="#"
                   :class="on_or_up == 'on' ? 'nav_bar_a ' : ''"
-                  @click="on_or_up = 'on'"
+                  @click="changeclick('on')"
                 >登录</a>
               </li>
               <li class="nav_bar_li" :class="on_or_up == 'up' ? 'nav_bar_li_active' : ''">
                 <a
                   href="#"
                   :class="on_or_up == 'up' ? 'nav_bar_a ' : ''"
-                  @click="on_or_up = 'up'"
+                  @click="changeclick('up')"
                 >注册</a>
               </li>
             </ul>
@@ -35,33 +35,31 @@
 <script>
 import Signon from "./Signon";
 import Signup from "./Signup";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
   name: "Login",
-  data() {
-    return {
-      isclick: true,
-      on_or_up: "on"
-    };
-  },
+
   computed: {
-    // ...mapState({
-    //   on_or_up: state => state.login.on_or_up
-    // })
+    ...mapState({
+      on_or_up: state => state.login.on_or_up,
+      isclick: state => state.login.isclick
+    })
   },
   components: {
     Signon,
     Signup
   },
   methods: {
+    ...mapActions("login", ["changeclick", "clickclose"]),
+
     logclick() {
-      this.on_or_up = "on";
+      on_or_up = "on";
     },
     regclick() {
-      this.on_or_up = "up";
+      on_or_up = "up";
     },
     close_login() {
-      this.isclick = false;
+      isclick = false;
     }
   }
 };
