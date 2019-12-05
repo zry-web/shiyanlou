@@ -50,6 +50,48 @@
             <i id="all_courses_i" class="fa fa-th"></i>
             全部课程
           </a>
+          <ul class="to_list">
+            <li>
+              <a>111</a>
+              <a>222</a>
+              <a>333</a>
+            </li>
+            <li>
+              <a>111</a>
+              <a>222</a>
+              <a>333</a>
+            </li>
+            <li>
+              <a>111</a>
+              <a>222</a>
+              <a>333</a>
+            </li>
+            <li>
+              <a>111</a>
+              <a>222</a>
+              <a>333</a>
+            </li>
+            <li>
+              <a>111</a>
+              <a>222</a>
+              <a>333</a>
+            </li>
+            <li>
+              <a>111</a>
+              <a>222</a>
+              <a>333</a>
+            </li>
+            <li>
+              <a>111</a>
+              <a>222</a>
+              <a>333</a>
+            </li>
+            <li>
+              <a>111</a>
+              <a>222</a>
+              <a>333</a>
+            </li>
+          </ul>
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
           <a id="trail_button" class="sub_selection_a">路径</a>
@@ -254,6 +296,7 @@ export default {};
   width: 260px;
   background: #08bf91;
   font-size: 16px;
+  position: relative;
 }
 
 #all_courses_i {
@@ -359,5 +402,34 @@ export default {};
 #search_input:focus {
   border: 1px solid #08bf91;
   box-shadow: 0 0 0 1px #21d6a8;
+}
+
+.to_list {
+  min-height: 520px;
+  width: 260px;
+  position: absolute;
+  top: 60px;
+}
+.to_list li {
+  width: 260px;
+  padding: 15px;
+  /* background: #dcdddd;
+  opacity: 0.3; */
+  background: rgba(176, 196, 222, 0.3);
+}
+.to_list li a {
+  font-size: 18px;
+  color: #fff;
+  padding: 0 8px 0 8px;
+  cursor: pointer;
+}
+.to_list li:hover {
+  background: #fff;
+}
+.to_list li:hover a {
+  color: #666;
+}
+.to_list li:hover a:hover {
+  color: #08bf91;
 }
 </style>
