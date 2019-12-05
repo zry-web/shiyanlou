@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <Login></Login> -->
+    <Login></Login>
     <transition name="header_transition">
       <Header></Header>
     </transition>
