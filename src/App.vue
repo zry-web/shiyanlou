@@ -13,10 +13,6 @@
 
 <script>
 import Login from "./views/login/Login";
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 import Header from "./compents/header/header";
 import Footer from "./compents/layout/footer";
 import Puls from "./views/plus/Plus";
