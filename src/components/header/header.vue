@@ -9,7 +9,10 @@
           />
         </a>
         <ul class="scroll_selection_menu">
-          <li id="courses_li" class="scroll_sub_selection_li scroll_navigation_li">
+          <li
+            id="courses_li"
+            class="scroll_sub_selection_li scroll_navigation_li"
+          >
             <a tag="a" id="courses_button" class="scroll_sub_selection_a">
               课程
               <span class="spread"></span>
@@ -26,20 +29,38 @@
               </li>
             </ul>
           </li>
-          <li id="trail_li" class="scroll_sub_selection_li scroll_navigation_li">
+<<<<<<< HEAD
+          <li
+            id="trail_li"
+            class="scroll_sub_selection_li scroll_navigation_li"
+          >
             <a tag="a" id="trail_button" class="scroll_sub_selection_a">路径</a>
+=======
+          <li id="trail_li" class="scroll_sub_selection_li scroll_navigation_li">
+            <a tag="a" id="trail_button" class="scroll_sub_selection_a">训练营</a>
+>>>>>>> f073b9353e55253aa06412f109db9ec148a50877
           </li>
-          <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li">
+          <li
+            id="lou_puls_li"
+            class="scroll_sub_selection_li scroll_navigation_li"
+          >
             <a id="lou_puls_button" class="scroll_sub_selection_a">楼+</a>
           </li>
-          <li id="trail_li" class="scroll_sub_selection_li scroll_navigation_li">
+          <li
+            id="trail_li"
+            class="scroll_sub_selection_li scroll_navigation_li"
+          >
             <a
               href="https://www.shiyanlou.com/vip"
               id="VIP_button"
               class="scroll_sub_selection_a"
-            >会员</a>
+              >会员</a
+            >
           </li>
-          <li id="community_li" class="scroll_sub_selection_li scroll_navigation_li">
+          <li
+            id="community_li"
+            class="scroll_sub_selection_li scroll_navigation_li"
+          >
             <a tag="a" class="scroll_sub_selection_a" id="community_button">
               社区
               <span class="spread"></span>
@@ -85,15 +106,25 @@
 
             <div class="unlogged_in_div">
               <li class="feature_li">
-                <a href="javascript:;" class="feature_a">登录</a>
+                <a href="javascript:;" class="feature_a" @click="clicklog()"
+                  >登录</a
+                >
               </li>
               <li class="feature_li" id="register_li">
-                <a href="javascript:;" id="_register_button" class="feature_a">注册</a>
+                <a
+                  href="javascript:;"
+                  id="_register_button"
+                  class="feature_a"
+                  @click="clickreg()"
+                  >注册</a
+                >
               </li>
             </div>
             <div class="logged_div">
               <li class="feature_li history_courses_li">
-                <a href="javascript:;" class="history_courses_a feature_a">我的课程</a>
+                <a href="javascript:;" class="history_courses_a feature_a"
+                  >我的课程</a
+                >
                 <!-- <HistoryCoursesCard class="scroll_bar_history_courses_card"></HistoryCoursesCard> -->
               </li>
               <li class="feature_li">
@@ -103,7 +134,12 @@
               </li>
               <li class="feature_li avatar_li">
                 <a tag="a" class="feature_a avatar_a">
-                  <img class="avatar_img" title="Avatar" />
+                  <img
+                    class="avatar_img"
+                    :title="
+                      $cookies.get('token') ? userlist.username : 'Avatar'
+                    "
+                  />
                 </a>
               </li>
             </div>
@@ -114,14 +150,25 @@
   </div>
 </template>
 <script type="text/javascript">
+import { mapActions, mapState } from "vuex";
+import { getuser } from "../../api/login/login";
+import Vue from "vue";
+import VueCookies from "vue-cookies";
+$cookies.config("0", "/");
+Vue.use(VueCookies);
 export default {
   components: {},
+  // computed: {
+  //   ...mapState({
+  //     token: state => state.login.token
+  //   })
+  // },
   data() {
     return {
-      isshou: false
+      isshou: false,
+      userlist: []
     };
   },
-
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
   },
@@ -129,6 +176,7 @@ export default {
     window.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
+    ...mapActions("login", ["clickclose", "changeclick"]),
     handleScroll() {
       var scrollTop =
         window.pageYOffset ||
@@ -137,7 +185,22 @@ export default {
       if (scrollTop > 100) {
         this.isshou = true;
       } else this.isshou = false;
+    },
+    clickreg() {
+      this.clickclose(false), this.changeclick("up");
+    },
+    clicklog() {
+      this.clickclose(false), this.changeclick("on");
     }
+  },
+  created() {
+    var user = {
+      token: $cookies.get("token")
+    };
+    getuser(user).then(res => {
+      this.userlist = res.data;
+      console.log(this.userlist);
+    });
   }
 };
 </script>
@@ -152,7 +215,7 @@ export default {
   height: 73px;
   background: #fff;
   width: 100%;
-  z-index: 10;
+  z-index: 100;
 }
 
 .scroll_bar_div {
@@ -263,13 +326,15 @@ export default {
 }
 
 .feature_li {
-  padding: 20px 15px;
+  padding: 10px 15px 7px 15px;
+  margin-top: 5px;
+  border-radius: 6px;
 }
 
 .feature_a {
   text-align: center;
   /*padding: 26px 15px;*/
-  line-height: 32px;
+  line-height: 35px;
   color: #3a3a3a;
   font-size: 16px;
 }
@@ -342,9 +407,6 @@ export default {
   color: #fff;
 }
 
-#_register_button {
-}
-
 /* 搜索框部分 */
 #_search_bar {
   position: relative;
@@ -381,4 +443,3 @@ export default {
   color: #3a3a3a;
 }
 </style>
-
