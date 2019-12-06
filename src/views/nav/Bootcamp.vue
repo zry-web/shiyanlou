@@ -7,9 +7,7 @@
             <div class="col" style="height:150px">
               <h1 class="title">来一场高效又实战的训练</h1>
               <p class="btn">
-                <button type="button" class="btn btn-btn btn-join btn-warning">
-                  立即加入
-                </button>
+                <button type="button" class="btn btn-btn btn-join btn-warning">立即加入</button>
               </p>
             </div>
           </div>
@@ -23,9 +21,7 @@
             <div class="tit col-sm-12 col-md-1">方向：</div>
             <div class="lists col-sm-12 col-md-11">
               <div class="list-item active">全部</div>
-              <div class="list-item" v-for="item in list1" :key="item._id">
-                {{ item.category }}
-              </div>
+              <div class="list-item" v-for="item in list1" :key="item._id">{{ item.category }}</div>
             </div>
           </div>
 
@@ -33,10 +29,7 @@
             <div class="tit col-sm-12 col-md-1">标签：</div>
             <div class="lists col-sm-12 col-md-11">
               <div class="list-item active">全部</div>
-              <div class="list-item" v-for="item in list2" :key="item._id">
-                {{item.tag}}
-              </div>
-              
+              <div class="list-item" v-for="item in list2" :key="item._id">{{item.tag}}</div>
             </div>
           </div>
         </div>
@@ -49,10 +42,7 @@
           <div class="course-pic col-3" v-for="item in list3" :key="item._id">
             <a href target="_blank" class="course-link">
               <div class="course-item">
-                <img
-                  :src="item.coverImg"
-                  alt
-                />
+                <img :src="item.coverImg" alt />
                 <div class="course-body">
                   <p class="course-name">{{item.title}}</p>
                   <p class="course-dec">
@@ -62,7 +52,7 @@
                     框架使用，数据绑定操作，组件式开发等。课程将涉及 Vuex
                     的使用， 让你了解全局状态管理的作用与优势。与其他 Vue
                     项目不同，这是一个纯前端的项目， 主要学习 Vue
-                    框架的使用与原生 JS 编写，同时了解 DOM 的相关知识。 -->
+                    框架的使用与原生 JS 编写，同时了解 DOM 的相关知识。-->
                     {{item.descriptions}}
                   </p>
                 </div>
@@ -85,13 +75,13 @@
           </div>
         </div>
         <el-pagination
-        class="bc-pages"
-         @current-change="pageChange"
+          class="bc-pages"
+          @current-change="pageChange"
           background
           layout="prev, pager, next"
           :page-size="16"
-          :page-count="31">
-        </el-pagination>
+          :page-count="31"
+        ></el-pagination>
         <!-- <div class="bc-pages">
           <nav>
             <ul class="pages-number">
@@ -121,7 +111,7 @@
               </li>
             </ul>
           </nav>
-        </div> -->
+        </div>-->
       </div>
     </div>
     <div class="faq-page">
@@ -133,21 +123,24 @@
           <div class="row">
             <div class="col-12">
               <div class="faq-item">
-                <p class="faq-title">训练营是实验楼与合作工程师共同打造的项目实战课程。通过训练营的学习，
+                <p class="faq-title">
+                  训练营是实验楼与合作工程师共同打造的项目实战课程。通过训练营的学习，
                   你会完成一个产品原型或一系列编程任务，在项目实战中融会贯通一个
-                  领域的IT技术及开发流程。</p>
-                <p class="faq-content">
-                  <img src="https://static.shiyanlou.com/frontend/dist/img/180f21a.png" alt="">
-                  <i style="dispaly:block;margin:0 5px;font-size:16px;">:</i>
-                  
-                  <span class="inner-content">训练营是实验楼与合作工程师共同打造的项目实战课程。
-                    通过训练营的学习，你会完成一个产品原型或一系列编程任务，在项目实战中融会贯通
-                    一个领域的IT技术及开发流程。</span>
+                  领域的IT技术及开发流程。
                 </p>
-                <br>
+                <p class="faq-content">
+                  <img src="https://static.shiyanlou.com/frontend/dist/img/180f21a.png" alt />
+                  <i style="dispaly:block;margin:0 5px;font-size:16px;">:</i>
 
+                  <span class="inner-content">
+                    训练营是实验楼与合作工程师共同打造的项目实战课程。
+                    通过训练营的学习，你会完成一个产品原型或一系列编程任务，在项目实战中融会贯通
+                    一个领域的IT技术及开发流程。
+                  </span>
+                </p>
+                <br />
               </div>
-              <a href="" target="_black" class="faq-more">更多疑问，查看这里>></a>
+              <a href target="_black" class="faq-more">更多疑问，查看这里>></a>
             </div>
           </div>
         </div>
@@ -158,18 +151,16 @@
 <script>
 import _ from "lodash";
 import { allMessage } from "../../api/services/move";
-import {bc_list} from "../../api/services/move.js";
+import { bc_list } from "../../api/services/move.js";
 export default {
   name: "bootcamp",
-  components: {
-    
-  },
+  components: {},
   data() {
     return {
       list1: [],
-      list2:[],
-      list3:[],
-      pages:1
+      list2: [],
+      list3: [],
+      pages: 1
     };
   },
   async created() {
@@ -179,21 +170,19 @@ export default {
     const result=await bc_list();
     this.list3=result.data.data;
     this.pages=result.pages;
-    console.log(this.list3);
   },
-  methods:{
-    async pageChange(p){
-       const result=await bc_list(p);
-      this.list3=result.data.data;
-      this.pages=result.pages;
+  methods: {
+    async pageChange(p) {
+      const result = await bc_list(p);
+      this.list3 = result.data.data;
+      this.pages = result.pages;
     }
   }
-  
 };
 </script>
 <style scoped>
 .full-page {
-  width: 1349px;
+  width: 100%;
 }
 .bc-banner {
   background: url("https://static.shiyanlou.com/frontend/dist/img/0107b80.png");
@@ -414,69 +403,72 @@ export default {
   background: #08bf91;
   color: #fff;
 }
-.faq-page{
+.faq-page {
   padding: 50px 0;
-    background: #fff;
+  background: #fff;
 }
-.faq-header{
+.faq-header {
   display: flex;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-    justify-content: center
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  justify-content: center;
 }
-.faq-header h4{
+.faq-header h4 {
   padding: 8px 16px;
-    margin-bottom: 30px;
-    color: #fff;
-    background: #08bf91;
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 1.2;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,
-    Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,
-    Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  margin-bottom: 30px;
+  color: #fff;
+  background: #08bf91;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
 }
-.faq-title{
+.faq-title {
   color: #08bf91;
   font-size: 18px;
   margin-top: 0;
   margin-bottom: 16px;
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,
-  Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,
-  Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   font-weight: 400;
-    line-height: 1.5;
-    text-align: left;
+  line-height: 1.5;
+  text-align: left;
 }
-.faq-content{
+.faq-content {
   color: #666;
   margin-top: 0;
   margin-bottom: 16px;
   box-sizing: border-box;
-  display: flex
+  display: flex;
 }
-.faq-content img{
+.faq-content img {
   width: 39px;
   height: 34px;
 }
-.inner-content{
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #666;
-    box-sizing: border-box;
-    
+.inner-content {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #666;
+  box-sizing: border-box;
 }
-.faq-more{
+.faq-more {
   color: #08bf91;
-    text-decoration: none;
-    background-color: transparent;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.5;
-    text-align: left;
+  text-decoration: none;
+  background-color: transparent;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
 }
 </style>
