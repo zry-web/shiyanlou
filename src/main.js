@@ -7,6 +7,13 @@ import axios from "axios";
 axios.defaults.retry = 4;
 axios.defaults.retryDelay = 1000;
 
+
+import VueAwesomeSwiper from "vue-awesome-swiper";
+import "swiper/dist/css/swiper.min.css";
+
+Vue.use(VueAwesomeSwiper);
+
+
 Vue.config.productionTip = false;
 
 new Vue({

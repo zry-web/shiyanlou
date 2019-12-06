@@ -467,6 +467,7 @@ export default {
 .to_lists {
   width: 260px;
   position: absolute;
+  z-index: 14;
 }
 .to_list {
   width: 260px;
