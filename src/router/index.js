@@ -40,6 +40,11 @@ const routes = [
     path: "/louplus",
     name: "louplus",
     component: Louplus
+  },
+  {
+    path: "/plus",
+    name: "plus",
+    component: Plus
   }
 ];
 

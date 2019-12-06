@@ -3,7 +3,10 @@
     <div id="navigation_logo_sign">
       <div id="navigation_logo">
         <a id="navigation_logo_a" href="/">
-          <img src="https://static.shiyanlou.com/img/shiyanlou_logo.svg" class="home_img" />
+          <img
+            src="https://static.shiyanlou.com/img/shiyanlou_logo.svg"
+            class="home_img"
+          />
         </a>
         <span id="logo_text">做实验，学编程</span>
       </div>
@@ -181,9 +184,6 @@ export default {
       userlist: []
     };
   },
-  computed: {
-    ...mapState({})
-  },
   async created() {
     lists().then(res => {
       this.lists = res.data.data;
@@ -197,7 +197,7 @@ export default {
         token: $cookies.get("token")
       };
       getuser(user).then(res => {
-        this.userlist = res.data.data;
+        this.userlist = res.data;
       });
     });
   },

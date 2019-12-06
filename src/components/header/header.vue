@@ -193,7 +193,7 @@ export default {
       token: $cookies.get("token")
     };
     getuser(user).then(res => {
-      this.userlist = res.data.data;
+      this.userlist = res.data;
       console.log(this.userlist);
     });
   }
