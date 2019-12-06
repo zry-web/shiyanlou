@@ -27,7 +27,7 @@
             </ul>
           </li>
           <li id="trail_li" class="scroll_sub_selection_li scroll_navigation_li">
-            <a tag="a" id="trail_button" class="scroll_sub_selection_a">路径</a>
+            <a tag="a" id="trail_button" class="scroll_sub_selection_a">训练营</a>
           </li>
           <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li">
             <a id="lou_puls_button" class="scroll_sub_selection_a">楼+</a>

@@ -10,8 +10,8 @@
 </template>
 
 <script type="text/javascript">
-import Hometop from "../components/home_page/home_top";
-import Banner from "../components/home_page/banner";
+import Hometop from "../views/home_page/home_top";
+import Banner from "../views/home_page/banner";
 // import Navigation from "../components/home_page/main_navigation";
 
 export default {
