@@ -14,14 +14,9 @@
 
 <script>
 import Login from "./views/login/Login";
-<<<<<<< HEAD
-import Header from "./components/header/header";
-import Footer from "./components/layout/footer";
-=======
 import Header from "./views/header/header";
 import Footer from "./views/layout/footer";
 import Puls from "./views/plus/Plus";
->>>>>>> 6ce7302582daba3ecd66b5db3ad8d7f871e9f3cf
 
 export default {
   name: "App",
