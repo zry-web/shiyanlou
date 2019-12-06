@@ -3,10 +3,7 @@
     <div id="navigation_logo_sign">
       <div id="navigation_logo">
         <a id="navigation_logo_a" href="/">
-          <img
-            src="https://static.shiyanlou.com/img/shiyanlou_logo.svg"
-            class="scroll_navigation_img"
-          />
+          <img src="https://static.shiyanlou.com/img/shiyanlou_logo.svg" class="home_img" />
         </a>
         <span id="logo_text">做实验，学编程</span>
       </div>
@@ -101,7 +98,20 @@
           </div>
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
-          <a id="trail_button" class="sub_selection_a">路径</a>
+          <router-link
+            id="trail_button"
+            class="sub_selection_a"
+            :to="{ name: 'paths' }"
+            >路径</router-link
+          >
+        </li>
+        <li id="trail_li" class="sub_selection_li navigation_li">
+          <router-link
+            :to="{ name: 'bootcamp' }"
+            id="trail_button"
+            class="sub_selection_a"
+            >训练营</router-link
+          >
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
           <a id="trail_button" class="sub_selection_a">训练营</a>
@@ -171,6 +181,9 @@ export default {
       userlist: []
     };
   },
+  computed: {
+    ...mapState({})
+  },
   async created() {
     lists().then(res => {
       this.lists = res.data.data;
@@ -202,6 +215,9 @@ export default {
 </script>
 
 <style type="text/css" scoped>
+.home_img {
+  width: 150px;
+}
 /*总导航区域*/
 #navigation_bar {
   display: flex;
@@ -510,7 +526,7 @@ export default {
 }
 .course_button {
   font-size: 12px;
-  color: #555;
+  color: #fff;
   margin-right: 10px;
   margin-left: 5px;
 }

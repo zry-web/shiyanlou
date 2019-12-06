@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Login></Login>
+
     <transition name="header_transition">
       <Header></Header>
     </transition>
@@ -34,10 +35,6 @@ export default {
 </script>
 
 <style scoped>
-#app {
-  height: 2000px;
-}
-
 .header_transition-enter-active,
 .header_transition-leave-active {
   transition: opacity 2s;

@@ -210,7 +210,7 @@ export default {
   height: 73px;
   background: #fff;
   width: 100%;
-  z-index: 10;
+  z-index: 100;
 }
 
 .scroll_bar_div {
@@ -321,13 +321,15 @@ export default {
 }
 
 .feature_li {
-  padding: 20px 15px;
+  padding: 10px 15px 7px 15px;
+  margin-top: 5px;
+  border-radius: 6px;
 }
 
 .feature_a {
   text-align: center;
   /*padding: 26px 15px;*/
-  line-height: 32px;
+  line-height: 35px;
   color: #3a3a3a;
   font-size: 16px;
 }
