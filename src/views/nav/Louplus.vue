@@ -48,11 +48,14 @@
 export default {};
 </script>
 <style scoped>
+.full-page {
+  width: 100%;
+}
 .louplus-banner {
   color: #fff;
   background: url(https://static.shiyanlou.com/frontend/dist/img/269a28c.png);
   height: 450px;
-  width: 1349px;
+  width: 100%;
 }
 .banner-content {
   padding: 60px 0;
