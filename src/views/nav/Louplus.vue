@@ -7,7 +7,7 @@
             <img
               style="width:230px;height:56px"
               src="https://static.shiyanlou.com/img/louplus/louplus_logo.png"
-              alt=""
+              alt
             />
             <p class="banner-info">
               楼+ 是实验楼精心打造的教学产品，课程由实验楼一线核
@@ -17,12 +17,7 @@
               以此来达到学习的目的，对只看不动手说NO！
             </p>
             <p>
-              <button
-                type="button"
-                class="btn-info btn btn-join font-18 btn-warning"
-              >
-                查看全部开设课程 >
-              </button>
+              <button type="button" class="btn-info btn btn-join font-18 btn-warning">查看全部开设课程 ></button>
             </p>
           </div>
         </div>
@@ -37,10 +32,7 @@
           <div class="row-list row">
             <div class="col-md-3">
               <div class="service-item">
-                <img
-                  src="https://static.shiyanlou.com/frontend/dist/img/91a2700.png"
-                  alt=""
-                />
+                <img src="https://static.shiyanlou.com/frontend/dist/img/91a2700.png" alt />
                 <p class="title">实验+自主挑战</p>
                 <p class="desc">学习后及时运用系统知识点全覆盖</p>
               </div>
@@ -49,6 +41,7 @@
         </div>
       </div>
     </div>
+    <div class></div>
   </div>
 </template>
 <script>
@@ -117,9 +110,27 @@ export default {};
 }
 .service-item {
   margin-bottom: 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .service-item img {
   width: 120px;
   height: 120px;
+  vertical-align: middle;
+  text-align: center;
+  max-width: 100%;
+}
+.title {
+  margin: 10px 0;
+  color: #fff;
+  font-size: 18px;
+}
+.desc {
+  color: #a4a4a4;
+  font-size: 14px;
+  margin: 0;
 }
 </style>

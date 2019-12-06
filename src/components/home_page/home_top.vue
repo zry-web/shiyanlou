@@ -106,9 +106,6 @@
             >训练营</router-link
           >
         </li>
-        <li id="trail_li" class="sub_selection_li navigation_li">
-          <a id="trail_button" class="sub_selection_a">训练营</a>
-        </li>
         <li id="lou_puls_li" class="sub_selection_li navigation_li">
           <router-link
             href="#7"
