@@ -46,23 +46,24 @@
     <div class="bc-content">
       <div class="container">
         <div class="pic row">
-          <div class="course-pic col-3">
+          <div class="course-pic col-3" v-for="item in list3" :key="item._id">
             <a href target="_blank" class="course-link">
               <div class="course-item">
                 <img
-                  src="https://dn-simplecloud.shiyanlou.com/1501207033286.png"
+                  :src="item.coverImg"
                   alt
                 />
                 <div class="course-body">
-                  <p class="course-name">Vue.js 实现富文本编辑器</p>
+                  <p class="course-name">{{item.title}}</p>
                   <p class="course-dec">
-                    本训练营项目是使用 Vue.js
+                    <!-- 本训练营项目是使用 Vue.js
                     实现一个简易的富文本编辑器应用。通过本项目的实战学习，
                     你将掌握 Vue.js
                     框架使用，数据绑定操作，组件式开发等。课程将涉及 Vuex
                     的使用， 让你了解全局状态管理的作用与优势。与其他 Vue
                     项目不同，这是一个纯前端的项目， 主要学习 Vue
-                    框架的使用与原生 JS 编写，同时了解 DOM 的相关知识。
+                    框架的使用与原生 JS 编写，同时了解 DOM 的相关知识。 -->
+                    {{item.descriptions}}
                   </p>
                 </div>
                 <div class="course-footer">
@@ -83,6 +84,14 @@
             </a>
           </div>
         </div>
+        <el-pagination
+        class="bc-pages"
+         @current-change="pageChange"
+          background
+          layout="prev, pager, next"
+          :page-size="16"
+          :page-count="31">
+        </el-pagination>
         <!-- <div class="bc-pages">
           <nav>
             <ul class="pages-number">
@@ -149,6 +158,7 @@
 <script>
 import _ from "lodash";
 import { allMessage } from "../../api/services/move";
+import {bc_list} from "../../api/services/move.js";
 export default {
   name: "bootcamp",
   components: {
@@ -157,13 +167,28 @@ export default {
   data() {
     return {
       list1: [],
-      list2:[]
+      list2:[],
+      list3:[],
+      pages:1
     };
   },
   async created() {
     const res = await allMessage();
     this.list1 = _.uniqBy(res.data.data, "category"); // res.data.data;
     this.list2 = _.uniqBy(res.data.data, "tag"); // res.data.data;
+
+    const result=await bc_list();
+    this.list3=result.data.data;
+    this.pages=result.pages;
+    console.log(this.list3);
+    
+  },
+  methods:{
+    async pageChange(p){
+       const result=await bc_list(p);
+      this.list3=result.data.data;
+      this.pages=result.pages;
+    }
   }
   
 };
@@ -263,7 +288,6 @@ export default {
   border: 1px solid #eee;
   color: #666;
   background-color: #fff;
-
   transition: box-shadow 0.2s ease-out;
 }
 .course-item img {
