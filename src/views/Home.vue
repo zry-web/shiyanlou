@@ -1,7 +1,10 @@
 <template>
   <div id="home_page">
     <Hometop></Hometop>
-    <Banner></Banner>
+    <div class="banner">
+      <Banner></Banner>
+    </div>
+
     <!-- <Navigation></Navigation> -->
   </div>
 </template>
@@ -21,4 +24,8 @@ export default {
 </script>
 
 <style type="text/css">
+.banner {
+  width: 100%;
+  position: relative;
+}
 </style>
