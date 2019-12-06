@@ -3,10 +3,7 @@
     <div id="navigation_logo_sign">
       <div id="navigation_logo">
         <a id="navigation_logo_a" href="/">
-          <img
-            src="https://static.shiyanlou.com/img/shiyanlou_logo.svg"
-            class="scroll_navigation_img"
-          />
+          <img src="https://static.shiyanlou.com/img/shiyanlou_logo.svg" class="home_img" />
         </a>
         <span id="logo_text">做实验，学编程</span>
       </div>
@@ -141,12 +138,16 @@
 
 <script type="text/javascript">
 import { lists } from "../../api/home/home_header";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
       lists: [],
       nav: []
     };
+  },
+  computed: {
+    ...mapState({})
   },
   async created() {
     lists().then(res => {
@@ -163,6 +164,9 @@ export default {
 </script>
 
 <style type="text/css" scoped>
+.home_img {
+  width: 150px;
+}
 /*总导航区域*/
 #navigation_bar {
   display: flex;
@@ -471,7 +475,7 @@ export default {
 }
 .course_button {
   font-size: 12px;
-  color: #555;
+  color: #fff;
   margin-right: 10px;
   margin-left: 5px;
 }
