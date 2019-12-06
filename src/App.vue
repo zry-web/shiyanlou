@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Login></Login>
+
     <transition name="header_transition">
       <Header></Header>
     </transition>
@@ -13,6 +14,10 @@
 
 <script>
 import Login from "./views/login/Login";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 06dcf8098323e767a89f037571e584b8c8b86e23
 import Header from "./compents/header/header";
 import Footer from "./compents/layout/footer";
 import Puls from "./views/plus/Plus";
@@ -21,6 +26,7 @@ export default {
   name: "App",
   components: {
     Login,
+
     Footer,
     Header,
     Puls
@@ -34,10 +40,6 @@ export default {
 </script>
 
 <style scoped>
-#app {
-  height: 2000px;
-}
-
 .header_transition-enter-active,
 .header_transition-leave-active {
   transition: opacity 2s;
