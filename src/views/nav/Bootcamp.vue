@@ -176,12 +176,10 @@ export default {
     const res = await allMessage();
     this.list1 = _.uniqBy(res.data.data, "category"); // res.data.data;
     this.list2 = _.uniqBy(res.data.data, "tag"); // res.data.data;
-
     const result=await bc_list();
     this.list3=result.data.data;
     this.pages=result.pages;
     console.log(this.list3);
-    
   },
   methods:{
     async pageChange(p){
