@@ -8,14 +8,10 @@
         <ul id="course_categories_ul">
           <li class="course_categories_li" v-for="(nav,index) in index_categories" :key="index">
             <div class="course_categories_div">
-              <router-link
-                :to="{ name: 'courses', query: {category: nav.name} }"
-                class="main_course_button course_button"
-              >{{ nav.name }}</router-link>
+              <router-link class="main_course_button course_button">{{ nav.name }}</router-link>
               <router-link
                 v-for=" (sub, s_index) in nav.tags.slice(0, 2)"
                 :key="s_index"
-                :to="{ name: 'courses', query: {category: nav.name, tag: sub.name} }"
                 class="course_button"
               >{{ sub.name }}</router-link>
             </div>
@@ -30,10 +26,7 @@
                   :key="s_c_index"
                   class="sub_course_categories_span"
                 >
-                  <router-link
-                    :to="{ name: 'courses', query: { category: nav.name, tag: sub_category.name } }"
-                    class="sub_course_a"
-                  >{{ sub_category.name }}</router-link>
+                  <router-link class="sub_course_a">{{ sub_category.name }}</router-link>
                 </span>
               </div>
               <p class="sub_course_categories_p">课程推荐</p>
@@ -42,11 +35,7 @@
                 :key="r_index"
                 class="sub_course_p"
               >
-                <router-link
-                  :to="{ name: 'course', params: {id: recom.id} }"
-                  target="_blank"
-                  class="sub_recommend_course_a"
-                >{{ recom.name }}</router-link>
+                <router-link target="_blank" class="sub_recommend_course_a">{{ recom.name }}</router-link>
               </p>
             </div>
           </li>
@@ -82,7 +71,6 @@
             v-for="(ad,index) in index_banner"
             :class="current_index==index ? 'slide_ads_li_adtive':''"
             :key="index"
-            @mouseover="tab_ad(index)"
           ></li>
         </ul>
       </div>
@@ -92,8 +80,44 @@
 
 <script type="text/javascript">
 import { mapState } from "vuex";
-
-export default {};
+export default {
+  data() {
+    return {
+      current_index: 0
+    };
+  },
+  computed: {
+    ...mapState({
+      index_banner: state => state.home.home_content.index_banner,
+      index_categories: state => state.home.home_content.index_categories
+    }),
+    bg_colors: function() {
+      let colors = [];
+      if (!this.index_banner) {
+        return [];
+      }
+      for (let ad of this.index_banner) {
+        colors.push(ad["background_color"]);
+      }
+      return colors;
+    }
+  },
+  methods: {
+    tab_ad: function(_li) {
+      this.current_index = _li;
+    }
+  },
+  mounted: function() {
+    let _this = this;
+    setInterval(function() {
+      if (_this.current_index + 1 < _this.bg_colors.length) {
+        _this.current_index += 1;
+      } else {
+        _this.current_index = 0;
+      }
+    }, 3000);
+  }
+};
 </script>
 
 <style type="text/css" scoped>

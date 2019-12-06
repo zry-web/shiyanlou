@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Paths from "../views/nav/Paths.vue";
 import Bootcamp from "../views/nav/Bootcamp.vue";
 import Louplus from "../views/nav/Louplus.vue";
+import Plus from "../views/plus/Plus.vue";
 
 Vue.use(VueRouter);
 

@@ -1,5 +1,7 @@
 <template>
   <div class="signon">
+    <div class="alert_msg" v-show="isMsg">{{msg}}</div>
+
     <div class="input_bar">
       <div class="form-group">
         <input
@@ -20,12 +22,7 @@
     </div>
     <div class="custom_control_div">
       <div>
-        <input
-          type="checkbox"
-          name="autologin"
-          value="true"
-          class="autologinbutton"
-        />
+        <input type="checkbox" name="autologin" value="true" class="autologinbutton" />
         <label class="autologin_label">下次自动登录</label>
       </div>
       <div>
@@ -33,13 +30,10 @@
           class="forget_password"
           target="_blank"
           href="https://www.shiyanlou.com/user/forget-password/"
-          >忘记密码</a
-        >
+        >忘记密码</a>
       </div>
     </div>
-    <a class="enter_button" href="javascript:;" @click="login(logindata)"
-      >进入实验楼</a
-    >
+    <a class="enter_button" href="javascript:;" @click="loginhandl()">进入实验楼</a>
     <div class="more_log">
       <a href="#">短信验证码登录</a>
       <a href="#">海外手机登录</a>
@@ -50,22 +44,46 @@
 
 <script>
 import { login } from "../../api/login/login";
-
+import { mapState, mapActions } from "vuex";
+import Vue from "vue";
+import VueCookies from "vue-cookies";
 import Qulick from "./Quicklog";
+$cookies.config("0", "/");
+Vue.use(VueCookies);
 export default {
   data() {
     return {
       user: {
         username: "",
         password: ""
-      }
+      },
+      msg: "",
+      isMsg: false
     };
+  },
+  computed: {
+    // ...mapState("login", ["isclick"])
   },
   components: {
     Qulick
   },
+
   methods: {
-    login
+    ...mapActions("login", ["clickclose"]),
+    loginhandl() {
+      // console.log(clickclose);
+      login(this.user).then(res => {
+        if (res.data.code == 1) {
+          $cookies.set("token", res.data.token);
+          this.clickclose("true");
+
+          // this.$router();
+        } else {
+          this.msg = res.data.msg;
+          this.isMsg = "true";
+        }
+      });
+    }
   }
 };
 </script>
@@ -153,5 +171,22 @@ export default {
 .more_log a {
   font-size: 14px;
   color: #c6c6c6;
+}
+.alert_msg {
+  color: #853535;
+  background-color: #ffe0e0;
+  border-color: #ffd4d4;
+  position: absolute;
+  min-width: 200px;
+  text-align: center;
+  font-weight: 400px;
+  color: #212529;
+  font-size: 16px;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  top: 5rem;
+  margin-left: 5rem;
 }
 </style>

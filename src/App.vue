@@ -17,6 +17,7 @@ import Login from "./views/login/Login";
 
 import Header from "./compents/header/header";
 import Footer from "./compents/layout/footer";
+import Puls from "./views/plus/Plus";
 
 export default {
   name: "App",
@@ -24,7 +25,8 @@ export default {
     Login,
 
     Footer,
-    Header
+    Header,
+    Puls
   },
   data() {
     return {
@@ -35,9 +37,6 @@ export default {
 </script>
 
 <style scoped>
-#app {
-}
-
 .header_transition-enter-active,
 .header_transition-leave-active {
   transition: opacity 2s;

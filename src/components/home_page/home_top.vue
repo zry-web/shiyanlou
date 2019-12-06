@@ -50,6 +50,45 @@
             <i id="all_courses_i" class="fa fa-th"></i>
             全部课程
           </a>
+          <div class="to_lists">
+            <ul class="to_list">
+              <li v-for="(nav,index) in lists" :key="index" class="course_categories_li">
+                <div class="course_categories_div">
+                  <a class="main_course_button course_button">{{ nav.name}}</a>
+                  <a
+                    v-for=" (sub, s_index) in nav.tag.slice(0, 2)"
+                    :key="s_index"
+                    class="course_button"
+                  >{{ sub.name }}</a>
+                </div>
+                <div class="www">
+                  <p class="www_p">{{ nav.name }}</p>
+                  <div class="www_div">
+                    <span
+                      v-for="(sub_category, s_c_index) in nav.tag"
+                      :key="s_c_index"
+                      class="www_span"
+                    >
+                      <a class="www_a">{{ sub_category.name }}</a>
+                    </span>
+                  </div>
+                  <p class="www_p">课程推荐</p>
+                  <p
+                    v-for="(recom, r_index) in nav.recommend_courses"
+                    :key="r_index"
+                    class="sub_course_p"
+                  >
+                    <a target="_blank" class="sub_recommend_course_a">{{ recom.name }}</a>
+                  </p>
+                </div>
+              </li>
+              <li class="course_categories_footer">
+                <div class="course_categories_footer_div">
+                  <a href="#42" class="course_categories_footer_a">经营专区</a>
+                </div>
+              </li>
+            </ul>
+          </div>
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
           <router-link
@@ -66,6 +105,9 @@
             class="sub_selection_a"
             >训练营</router-link
           >
+        </li>
+        <li id="trail_li" class="sub_selection_li navigation_li">
+          <a id="trail_button" class="sub_selection_a">训练营</a>
         </li>
         <li id="lou_puls_li" class="sub_selection_li navigation_li">
           <router-link
@@ -117,7 +159,26 @@
 </template>
 
 <script type="text/javascript">
-export default {};
+import { lists } from "../../api/home/home_header";
+export default {
+  data() {
+    return {
+      lists: [],
+      nav: []
+    };
+  },
+  async created() {
+    lists().then(res => {
+      this.lists = res.data.data;
+      this.nav = res.data.data;
+      // for (let item in this.lists) {
+      //   console.log(this.lists[item].name);
+      // }
+
+      console.log(this.lists);
+    });
+  }
+};
 </script>
 
 <style type="text/css" scoped>
@@ -134,9 +195,26 @@ export default {};
   padding-right: 15px;
   position: relative;
 }
+.course_categories_div {
+  height: 100%;
+  margin-top: -1px;
+  border-bottom: 1px solid #bcbcbc;
+  display: flex;
+  align-items: center;
+}
 
 .navigation_li {
   float: left;
+}
+
+.course_button {
+  font-size: 12px;
+  color: #fff;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+.main_course_button {
+  font-size: 16px;
 }
 
 /* logo 切换/登陆/注册 区域 */
@@ -273,6 +351,7 @@ export default {};
   width: 260px;
   background: #08bf91;
   font-size: 16px;
+  position: relative;
 }
 
 #all_courses_i {
@@ -378,5 +457,152 @@ export default {};
 #search_input:focus {
   border: 1px solid #08bf91;
   box-shadow: 0 0 0 1px #21d6a8;
+}
+#course_categories {
+  z-index: 5;
+  background: rgba(37, 37, 37, 0.36);
+  width: 260px;
+}
+/*                                                     一级 */
+.to_lists {
+  width: 260px;
+  position: absolute;
+}
+.to_list {
+  width: 260px;
+  position: absolute;
+  top: 60px;
+}
+.course_categories_li {
+  height: 58px;
+  padding: 18px 12px 0;
+  margin-top: -1px;
+  position: relative;
+}
+/* 大分类里 div1 的设置*/
+.course_categories_div {
+  height: 100%;
+  margin-top: -1px;
+  border-bottom: 1px solid #bcbcbc;
+  display: flex;
+  align-items: center;
+}
+.course_button {
+  font-size: 12px;
+  color: #555;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+.main_course_button {
+  font-size: 16px;
+}
+.course_categories_li:hover {
+  background: #fff;
+}
+.course_categories_li:hover div {
+  border: none;
+}
+.course_categories_li:hover a {
+  cursor: pointer;
+  color: #666;
+}
+.course_categories_li:hover a:hover {
+  color: #08bf91;
+}
+/*                                  二级                                      */
+/* div2 里的 hover 出来的二级子菜单 */
+
+.www {
+  width: 400px;
+  background: #fff;
+  position: absolute;
+  padding: 20px;
+  left: 260px;
+  top: 0;
+  display: none;
+  z-index: 5;
+}
+.course_categories_li:hover .www {
+  display: flex;
+  flex-direction: column;
+}
+/* div2 里的 hover 出来的二级子菜单 */
+.www_p {
+  display: inline-block;
+  height: 22px;
+  width: auto;
+  line-height: 22px;
+  padding: 0 10px;
+  background: #eee;
+  margin: 0 0 20px;
+  margin-right: auto;
+  font-size: 14px;
+  text-align: center;
+}
+.www_span {
+  display: flex;
+  /*align-self: center;*/
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.www_div {
+  display: flex;
+  /*align-self: center;*/
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.www_p {
+  margin-bottom: 10px;
+}
+.www_a {
+  display: inline-block;
+  border-left: 1px solid #666;
+  border-right: 1px solid #666;
+  padding: 0 10px;
+  font-size: 12px;
+  margin-left: -1px;
+  margin-bottom: 10px;
+}
+.sub_course_p {
+  margin-bottom: 10px;
+}
+.sub_course_a {
+  display: inline-block;
+  border-left: 1px solid #666;
+  border-right: 1px solid #666;
+  padding: 0 10px;
+  font-size: 12px;
+  margin-left: -1px;
+  margin-bottom: 10px;
+}
+.sub_recommend_course_a {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+/* footer div 里的一些设置 */
+.course_categories_footer {
+  padding: 18px 12px 0;
+}
+.course_categories_footer_div {
+  display: flex;
+  justify-content: space-around;
+  margin-right: auto;
+  margin-left: auto;
+}
+.course_categories_footer_a {
+  display: inline-block;
+  color: #fff;
+  width: 88px;
+  height: 26px;
+  border: 1px solid #fff;
+  border-radius: 28px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 26px;
+}
+.course_categories_footer_a:hover {
+  background: #fff;
+  color: #666;
 }
 </style>
