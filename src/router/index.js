@@ -5,6 +5,9 @@ import Paths from "../views/nav/Paths.vue";
 import Bootcamp from "../views/nav/Bootcamp.vue";
 import Louplus from "../views/nav/Louplus.vue";
 import Plus from "../views/plus/Plus.vue";
+import VueCookies from "vue-cookies";
+$cookies.config("0", "/");
+Vue.use(VueCookies);
 
 Vue.use(VueRouter);
 
@@ -37,11 +40,18 @@ const routes = [
     path: "/louplus",
     name: "louplus",
     component: Louplus
+  },
+  {
+    path: "/plus",
+    name: "plus",
+    component: Plus
   }
 ];
 
 const router = new VueRouter({
   routes
 });
-
+// router.beforeEach((to, from, next) => {
+//   next();
+// });
 export default router;

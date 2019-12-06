@@ -5,7 +5,7 @@
     <transition name="header_transition">
       <Header></Header>
     </transition>
-
+    
     <router-view></router-view>
 
     <Footer></Footer>
@@ -14,18 +14,17 @@
 
 <script>
 import Login from "./views/login/Login";
-import Header from "./components/header/header";
-import Footer from "./components/layout/footer";
+import Header from "./views/header/header";
+import Footer from "./views/layout/footer";
 import Puls from "./views/plus/Plus";
 
 export default {
   name: "App",
   components: {
     Login,
-
     Footer,
-    Header,
-    Puls
+    Header
+  
   },
   data() {
     return {
