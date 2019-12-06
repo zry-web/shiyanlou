@@ -2,11 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
   timeout: 5000, // 超时时间
-<<<<<<< HEAD
   baseURL: "http://122.51.169.217:3000" // 表示web服务器的根地址
-=======
-  baseURL: "http://122.51.169.217:3000/api/course" // 表示web服务器的根地址
->>>>>>> dev
 });
 
 export function get(url, config) {

@@ -85,14 +85,13 @@
 </template>
 
 <script>
-import {allMessage} from "../../services/movie"
 export default {
   name: "paths",
   components: {},
-  data(){
+  data() {
     return {
-      list:[]
-    }
+      list: []
+    };
   },
   async created() {
     // 使用async/await优化Promise请求
@@ -180,7 +179,8 @@ export default {
   text-decoration: none;
   background-color: transparent;
   display: block;
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 .paths a img {
   vertical-align: middle;

@@ -23,43 +23,20 @@
             <div class="tit col-sm-12 col-md-1">方向：</div>
             <div class="lists col-sm-12 col-md-11">
               <div class="list-item active">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
+              <div class="list-item" v-for="item in list1" :key="item._id">
+                {{ item.category }}
+              </div>
             </div>
           </div>
 
           <div class="row list-row">
-            <div class="tit col-sm-12 col-md-1">方向：</div>
+            <div class="tit col-sm-12 col-md-1">标签：</div>
             <div class="lists col-sm-12 col-md-11">
               <div class="list-item active">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
-              <div class="list-item">全部</div>
+              <div class="list-item" v-for="item in list2" :key="item._id">
+                {{item.tag}}
+              </div>
+              
             </div>
           </div>
         </div>
@@ -106,44 +83,89 @@
             </a>
           </div>
         </div>
-        <div class="bc-pages">
+        <!-- <div class="bc-pages">
           <nav>
             <ul class="pages-number">
               <li class="page-item">
-                <a class="page-link" href=""> <span>《</span>上一页 </a>
+                <a class="page-link" href> <span>《</span>上一页 </a>
               </li>
               <li class="page-item">
-                <a class="page-link active" href="">1</a>
+                <a class="page-link active" href>1</a>
               </li>
               <li class="page-item">
-                <a class="page-link" href="">2</a>
+                <a class="page-link" href>2</a>
               </li>
               <li class="page-item">
-                <a class="page-link" href="">3</a>
+                <a class="page-link" href>3</a>
               </li>
               <li class="page-item">
-                <a class="page-link" href="">4</a>
+                <a class="page-link" href>4</a>
               </li>
               <li class="page-item">
-                <a class="page-link" href="">5</a>
+                <a class="page-link" href>5</a>
               </li>
               <li class="page-item">
-                <a class="page-link" href="">
+                <a class="page-link" href>
                   下一页
                   <span>》</span>
                 </a>
               </li>
             </ul>
           </nav>
+        </div> -->
+      </div>
+    </div>
+    <div class="faq-page">
+      <div class="faq-content">
+        <div class="container">
+          <div class="faq-header">
+            <h4>训练营FAQ</h4>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="faq-item">
+                <p class="faq-title">训练营是实验楼与合作工程师共同打造的项目实战课程。通过训练营的学习，
+                  你会完成一个产品原型或一系列编程任务，在项目实战中融会贯通一个
+                  领域的IT技术及开发流程。</p>
+                <p class="faq-content">
+                  <img src="https://static.shiyanlou.com/frontend/dist/img/180f21a.png" alt="">
+                  <i style="dispaly:block;margin:0 5px;font-size:16px;">:</i>
+                  
+                  <span class="inner-content">训练营是实验楼与合作工程师共同打造的项目实战课程。
+                    通过训练营的学习，你会完成一个产品原型或一系列编程任务，在项目实战中融会贯通
+                    一个领域的IT技术及开发流程。</span>
+                </p>
+                <br>
+
+              </div>
+              <a href="" target="_black" class="faq-more">更多疑问，查看这里>></a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import _ from "lodash";
+import { allMessage } from "../../api/services/move";
 export default {
   name: "bootcamp",
-  components: {}
+  components: {
+    
+  },
+  data() {
+    return {
+      list1: [],
+      list2:[]
+    };
+  },
+  async created() {
+    const res = await allMessage();
+    this.list1 = _.uniqBy(res.data.data, "category"); // res.data.data;
+    this.list2 = _.uniqBy(res.data.data, "tag"); // res.data.data;
+  }
+  
 };
 </script>
 <style scoped>
@@ -204,6 +226,7 @@ export default {
   transition: background 0.5s ease;
   font-size: 16px;
   color: #666;
+  cursor: pointer;
 }
 .tit {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -288,17 +311,18 @@ export default {
   font-size: 14px;
   text-align: center;
   line-height: 1;
+  margin: 10px 0 0;
 }
 .course-footer {
-  height: 58px;
+  height: 80px;
   overflow: hidden;
   position: relative;
 }
 .status-hover {
   position: absolute;
   left: 0;
-  top: 70px;
-  height: 70px;
+  top: 80px;
+  height: 80px;
   width: 260px;
   background: #f66;
   color: #fff;
@@ -364,9 +388,73 @@ export default {
   background: #08bf91;
   color: #fff;
 }
-.page-link:hover{
+.page-link:hover {
   background: #08bf91;
   color: #fff;
 }
-
+.faq-page{
+  padding: 50px 0;
+    background: #fff;
+}
+.faq-header{
+  display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    justify-content: center
+}
+.faq-header h4{
+  padding: 8px 16px;
+    margin-bottom: 30px;
+    color: #fff;
+    background: #08bf91;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.2;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,
+    Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,
+    Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+.faq-title{
+  color: #08bf91;
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,
+  Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,
+  Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+}
+.faq-content{
+  color: #666;
+  margin-top: 0;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  display: flex
+}
+.faq-content img{
+  width: 39px;
+  height: 34px;
+}
+.inner-content{
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #666;
+    box-sizing: border-box;
+    
+}
+.faq-more{
+  color: #08bf91;
+    text-decoration: none;
+    background-color: transparent;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+}
 </style>

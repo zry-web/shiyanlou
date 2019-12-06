@@ -3,29 +3,15 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Paths from "../views/nav/Paths.vue";
 import Bootcamp from "../views/nav/Bootcamp.vue";
+import Louplus from "../views/nav/Louplus.vue";
 
-<<<<<<< HEAD
 Vue.use(VueRouter);
-=======
-
-Vue.use(VueRouter)
->>>>>>> f6ce71fda3945568ee2711f0fca7ed212555a8c9
 
 const routes = [
-
   {
-<<<<<<< HEAD
     path: "/",
     name: "home",
     component: Home
-=======
-    path: '/',
-    name: 'home',
-    component: Home,
-    // children: [{
-
-    // }]
->>>>>>> f6ce71fda3945568ee2711f0fca7ed212555a8c9
   },
   {
     path: "/about",
@@ -45,6 +31,11 @@ const routes = [
     path: "/bootcamp",
     name: "bootcamp",
     component: Bootcamp
+  },
+  {
+    path: "/louplus",
+    name: "louplus",
+    component: Louplus
   }
 ];
 

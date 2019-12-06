@@ -2,7 +2,10 @@
   <div class="footer">
     <div class="footer_div">
       <div class="logo_other_site_div">
-        <img class="logo_img" src="https://static.shiyanlou.com/img/logo-white.svg" />
+        <img
+          class="logo_img"
+          src="https://static.shiyanlou.com/img/logo-white.svg"
+        />
         <p class="logo_other_site_description_p">动手做实验，轻松学IT</p>
         <div class="chat_tools_div">
           <div class="wechat_qr_div">
@@ -42,7 +45,6 @@ export default {};
 .footer {
   background: #333;
   padding-top: 20px;
-  margin-top: 400px;
 }
 
 .footer_div {
