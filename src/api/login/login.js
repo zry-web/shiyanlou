@@ -7,4 +7,6 @@ export function login(logdata) {
 export function reg(regdata) {
   return post("/user/save", regdata);
 }
-
+export function getuser(token) {
+  return post("/user/list", token);
+}

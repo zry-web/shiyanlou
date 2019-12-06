@@ -13,8 +13,8 @@
 
 <script>
 import Login from "./views/login/Login";
-import Header from "./compents/header/header";
-import Footer from "./compents/layout/footer";
+import Header from "./components/header/header";
+import Footer from "./components/layout/footer";
 import Puls from "./views/plus/Plus";
 
 export default {

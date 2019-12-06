@@ -2,21 +2,17 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Plus from "../views/plus/Plus.vue";
+import VueCookies from "vue-cookies";
+$cookies.config("0", "/");
+Vue.use(VueCookies);
 
-
-
-
-Vue.use(VueRouter)
-
+Vue.use(VueRouter);
 
 const routes = [
   {
-
-    path: '/',
-    name: 'home',
-    component: Home,
-
-
+    path: "/",
+    name: "home",
+    component: Home
   },
   {
     path: "/about",
@@ -37,5 +33,7 @@ const routes = [
 const router = new VueRouter({
   routes
 });
-
+// router.beforeEach((to, from, next) => {
+//   next();
+// });
 export default router;
