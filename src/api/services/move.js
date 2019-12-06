@@ -4,6 +4,12 @@ import axios from "axios";
 export function allMessage() {
   return get("/api/course");
 }
+
+export function bc_list(page) {
+  return get("/api/course", {
+    page
+  });
+}
 // axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
 //   var config = err.config;
 //   // If config does not exist or the retry option is not set, reject

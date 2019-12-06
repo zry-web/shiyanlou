@@ -103,7 +103,7 @@ export default {
 
 <style scoped>
 .full-page {
-  width: 1349px;
+  width: 100%;
 }
 .paths-banner {
   widows: 100%;

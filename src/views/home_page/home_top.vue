@@ -3,7 +3,10 @@
     <div id="navigation_logo_sign">
       <div id="navigation_logo">
         <a id="navigation_logo_a" href="/">
-          <img src="https://static.shiyanlou.com/img/shiyanlou_logo.svg" class="home_img" />
+          <img
+            src="https://static.shiyanlou.com/img/shiyanlou_logo.svg"
+            class="home_img"
+          />
         </a>
         <span id="logo_text">做实验，学编程</span>
       </div>
@@ -16,10 +19,10 @@
 
           <div class="navigation_bar_unlogged_in_div">
             <li class="navigation_li">
-              <a href="#" id="sign_button">登录</a>
+              <a href="#" id="sign_button" @click="clicklog()">登录</a>
             </li>
             <li class="navigation_li">
-              <a href="#" id="register_button">注册</a>
+              <a href="#" id="register_button" @click="clickreg()">注册</a>
             </li>
           </div>
           <div class="navigation_bar_logged_div">
@@ -33,7 +36,10 @@
             </li>
             <li class="navigation_feature_li avatar_li">
               <a class="navigation_feature_a navigation_avatar_a">
-                <img class="navigation_avatar_img" title="Avatar" />
+                <img
+                  class="navigation_avatar_img"
+                  :title="$cookies.get('token') ? userlist.username : 'Avatar'"
+                />
               </a>
             </li>
           </div>
@@ -49,14 +55,19 @@
           </a>
           <div class="to_lists">
             <ul class="to_list">
-              <li v-for="(nav,index) in lists" :key="index" class="course_categories_li">
+              <li
+                v-for="(nav, index) in lists"
+                :key="index"
+                class="course_categories_li"
+              >
                 <div class="course_categories_div">
-                  <a class="main_course_button course_button">{{ nav.name}}</a>
+                  <a class="main_course_button course_button">{{ nav.name }}</a>
                   <a
-                    v-for=" (sub, s_index) in nav.tag.slice(0, 2)"
+                    v-for="(sub, s_index) in nav.tag.slice(0, 2)"
                     :key="s_index"
                     class="course_button"
-                  >{{ sub.name }}</a>
+                    >{{ sub.name }}</a
+                  >
                 </div>
                 <div class="www">
                   <p class="www_p">{{ nav.name }}</p>
@@ -75,7 +86,9 @@
                     :key="r_index"
                     class="sub_course_p"
                   >
-                    <a target="_blank" class="sub_recommend_course_a">{{ recom.name }}</a>
+                    <a target="_blank" class="sub_recommend_course_a">{{
+                      recom.name
+                    }}</a>
                   </p>
                 </div>
               </li>
@@ -106,9 +119,9 @@
         <li id="lou_puls_li" class="sub_selection_li navigation_li">
           <router-link
             href="#7"
-            :to="{ name: 'louplus' }"
             id="lou_puls_button"
             class="sub_selection_a"
+            :to="{ name: 'plus' }"
             >楼+</router-link
           >
         </li>
@@ -153,17 +166,20 @@
 </template>
 
 <script type="text/javascript">
+import { getuser } from "../../api/login/login";
 import { lists } from "../../api/home/home_header";
-import { mapState } from "vuex";
+import { mapActions } from "vuex";
+import Vue from "vue";
+import VueCookies from "vue-cookies";
+$cookies.config("0", "/");
+Vue.use(VueCookies);
 export default {
   data() {
     return {
       lists: [],
-      nav: []
+      nav: [],
+      userlist: []
     };
-  },
-  computed: {
-    ...mapState({})
   },
   async created() {
     lists().then(res => {
@@ -174,7 +190,23 @@ export default {
       // }
 
       console.log(this.lists);
+      var user = {
+        token: $cookies.get("token")
+      };
+      getuser(user).then(res => {
+        this.userlist = res.data;
+      });
     });
+  },
+  methods: {
+    ...mapActions("login", ["clickclose", "changeclick"]),
+
+    clickreg() {
+      this.clickclose(false), this.changeclick("up");
+    },
+    clicklog() {
+      this.clickclose(false), this.changeclick("on");
+    }
   }
 };
 </script>
