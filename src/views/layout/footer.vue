@@ -2,10 +2,7 @@
   <div class="footer">
     <div class="footer_div">
       <div class="logo_other_site_div">
-        <img
-          class="logo_img"
-          src="https://static.shiyanlou.com/img/logo-white.svg"
-        />
+        <img class="logo_img" src="https://static.shiyanlou.com/img/logo-white.svg" />
         <p class="logo_other_site_description_p">动手做实验，轻松学IT</p>
         <div class="chat_tools_div">
           <div class="wechat_qr_div">
@@ -22,15 +19,34 @@
       </div>
       <div class="category_div company_description">
         <p class="main_category">公司</p>
+        <a href class="single_item_a">关于我们</a>
+        <a href class="single_item_a">联系我们</a>
+        <a href class="single_item_a">加入我们</a>
       </div>
       <div class="category_div cooperation_div">
         <p class="main_category">合作</p>
+        <a href class="single_item_a">成为作者</a>
+        <a href class="single_item_a">教师合作</a>
+        <a href class="single_item_a">友情链接</a>
+        <a href class="single_item_a">开发者</a>
       </div>
       <div class="category_div service_div">
         <p class="main_category">服务</p>
+        <a href class="single_item_a">企业版</a>
+        <a href class="single_item_a">实战训练营</a>
+        <a href class="single_item_a">会员服务</a>
+        <a href class="single_item_a">实验报告</a>
+        <a href class="single_item_a">常见问题</a>
+        <a href class="single_item_a">隐私条款</a>
       </div>
       <div class="category_div learning_path_div">
         <p class="main_category">学习路径</p>
+        <a href class="single_item_a">Python学习路径</a>
+        <a href class="single_item_a">Linux学习路径</a>
+        <a href class="single_item_a">大数据学习路径</a>
+        <a href class="single_item_a">java学习路径</a>
+        <a href class="single_item_a">PHP学习路径</a>
+        <a href class="single_item_a">全部</a>
       </div>
     </div>
     <div class="site_information">小龙设计团队专属打造</div>
@@ -45,7 +61,6 @@ export default {};
 .footer {
   background: #333;
   padding-top: 20px;
-  margin-top: 2800px;
 }
 
 .footer_div {
