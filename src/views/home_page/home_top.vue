@@ -32,7 +32,10 @@
               </a>
             </li>
             <li class="navigation_feature_li avatar_li">
-              <router-link class="navigation_feature_a navigation_avatar_a" :to="{name:'user'}">
+              <router-link
+                class="navigation_feature_a navigation_avatar_a"
+                :to="{name:'user_course'}"
+              >
                 <img
                   class="navigation_avatar_img"
                   :title="$cookies.get('token') ? userlist.username : 'Avatar'"
