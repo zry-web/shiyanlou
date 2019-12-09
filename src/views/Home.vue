@@ -55,6 +55,9 @@ export default {
 </script>
 
 <style type="text/css">
+.home_page {
+  min-height: 1000px;
+}
 .banner {
   width: 100%;
   position: relative;
