@@ -32,12 +32,12 @@
               </a>
             </li>
             <li class="navigation_feature_li avatar_li">
-              <a class="navigation_feature_a navigation_avatar_a">
+              <router-link class="navigation_feature_a navigation_avatar_a" :to="{name:'user'}">
                 <img
                   class="navigation_avatar_img"
                   :title="$cookies.get('token') ? userlist.username : 'Avatar'"
                 />
-              </a>
+              </router-link>
             </li>
           </div>
         </ul>
@@ -98,7 +98,7 @@
           <router-link id="trail_button" class="sub_selection_a" :to="{ name: 'paths' }">路径</router-link>
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
-          <router-link :to="{ name: 'bootcamp' }" id="trail_button" class="sub_selection_a">训练营</router-link>
+          <router-link :to="{ name: 'Bootcamp' }" id="trail_button" class="sub_selection_a">训练营</router-link>
         </li>
         <li id="lou_puls_li" class="sub_selection_li navigation_li">
           <router-link
@@ -168,12 +168,6 @@ export default {
     lists().then(res => {
       this.lists = res.data.data;
       this.nav = res.data.data;
-      // get_content_3("?category = 后端开发").then(res => {
-      //       for (let item in this.lists) {
-      //         console.log(this.lists[item].name);
-      //       }
-      // }
-      //  console.log(this.lists);
       var user = {
         token: $cookies.get("token")
       };
