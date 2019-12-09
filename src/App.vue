@@ -5,7 +5,7 @@
     <transition name="header_transition">
       <Header></Header>
     </transition>
-    
+
     <router-view></router-view>
 
     <Footer></Footer>
@@ -17,7 +17,6 @@ import Login from "./views/login/Login";
 import Header from "./views/header/header";
 import Footer from "./views/layout/footer";
 import Puls from "./views/plus/Plus";
-
 export default {
   name: "App",
   components: {

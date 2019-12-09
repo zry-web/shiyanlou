@@ -6,13 +6,14 @@ import Bootcamp from "../views/nav/Bootcamp.vue";
 import Louplus from "../views/nav/Louplus.vue";
 import Plus from "../views/plus/Plus.vue";
 import VueCookies from "vue-cookies";
+import Course from '../views/Course.vue';
+import CourseCard from '../views/Course/Course_card.vue';
 $cookies.config("0", "/");
 Vue.use(VueCookies);
 
 Vue.use(VueRouter);
 
-const routes = [
-  {
+const routes = [{
     path: "/",
     name: "home",
     component: Home
@@ -24,7 +25,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+      import( /* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
     path: "/paths",
@@ -45,6 +46,17 @@ const routes = [
     path: "/plus",
     name: "plus",
     component: Plus
+  },
+  {
+    path: '/course',
+    name: "course",
+    component: Course,
+    children:[
+      {
+        path: 'card',
+        component: CourseCard
+      }
+    ]
   }
 ];
 
