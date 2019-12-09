@@ -9,6 +9,7 @@ import User from "../views/users/User.vue";
 import VueCookies from "vue-cookies";
 import Course from '../views/Course.vue';
 import CourseCard from '../views/Course/Course_card.vue';
+import CourseDetail from '../views/CourseDetail.vue';
 $cookies.config("0", "/");
 Vue.use(VueCookies);
 
@@ -92,6 +93,11 @@ const routes = [{
         component: () => import("../views/users/news/user_courses.vue")
       }
     ]
+  },
+  {
+    path: '/coursedetail',
+    name: 'coursedetail',
+    component: CourseDetail
   }
 ];
 

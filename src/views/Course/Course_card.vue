@@ -2,7 +2,15 @@
   <div id="course-card">
     <h1>
       <ul class="course clean">
-        <li v-for="item in course.course" :key="item._id">
+        <router-link
+          :to="{
+          name:'coursedetail'
+        }"
+          tag="li"
+          v-for="item in course.course"
+          :key="item._id"
+          target='_blank'
+        >
           <a href="#">
             <img :src="item.coverImg" />
             <div class="course-info">
@@ -19,7 +27,7 @@
               >{{ item.courseType }}</span>
             </p>
           </a>
-        </li>
+        </router-link>
       </ul>
       <div class="pageBtn">
         <el-pagination
