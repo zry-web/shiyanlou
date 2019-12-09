@@ -3,10 +3,10 @@
     <div class="scroll_bar_div">
       <div class="scroll_navigation_div">
         <a class="scroll_navigation_logo_a" href="/">
-          <!-- <img
+          <img
             src="https://static.shiyanlou.com/img/shiyanlou_logo.svg"
             class="scroll_navigation_img"
-          /> -->
+          />
         </a>
         <ul class="scroll_selection_menu">
           <li id="courses_li" class="scroll_sub_selection_li scroll_navigation_li">
