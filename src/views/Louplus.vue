@@ -8,14 +8,14 @@
 <script>
 import Banner from "../views/louplus/Banner";
 import Service from "../views/louplus/Service";
-import Cource from "../views/louplus/Course";
+import Course from "../views/louplus/Course";
 
 export default {
   name: "Louplus",
   components: {
     Banner,
     Service,
-    Cource
+    Course
   }
 };
 </script>

@@ -39,63 +39,35 @@
       </div>
       <el-pagination
         class="bc-pages"
-        @current-change="pageChange"
         background
         layout="prev, pager, next"
-        :page-size="16"
-        :page-count="31"
+        :page-count="pages"
+        @current-change="pageChange"
       ></el-pagination>
-      <!-- <div class="bc-pages">
-          <nav>
-            <ul class="pages-number">
-              <li class="page-item">
-                <a class="page-link" href> <span>《</span>上一页 </a>
-              </li>
-              <li class="page-item">
-                <a class="page-link active" href>1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href>2</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href>3</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href>4</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href>5</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href>
-                  下一页
-                  <span>》</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-      </div>-->
     </div>
   </div>
 </template>
 <script>
-import { allMessage } from "../../api/services/move";
+import { picMessage } from "../../api/services/pages";
+import { tagMassage } from "../../api/services/move";
 export default {
   data() {
     return {
-      list: []
+      list: [],
+      pages: 1
     };
   },
   async created() {
-    const res = await allMessage();
-    this.list = res.data.data;
+    const result = await picMessage(1);
+    this.list = result.data.course;
+    this.pages = result.data.pages;
     // console.log(this.list);
   },
   methods: {
     async pageChange(p) {
-      const result = await p;
-      this.list = result.data.data;
-      this.pages = result.pages;
+      const result = await picMessage(p);
+      this.list = result.data.course;
+      this.pages = result.data.pages;
     }
   }
 };
