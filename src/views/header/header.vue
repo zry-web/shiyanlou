@@ -1,5 +1,5 @@
 <template>
-  <div class="scroll_bar item-id" v-if="isshou">
+  <div class="scroll_bar item-id">
     <div class="scroll_bar_div">
       <div class="scroll_navigation_div">
         <a class="scroll_navigation_logo_a" href="/">
@@ -144,23 +144,23 @@ export default {
       userlist: []
     };
   },
-  mounted() {
-    window.addEventListener("scroll", this.handleScroll);
-  },
+  // mounted() {
+  //   window.addEventListener("scroll", this.handleScroll);
+  // },
   destroyed() {
     window.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
     ...mapActions("login", ["clickclose", "changeclick"]),
-    handleScroll() {
-      var scrollTop =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
-      if (scrollTop > 100) {
-        this.isshou = true;
-      } else this.isshou = false;
-    },
+    // handleScroll() {
+    //   var scrollTop =
+    //     window.pageYOffset ||
+    //     document.documentElement.scrollTop ||
+    //     document.body.scrollTop;
+    //   if (scrollTop > 100) {
+    //     this.isshou = true;
+    //   } else this.isshou = false;
+    // },
     clickreg() {
       this.clickclose(false), this.changeclick("up");
     },
@@ -181,7 +181,7 @@ export default {
 <style type="text/css" scoped>
 .item-id {
   position: sticky;
-  top: 0;
+  top: 73px;
 }
 .scroll_bar {
   /*position: fixed;*/
