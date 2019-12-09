@@ -1,7 +1,5 @@
 <template>
   <div id="course-card">
-    {{ tagName }}
-    {{ dir }}
     <h1>
       <ul class="course clean">
         <li v-for="item in course.course" :key="item._id">
