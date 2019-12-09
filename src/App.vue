@@ -23,8 +23,8 @@ export default {
   components: {
     Login,
     Footer,
-    Header,
-    Puls
+    Header
+  
   },
   data() {
     return {

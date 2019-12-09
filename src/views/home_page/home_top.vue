@@ -98,7 +98,7 @@
           </div>
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
-          <router-link id="trail_button" class="sub_selection_a" :to="{ name: 'Paths' }">路径</router-link>
+          <router-link id="trail_button" class="sub_selection_a" :to="{ name: 'paths' }">路径</router-link>
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
           <router-link :to="{ name: 'Bootcamp' }" id="trail_button" class="sub_selection_a">训练营</router-link>
@@ -153,7 +153,7 @@
 
 <script type="text/javascript">
 import { getuser } from "../../api/login/login";
-import { lists } from "../../api/home/home_header";
+import { lists, get_content, get_content_3 } from "../../api/home/home_header";
 import { mapActions } from "vuex";
 import Vue from "vue";
 import VueCookies from "vue-cookies";
@@ -177,6 +177,19 @@ export default {
       getuser(user).then(res => {
         this.userlist = res.data.data;
       });
+    });
+    get_content_3("category=后端开发").then(res => {
+      let newData = [];
+      let tempList = [];
+      for (let [index, course] of res.data.course.entries()) {
+        tempList.push(course);
+        if ((index + 1) % 4 === 0) {
+          newData.push(tempList);
+          tempList = [];
+        }
+      }
+      res.data.course = newData;
+      console.log(res.data.course);
     });
   },
   methods: {
