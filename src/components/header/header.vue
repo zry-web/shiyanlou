@@ -1,12 +1,12 @@
 <template>
-  <div class="scroll_bar item-id">
+  <div class="scroll_bar item-id" v-if="isshou">
     <div class="scroll_bar_div">
       <div class="scroll_navigation_div">
         <a class="scroll_navigation_logo_a" href="/">
-          <!-- <img
+          <img
             src="https://static.shiyanlou.com/img/shiyanlou_logo.svg"
             class="scroll_navigation_img"
-          /> -->
+          />
         </a>
         <ul class="scroll_selection_menu">
           <li id="courses_li" class="scroll_sub_selection_li scroll_navigation_li">
@@ -26,10 +26,13 @@
               </li>
             </ul>
           </li>
-          <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li">
-            <a id="lou_puls_button" class="scroll_sub_selection_a">训练营</a>
+          <li id="trail_li" class="scroll_sub_selection_li scroll_navigation_li">
+            <a tag="a" id="trail_button" class="scroll_sub_selection_a">路径</a>
           </li>
-          <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li"></li>
+
+          <li id="trail_li" class="scroll_sub_selection_li scroll_navigation_li">
+            <a tag="a" id="trail_button" class="scroll_sub_selection_a">训练营</a>
+          </li>
           <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li">
             <a id="lou_puls_button" class="scroll_sub_selection_a">楼+</a>
           </li>
@@ -144,23 +147,23 @@ export default {
       userlist: []
     };
   },
-  // mounted() {
-  //   window.addEventListener("scroll", this.handleScroll);
-  // },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
   destroyed() {
     window.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
     ...mapActions("login", ["clickclose", "changeclick"]),
-    // handleScroll() {
-    //   var scrollTop =
-    //     window.pageYOffset ||
-    //     document.documentElement.scrollTop ||
-    //     document.body.scrollTop;
-    //   if (scrollTop > 100) {
-    //     this.isshou = true;
-    //   } else this.isshou = false;
-    // },
+    handleScroll() {
+      var scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      if (scrollTop > 100) {
+        this.isshou = true;
+      } else this.isshou = false;
+    },
     clickreg() {
       this.clickclose(false), this.changeclick("up");
     },
@@ -181,7 +184,7 @@ export default {
 <style type="text/css" scoped>
 .item-id {
   position: sticky;
-  top: 73px;
+  top: 0;
 }
 .scroll_bar {
   /*position: fixed;*/

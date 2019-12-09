@@ -8,27 +8,19 @@
               <span class="close_log_span" @click="clickclose(isclick)">×</span>
             </div>
             <ul class="nav_bar_ul">
-              <li
-                class="nav_bar_li"
-                :class="on_or_up == 'on' ? 'nav_bar_li_active' : ''"
-              >
+              <li class="nav_bar_li" :class="on_or_up == 'on' ? 'nav_bar_li_active' : ''">
                 <a
                   href="#"
                   :class="on_or_up == 'on' ? 'nav_bar_a ' : ''"
                   @click="changeclick('on')"
-                  >登录</a
-                >
+                >登录</a>
               </li>
-              <li
-                class="nav_bar_li"
-                :class="on_or_up == 'up' ? 'nav_bar_li_active' : ''"
-              >
+              <li class="nav_bar_li" :class="on_or_up == 'up' ? 'nav_bar_li_active' : ''">
                 <a
                   href="#"
                   :class="on_or_up == 'up' ? 'nav_bar_a ' : ''"
                   @click="changeclick('up')"
-                  >注册</a
-                >
+                >注册</a>
               </li>
             </ul>
           </div>
@@ -59,13 +51,6 @@ export default {
   },
   methods: {
     ...mapActions("login", ["changeclick", "clickclose"]),
-
-    logclick() {
-      on_or_up = "on";
-    },
-    regclick() {
-      on_or_up = "up";
-    },
     close_login() {
       isclick = false;
     }

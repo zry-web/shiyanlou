@@ -4,7 +4,7 @@ import router from "./router";
 import store from "./store/index";
 import rest from "./assets/rest.css";
 import axios from "axios";
-
+import utils from '@/utils/base.js'
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 
@@ -17,7 +17,7 @@ import "swiper/dist/css/swiper.min.css";
 Vue.use(VueAwesomeSwiper);
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
-
+Vue.prototype.utils = utils
 new Vue({
   rest,
   router,
