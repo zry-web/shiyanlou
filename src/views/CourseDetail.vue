@@ -292,8 +292,8 @@ export default {
         }
       }
     }
-    .course-tea {
-    }
+    // .course-tea {
+    // }
   }
 }
 </style>
