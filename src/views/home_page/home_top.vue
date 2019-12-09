@@ -95,10 +95,10 @@
           </div>
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
-          <router-link id="trail_button" class="sub_selection_a" :to="{ name: 'paths' }">路径</router-link>
+          <router-link id="trail_button" class="sub_selection_a" :to="{ name: 'Paths' }">路径</router-link>
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
-          <router-link :to="{ name: 'bootcamp' }" id="trail_button" class="sub_selection_a">训练营</router-link>
+          <router-link :to="{ name: 'Bootcamp' }" id="trail_button" class="sub_selection_a">训练营</router-link>
         </li>
         <li id="lou_puls_li" class="sub_selection_li navigation_li">
           <router-link

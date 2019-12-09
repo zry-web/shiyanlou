@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Paths from "../views/nav/Paths.vue";
-import Bootcamp from "../views/nav/Bootcamp.vue";
-import Louplus from "../views/nav/Louplus.vue";
+import Paths from "../views/Paths.vue";
+import Bootcamp from "../views/Bootcamp.vue";
+import Louplus from "../views/Louplus.vue";
 import Plus from "../views/plus/Plus.vue";
 import User from "../views/users/User.vue";
 import VueCookies from "vue-cookies";
@@ -29,17 +29,17 @@ const routes = [
   },
   {
     path: "/paths",
-    name: "paths",
+    name: "Paths",
     component: Paths
   },
   {
     path: "/bootcamp",
-    name: "bootcamp",
+    name: "Bootcamp",
     component: Bootcamp
   },
   {
     path: "/louplus",
-    name: "louplus",
+    name: "Louplus",
     component: Louplus
   },
   {
