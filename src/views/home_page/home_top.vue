@@ -52,7 +52,7 @@
     <div id="selection_bar">
       <ul id="selection_menu">
         <li id="all_courses_li" class="navigation_li">
-          <router-link class='allCourse' :to="{name:'course'}">
+          <router-link class="allCourse" :to="{name:'course'}">
             <i id="all_courses_i" class="fa fa-th"></i>
             全部课程
           </router-link>
@@ -129,7 +129,7 @@
           >
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
-          <a href="#6" id="VIP_button" class="sub_selection_a">会员</a>
+          <router-link :to="{name:'vip'}" id="VIP_button" class="sub_selection_a">会员</router-link>
         </li>
         <li id="community_li" class="sub_selection_li navigation_li">
           <a id="community_button" class="sub_selection_a">
@@ -141,7 +141,12 @@
               <a class="sub_community_a">讨论</a>
             </li>
             <li class="sub_community_li">
-              <a class="sub_community_a">教程库</a>
+              <router-link
+                :to="{name: 'library'}"
+                tag="a"
+                class="sub_selection_a"
+                id="community_button"
+              >教程库</router-link>
             </li>
             <li class="sub_community_li">
               <a class="sub_community_a">直播</a>
@@ -397,11 +402,11 @@ export default {
   font-size: 16px;
   position: relative;
 }
-#all_courses_li .allCourse{
-  display:inline-block;
-  width:260px;
-  padding:20px 18px;
-  color:#fff;
+#all_courses_li .allCourse {
+  display: inline-block;
+  width: 260px;
+  padding: 20px 18px;
+  color: #fff;
 }
 #all_courses_i {
   color: #fff;
@@ -525,7 +530,8 @@ export default {
 }
 .course_categories_li {
   height: 58px;
-  padding: 18px 12px 0;
+  padding: 14px 12px 0;
+  background: rgba(102, 102, 102, 0.4);
   margin-top: -1px;
   position: relative;
 }
@@ -632,7 +638,8 @@ export default {
 
 /* footer div 里的一些设置 */
 .course_categories_footer {
-  padding: 18px 12px 0;
+  padding: 18px 12px 18px;
+  background: rgba(102, 102, 102, 0.6);
 }
 .course_categories_footer_div {
   display: flex;

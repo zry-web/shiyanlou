@@ -131,13 +131,15 @@ export default {
   border-radius: 20px;
   outline: none;
   margin-bottom: 10px;
+  font-size:15px;
+  color:#666;
 }
 .sele_tag .tagList:hover {
   color: #fff;
   background: #08bf91;
 }
 .active {
-  color: #fff;
+  color: #fff !important;
   background: #08bf91 !important;
 }
 #select_tag .showBox {

@@ -6,6 +6,7 @@ import home from "./modules/home/home";
 import scrollBar from "./modules/scroll/scroll"
 import bootcamp from "./modules/bootcamp/bootcamp";
 
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -17,6 +18,8 @@ export default new Vuex.Store({
     course,
     home,
     scrollBar,
-    bootcamp
+    bootcamp,
+    scrollBar
+
   }
 });

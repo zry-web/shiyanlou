@@ -7,7 +7,7 @@
         <div class="chat_tools_div">
           <div class="wechat_qr_div">
             <a href="javascript:;">
-              <i class="fab fa-weixin"></i>
+              <i class="fa fa-weixin"></i>
             </a>
           </div>
           <div class="weibo_div">
