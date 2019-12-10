@@ -10,6 +10,7 @@ import VueCookies from "vue-cookies";
 import Course from '../views/Course.vue';
 import CourseCard from '../views/Course/Course_card.vue';
 import CourseDetail from '../views/CourseDetail.vue';
+import Library from '../views/Library.vue';
 $cookies.config("0", "/");
 Vue.use(VueCookies);
 
@@ -98,6 +99,11 @@ const routes = [{
     path: '/coursedetail',
     name: 'coursedetail',
     component: CourseDetail
+  },
+  {
+    path: "/library",
+    name: "library",
+    component: Library
   }
 ];
 

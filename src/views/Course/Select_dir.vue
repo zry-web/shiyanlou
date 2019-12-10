@@ -74,13 +74,15 @@ export default {
   transition: all 0.3s;
   border-radius: 20px;
   outline: none;
+  font-size:15px;
+  color:#666;
 }
 #select_dir .dirList:hover {
   color: #fff;
   background: #08bf91;
 }
 .active {
-  color: #fff;
+  color: #fff !important;
   background: #08bf91 !important;
 }
 </style>

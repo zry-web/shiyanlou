@@ -46,7 +46,7 @@
     <div id="selection_bar">
       <ul id="selection_menu">
         <li id="all_courses_li" class="navigation_li">
-          <router-link class='allCourse' :to="{name:'course'}">
+          <router-link class="allCourse" :to="{name:'course'}">
             <i id="all_courses_i" class="fa fa-th"></i>
             全部课程
           </router-link>
@@ -121,7 +121,12 @@
               <a class="sub_community_a">讨论</a>
             </li>
             <li class="sub_community_li">
-              <a class="sub_community_a">教程库</a>
+              <router-link
+                :to="{name: 'library'}"
+                tag="a"
+                class="sub_selection_a"
+                id="community_button"
+              >教程库</router-link>
             </li>
             <li class="sub_community_li">
               <a class="sub_community_a">直播</a>
@@ -377,11 +382,11 @@ export default {
   font-size: 16px;
   position: relative;
 }
-#all_courses_li .allCourse{
-  display:inline-block;
-  width:260px;
-  padding:20px 18px;
-  color:#fff;
+#all_courses_li .allCourse {
+  display: inline-block;
+  width: 260px;
+  padding: 20px 18px;
+  color: #fff;
 }
 #all_courses_i {
   color: #fff;
