@@ -8,16 +8,13 @@ import Plus from "../views/plus/Plus.vue";
 import User from "../views/users/User.vue";
 import Vip from "../views/vip/Vip.vue"
 import VueCookies from "vue-cookies";
-<<<<<<< HEAD
 import Course from '../views/Course.vue';
 import CourseCard from '../views/Course/Course_card.vue';
 import CourseDetail from '../views/CourseDetail.vue';
 import Library from '../views/Library.vue';
-=======
 import Course from "../views/Course.vue";
 import CourseCard from "../views/Course/Course_card.vue";
 import CourseDetail from "../views/CourseDetail.vue";
->>>>>>> 23dd5174d91069b9b716284256af01f16be4501c
 $cookies.config("0", "/");
 Vue.use(VueCookies);
 
