@@ -21,10 +21,11 @@
       </div>
     </div>
     <div class="custom_control_div">
-      <div>
+      <!-- <div>
         <input type="checkbox" name="autologin" value="true" class="autologinbutton" />
         <label class="autologin_label">下次自动登录</label>
-      </div>
+      </div> -->
+      <el-checkbox v-model="checked">备选项</el-checkbox>
       <div>
         <a
           class="forget_password"

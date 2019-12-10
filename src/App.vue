@@ -14,13 +14,16 @@
 </template>
 
 <script>
+import Vue from "vue";
+
 import Login from "./views/login/Login";
+import VueCookies from "vue-cookies";
 import Header from "./views/header/header";
 import Footer from "./views/layout/footer";
 import Puls from "./views/plus/Plus";
 
 import { mapState, mapActions } from "vuex";
-
+Vue.use(VueCookies);
 export default {
   name: "App",
   components: {
@@ -35,12 +38,14 @@ export default {
   },
   methods: {
     ...mapActions({
-      moniting_scrollbar: "scrollBar/update_scroll_value"
+      moniting_scrollbar: "scrollBar/update_scroll_value",
+      gettoken: "login/gettoken"
     })
   },
   computed: {
     ...mapState({
       scrolled: state => state.scrollBar.current_scrolled_value > 30,
+      token: state => state.login.token,
       show_index_scroll_bar: function(state) {
         if (this.$route.name == "Home") {
           return state.scrollBar.show_scroll_bar;
@@ -55,6 +60,9 @@ export default {
       "scroll",
       this.utils.throttle(this.moniting_scrollbar, 90)
     );
+  },
+  created() {
+    this.gettoken($cookies.get("token"));
   }
 };
 </script>

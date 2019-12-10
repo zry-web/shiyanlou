@@ -13,12 +13,17 @@
               </a>
               <div class="user-detail">
                 <div class="user-mate">
-                  <span>123456</span>
+                  <span>{{ list.nickname }}</span>
                   <span>L1</span>
                   <span>开通会员</span>
                   <span></span>
                 </div>
-                <span class="user-join">2019-12-04 加入实验楼</span>
+                <span class="user-join"
+                  >{{
+                    String(list.createdAt).substring(0, 10)
+                  }}
+                  加入实验楼</span
+                >
               </div>
               <div class="user-medals">
                 <span>还没有获得勋章</span>
@@ -33,9 +38,28 @@
 </template>
 <script>
 import Userlou from "./userlou";
+import { mapState } from "vuex";
+import { getUserData } from "../../api/user/user";
 export default {
   components: {
     Userlou
+  },
+  data() {
+    return {
+      list: []
+    };
+  },
+  computed: {
+    ...mapState({
+      token: state => state.login.token
+    })
+  },
+  created() {
+    getUserData({ token: this.token }).then(res => {
+      this.list = res.data.data;
+      console.log(this.token);
+      console.log(res);
+    });
   }
 };
 </script>
@@ -43,7 +67,7 @@ export default {
 <style scoped>
 .body {
   min-height: calc(100vh - 263px);
-  margin: 92px 0 20px;
+  margin: 30px 0 20px;
 }
 .container {
   padding-right: 15px;
