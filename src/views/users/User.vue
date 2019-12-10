@@ -16,7 +16,9 @@
                   <span>{{ list.nickname }}</span>
                   <span>L1</span>
                   <span>开通会员</span>
-                  <span></span>
+                  <a href="/user/profile"
+                    ><span class="el-icon-edit-outline edit"></span
+                  ></a>
                 </div>
                 <span class="user-join"
                   >{{
@@ -139,7 +141,7 @@ export default {
   color: #666;
 }
 .user-medals {
-  margin-left: 45%;
+  margin-left: 40%;
   width: 270px;
   height: 110px;
   text-align: center;
@@ -152,5 +154,9 @@ export default {
   line-height: 35px;
   font-size: 14px;
   color: #a4a4a4;
+}
+.edit {
+  vertical-align: middle;
+  margin-left: 10px;
 }
 </style>

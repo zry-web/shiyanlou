@@ -5,7 +5,10 @@
         <div class="container">
           <div class="row">
             <div class="col">
-              <img src="https://static.shiyanlou.com/img/louplus/louplus_logo.png" alt="楼+" />
+              <img
+                src="https://static.shiyanlou.com/img/louplus/louplus_logo.png"
+                alt="楼+"
+              />
               <p>
                 楼+
                 是实验楼精心打造的教学产品，课程由实验楼一线核心研发人员或技术专家制作并录制视频，
@@ -39,15 +42,8 @@ export default {
       timer: null
     };
   },
-  mounted() {
-    clearInterval(this.timer);
-  },
-  destroyed() {
-    clearInterval(this.timer);
-  },
   methods: {
     roll() {
-      clearInterval(this.timer);
       let newspace = 1300;
       this.timer = setInterval(() => {
         let oldspace =
@@ -55,8 +51,8 @@ export default {
         let speed = Math.ceil((newspace - oldspace) / 10);
         document.documentElement.scrollTop = document.body.scrollTop =
           oldspace + speed;
-        if (oldspace == newspace) {
-          clearInterval(this.timer);
+        if (oldspace >= newspace) {
+          clearInterval(this.timer._id);
         }
       }, 20);
     }

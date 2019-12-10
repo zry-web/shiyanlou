@@ -7,15 +7,16 @@ import Louplus from "../views/Louplus.vue";
 import Plus from "../views/plus/Plus.vue";
 import User from "../views/users/User.vue";
 import VueCookies from "vue-cookies";
-import Course from '../views/Course.vue';
-import CourseCard from '../views/Course/Course_card.vue';
-import CourseDetail from '../views/CourseDetail.vue';
+import Course from "../views/Course.vue";
+import CourseCard from "../views/Course/Course_card.vue";
+import CourseDetail from "../views/CourseDetail.vue";
 $cookies.config("0", "/");
 Vue.use(VueCookies);
 
 Vue.use(VueRouter);
 
-const routes = [{
+const routes = [
+  {
     path: "/",
     name: "Home",
     component: Home
@@ -27,7 +28,7 @@ const routes = [{
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import( /* webpackChunkName: "about" */ "../views/About.vue")
+      import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
     path: "/paths",
@@ -50,19 +51,22 @@ const routes = [{
     component: Plus
   },
   {
-    path: '/course',
+    path: "/course",
     name: "course",
     component: Course,
-    children: [{
-      path: 'card',
-      component: CourseCard
-    }]
+    children: [
+      {
+        path: "card",
+        component: CourseCard
+      }
+    ]
   },
   {
     path: "/user",
     name: "user",
     component: User,
-    children: [{
+    children: [
+      {
         path: "/user/1",
         name: "user_course",
         component: () => import("../views/users/news/user_course.vue")
@@ -95,16 +99,19 @@ const routes = [{
     ]
   },
   {
-    path: '/coursedetail',
-    name: 'coursedetail',
+    path: "/coursedetail",
+    name: "coursedetail",
     component: CourseDetail
+  },
+  {
+    path: "/user/profile",
+    name: "user_profile",
+    component: () => import("../views/users/userprofile.vue")
   }
 ];
 
-
-
-
 const router = new VueRouter({
+  mode: "history",
   routes
 });
 // router.beforeEach((to, from, next) => {
