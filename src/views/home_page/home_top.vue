@@ -109,7 +109,7 @@
           >楼+</router-link>
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
-          <a href="#6" id="VIP_button" class="sub_selection_a">会员</a>
+          <router-link :to="{name:'vip'}" id="VIP_button" class="sub_selection_a">会员</router-link>
         </li>
         <li id="community_li" class="sub_selection_li navigation_li">
           <a id="community_button" class="sub_selection_a">
@@ -500,7 +500,8 @@ export default {
 }
 .course_categories_li {
   height: 58px;
-  padding: 18px 12px 0;
+  padding: 14px 12px 0;
+  background: rgba(102, 102, 102, 0.4);
   margin-top: -1px;
   position: relative;
 }
@@ -607,7 +608,8 @@ export default {
 
 /* footer div 里的一些设置 */
 .course_categories_footer {
-  padding: 18px 12px 0;
+  padding: 18px 12px 18px;
+  background: rgba(102, 102, 102, 0.6);
 }
 .course_categories_footer_div {
   display: flex;

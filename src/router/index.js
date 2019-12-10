@@ -6,6 +6,7 @@ import Bootcamp from "../views/Bootcamp.vue";
 import Louplus from "../views/Louplus.vue";
 import Plus from "../views/plus/Plus.vue";
 import User from "../views/users/User.vue";
+import Vip from "../views/vip/Vip.vue"
 import VueCookies from "vue-cookies";
 $cookies.config("0", "/");
 Vue.use(VueCookies);
@@ -17,6 +18,7 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home
+
   },
   {
     path: "/about",
@@ -46,6 +48,14 @@ const routes = [
     path: "/plus",
     name: "plus",
     component: Plus
+  },
+  {
+    path: "/vip",
+    name: "vip",
+    component: Vip,
+    meta: {
+      title: '会员'
+    }
   },
   {
     path: "/user",
@@ -83,6 +93,15 @@ const routes = [
         component: () => import("../views/users/news/user_courses.vue")
       }
     ]
+
+  },
+  {
+    path: '*',
+    name: 'notfound',
+    component: () => import("@/views/404.vue"),
+    meta: {
+      title: 'Sorry，页面走丢了... - 实验楼'
+    }
   }
 ];
 

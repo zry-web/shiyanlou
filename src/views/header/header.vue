@@ -16,29 +16,26 @@
             </a>
             <ul class="scroll_sub_ul">
               <li class="scroll_sub_li">
-                <a tag="a" class="scroll_sub_a">免费课</a>
+                <a tag="a" class="scroll_sub_a">全部课程</a>
               </li>
               <li class="scroll_sub_li">
-                <a tag="a" class="scroll_sub_a">会员课</a>
-              </li>
-              <li class="scroll_sub_li">
-                <a href="#11" class="scroll_sub_a">训练营</a>
+                <router-link :to="{ name: 'paths' }" class="scroll_sub_a">学习路径</router-link>
               </li>
             </ul>
           </li>
           <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li">
-            <a id="lou_puls_button" class="scroll_sub_selection_a">训练营</a>
+            <router-link
+              :to="{ name: 'Bootcamp' }"
+              id="lou_puls_button"
+              class="scroll_sub_selection_a"
+            >训练营</router-link>
           </li>
           <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li"></li>
           <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li">
             <a id="lou_puls_button" class="scroll_sub_selection_a">楼+</a>
           </li>
           <li id="trail_li" class="scroll_sub_selection_li scroll_navigation_li">
-            <a
-              href="https://www.shiyanlou.com/vip"
-              id="VIP_button"
-              class="scroll_sub_selection_a"
-            >会员</a>
+            <router-link :to="{name:'vip'}" id="VIP_button" class="scroll_sub_selection_a">会员</router-link>
           </li>
           <li id="community_li" class="scroll_sub_selection_li scroll_navigation_li">
             <a tag="a" class="scroll_sub_selection_a" id="community_button">
@@ -190,6 +187,7 @@ export default {
   background: #fff;
   width: 100%;
   z-index: 100;
+  box-shadow: #333 4px 0 20px;
 }
 
 .scroll_bar_div {

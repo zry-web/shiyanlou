@@ -1,6 +1,6 @@
 <template>
   <div class="lou_plus_card">
-    <a class="lou_plus_card_a" target="_blank" :href="data.url">
+    <a class="lou_plus_card_a" target="_blank" href="javascript:void(0);">
       <img :src="data.img" class="lou_plus_card_img" />
 
       <div class="lou_plus_card_text_div">
