@@ -1,7 +1,7 @@
 <template>
   <div class="wwwwww fixed-bot opo" v-show="show">
     <h2>加入实验楼会员，快速提升实战技能</h2>
-    <button type="button" class="btn btn-purchase btn-danger" v-show="long">立即抢购</button>
+    <button type="button" class="btn btn-purchase btn-danger" v-show="long" @click="roll">立即抢购</button>
     <button
       type="button"
       class="btn btn-purchase btn-warning"
@@ -35,6 +35,21 @@ export default {
       } else {
         this.show = false;
       }
+    },
+    roll() {
+      let newspace = 580;
+      clearInterval(this.timer);
+
+      this.timer = setInterval(() => {
+        let oldspace =
+          document.documentElement.scrollTop || document.body.scrollTop;
+        let speed = Math.ceil((newspace - oldspace) / 10);
+        document.documentElement.scrollTop = document.body.scrollTop =
+          oldspace + speed;
+        if (oldspace >= newspace - 20) {
+          clearInterval(this.timer);
+        }
+      }, 20);
     }
   },
   mounted() {
@@ -48,7 +63,6 @@ export default {
       this.ilong = true;
       this.long = false;
     }
-    console.log(this.token);
   }
 };
 </script>

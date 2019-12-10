@@ -9,10 +9,7 @@
           />
         </a>
         <ul class="scroll_selection_menu">
-          <li
-            id="courses_li"
-            class="scroll_sub_selection_li scroll_navigation_li"
-          >
+          <li id="courses_li" class="scroll_sub_selection_li scroll_navigation_li">
             <a tag="a" id="courses_button" class="scroll_sub_selection_a">
               课程
               <span class="spread"></span>
@@ -26,51 +23,21 @@
               </li>
             </ul>
           </li>
-<<<<<<< HEAD
           <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li">
             <router-link
               :to="{ name: 'Bootcamp' }"
               id="lou_puls_button"
               class="scroll_sub_selection_a"
             >训练营</router-link>
-=======
-          <li
-            id="lou_puls_li"
-            class="scroll_sub_selection_li scroll_navigation_li"
-          >
-            <a id="lou_puls_button" class="scroll_sub_selection_a">训练营</a>
->>>>>>> 6477149c79965a4d246edaf344d2846a874d6aa8
           </li>
-          <li
-            id="lou_puls_li"
-            class="scroll_sub_selection_li scroll_navigation_li"
-          ></li>
-          <li
-            id="lou_puls_li"
-            class="scroll_sub_selection_li scroll_navigation_li"
-          >
+          <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li"></li>
+          <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li">
             <a id="lou_puls_button" class="scroll_sub_selection_a">楼+</a>
           </li>
-<<<<<<< HEAD
           <li id="trail_li" class="scroll_sub_selection_li scroll_navigation_li">
             <router-link :to="{name:'vip'}" id="VIP_button" class="scroll_sub_selection_a">会员</router-link>
-=======
-          <li
-            id="trail_li"
-            class="scroll_sub_selection_li scroll_navigation_li"
-          >
-            <a
-              href="https://www.shiyanlou.com/vip"
-              id="VIP_button"
-              class="scroll_sub_selection_a"
-              >会员</a
-            >
->>>>>>> 6477149c79965a4d246edaf344d2846a874d6aa8
           </li>
-          <li
-            id="community_li"
-            class="scroll_sub_selection_li scroll_navigation_li"
-          >
+          <li id="community_li" class="scroll_sub_selection_li scroll_navigation_li">
             <a tag="a" class="scroll_sub_selection_a" id="community_button">
               社区
               <span class="spread"></span>
@@ -116,9 +83,7 @@
 
             <div class="unlogged_in_div">
               <li class="feature_li">
-                <a href="javascript:;" class="feature_a" @click="clicklog()"
-                  >登录</a
-                >
+                <a href="javascript:;" class="feature_a" @click="clicklog()">登录</a>
               </li>
               <li class="feature_li" id="register_li">
                 <a
@@ -126,15 +91,12 @@
                   id="_register_button"
                   class="feature_a"
                   @click="clickreg()"
-                  >注册</a
-                >
+                >注册</a>
               </li>
             </div>
             <div class="logged_div">
               <li class="feature_li history_courses_li">
-                <a href="javascript:;" class="history_courses_a feature_a"
-                  >我的课程</a
-                >
+                <a href="javascript:;" class="history_courses_a feature_a">我的课程</a>
                 <!-- <HistoryCoursesCard class="scroll_bar_history_courses_card"></HistoryCoursesCard> -->
               </li>
               <li class="feature_li">
@@ -216,6 +178,7 @@ export default {
 <style type="text/css" scoped>
 .item-id {
   position: sticky;
+  z-index: 1211;
   top: 73px;
 }
 .scroll_bar {
@@ -224,7 +187,6 @@ export default {
   height: 73px;
   background: #fff;
   width: 100%;
-  z-index: 100;
   box-shadow: #333 4px 0 20px;
 }
 
@@ -258,14 +220,15 @@ export default {
 }
 
 .scroll_sub_selection_li {
-  padding: 20px 15px;
+  margin-top: 5px;
+  padding: 25px 10px;
 }
 
 /* 导航区域子菜单 */
 
 .scroll_sub_selection_a {
   color: #3a3a3a;
-  font-size: 16px;
+  font-size: 14px;
   /*padding: 20px 15px;*/
   line-height: 1.9;
 }
@@ -285,7 +248,7 @@ export default {
   box-shadow: 0 15px 16px 0 rgba(0, 0, 0, 0.18);
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
-  z-index: 10;
+  z-index: 1000;
 }
 
 #community_li:hover ul {
@@ -305,7 +268,7 @@ export default {
   margin-left: 2px;
   vertical-align: middle;
   border-top: 4px dashed;
-  border-top: 4px solid \9;
+  border-top: 4px solid;
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
 }
@@ -314,8 +277,8 @@ export default {
   display: block;
   color: #3a3a3a;
   width: 90%;
-  padding: 15px 0 15px 15px;
-  font-size: 16px;
+  padding: 15px 0 15px 10px;
+  font-size: 14px;
 }
 
 .scroll_sub_a:hover {
