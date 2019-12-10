@@ -7,13 +7,15 @@ import Louplus from "../views/Louplus.vue";
 import Plus from "../views/plus/Plus.vue";
 import User from "../views/users/User.vue";
 import VueCookies from "vue-cookies";
+import Course from '../views/Course.vue';
+import CourseCard from '../views/Course/Course_card.vue';
+import CourseDetail from '../views/CourseDetail.vue';
 $cookies.config("0", "/");
 Vue.use(VueCookies);
 
 Vue.use(VueRouter);
 
-const routes = [
-  {
+const routes = [{
     path: "/",
     name: "Home",
     component: Home
@@ -25,7 +27,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+      import( /* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
     path: "/paths",
@@ -48,11 +50,19 @@ const routes = [
     component: Plus
   },
   {
+    path: '/course',
+    name: "course",
+    component: Course,
+    children: [{
+      path: 'card',
+      component: CourseCard
+    }]
+  },
+  {
     path: "/user",
     name: "user",
     component: User,
-    children: [
-      {
+    children: [{
         path: "/user/1",
         name: "user_course",
         component: () => import("../views/users/news/user_course.vue")
@@ -83,6 +93,11 @@ const routes = [
         component: () => import("../views/users/news/user_courses.vue")
       }
     ]
+  },
+  {
+    path: '/coursedetail',
+    name: 'coursedetail',
+    component: CourseDetail
   }
 ];
 

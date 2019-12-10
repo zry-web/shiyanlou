@@ -52,10 +52,10 @@
     <div id="selection_bar">
       <ul id="selection_menu">
         <li id="all_courses_li" class="navigation_li">
-          <a id="all_courses_button">
+          <router-link class='allCourse' :to="{name:'course'}">
             <i id="all_courses_i" class="fa fa-th"></i>
             全部课程
-          </a>
+          </router-link>
           <div class="to_lists">
             <ul class="to_list">
               <li
@@ -397,7 +397,12 @@ export default {
   font-size: 16px;
   position: relative;
 }
-
+#all_courses_li .allCourse{
+  display:inline-block;
+  width:260px;
+  padding:20px 18px;
+  color:#fff;
+}
 #all_courses_i {
   color: #fff;
 }
