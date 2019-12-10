@@ -3,52 +3,46 @@
     <div class="cd-left fl">
       <p class="course-nav">
         <span>全部课程</span>/
-        <span>新手入门</span>/
-        <span>新手入门指南之玩转实验楼</span>
+        <span>{{this.tag}}</span>/
+        <span>{{courseDetail.title}}</span>
       </p>
       <div class="course-info">
         <h3 class="course-tit">
-          新手入门指南之玩转实验楼
-          <span>免费</span>
+          {{courseDetail.title}}
+          <span
+            :class="{vip: courseDetail.feeType == '会员',xly: courseDetail.feeType == '训练营', mf: courseDetail.feeType == '免费'}"
+          >{{courseDetail.feeType}}</span>
         </h3>
         <p class="course-count">
-          <span>395512人学过</span>
-          <span>1816人关注</span>
-          <span>作者:情人草</span>
+          <span>{{courseDetail.studentCount}}</span>
+          <span>{{courseDetail.attentionCount}}</span>
+          <span>{{courseDetail.author}}</span>
         </p>
-        <p
-          class="course-desc"
-        >本实验通过一个 C 语言的编程例子学习实验楼的使用方法，面向完全没有编程经验的用户。从中我们将了解到实验楼的实验精神：“从实践切入，依靠交互性、操作性更强的课程，理论学习+动手实践共同激发你的创造力。”</p>
+        <p class="course-desc">{{courseDetail.descriptions}}</p>
       </div>
-      <div class="studed">
-        <h3>你将学到</h3>
+      <div class="studed" v-if="studed">
+        <h3>你将学到的</h3>
         <div class="study-course">
           <ul class="clean">
-            <li>实验楼的使用方法</li>
-            <li>实验楼的使用方法</li>
-            <li>实验楼的使用方法</li>
-            <li>实验楼的使用方法</li>
-            <li>实验楼的使用方法</li>
-            <li>实验楼的使用方法</li>
+            <li v-for="item in courseDetail.studed" :key="item._id">{{item.name}}</li>
           </ul>
         </div>
       </div>
       <div class="course-con">
         <h3>
           课程内容
-          <span>共一个章节</span>
+          <span>共{{courseContent}}个章节</span>
         </h3>
         <ul>
-          <li>
-            <div class="con-tit clearfix">
-              <span class="fl">实验 1</span>
-              <p class="fl">Hello，ShiYanLou!</p>
-              <button class="startStu">开始学习</button>
-              <button class="join">需加入课程后学习，点击加入</button>
-            </div>
-            <div class="con-desc">
-              知识点:
-              <span>1.Linux基本命令</span>
+          <li v-for="item in courseDetail.courseContent" :key="item._id">
+            <div class="ccon-list">
+              <div class="con-tit clearfix">
+                <span class="fl">{{ item.conType }}</span>
+                <p class="fl">{{ item.cName }}</p>
+                <button class="startStu">开始学习</button>
+                <button class="join">需加入课程后学习，点击加入</button>
+              </div>
+              <div class="con-desc">{{ item.cDescriptions }}</div>
             </div>
           </li>
         </ul>
@@ -58,50 +52,81 @@
         <div class="course-task">
           <p>实验任务</p>
           <ul>
-            <li>在线完成一个输出 Hello Shiyanlou 的小程序</li>
-            <li>在线完成一个输出 Hello Shiyanlou 的小程序</li>
+            <li v-for="(item, index) in courseDetail.task" :key="index">{{ item.name }}</li>
           </ul>
         </div>
         <div class="course-knowedge">
           <h6>先学知识</h6>
-          <p>不需要任何先学知识。</p>
+          <p v-for='(item, index) in courseDetail.knowledge' :key='index'>{{ item }}</p>
         </div>
         <div class="course-dif">
           <h6>课程难度</h6>
-          <p>本课程难度为简单。</p>
+          <p>{{ courseDetail.difficulty }}</p>
         </div>
         <div class="users">
           <h6>面向用户</h6>
-          <p>本课程为实验楼的使用方法的介绍，面向没有编程经验的新手，如果你希望通过实验楼在线动手实践的方式入门 IT 技术，本课程是你第一个需要完成的课程。</p>
+          <p>{{ courseDetail.users }}</p>
         </div>
       </div>
       <div class="course-tea">
         <h3>课程教师</h3>
         <div class="tea-con clean">
           <a href="#" class="photo fl">
-            <img src="" />
+            <img :src='courseDetail.teacher.photo' />
           </a>
           <div class="fl tea-info">
-            <p>
-              <span class="name">Edward</span>
-              <span class="course-count">共发布过14门课程</span>
+            <p class="tea-name">
+              <span class="name">{{courseDetail.teacher.name}}</span>
+              <span class="course-count">{{courseDetail.teacher.release}}</span>
             </p>
-            <p class="tea-desc">资深程序员，5年Linux运维、企业级开发经验及数据库实战和教学经验。</p>
-            <a class="look-all" href="">查看老师全部课程></a>
+            <p class="tea-desc">{{courseDetail.teacher.desc}}</p>
+            <a class="look-all" href>查看老师全部课程></a>
           </div>
         </div>
       </div>
     </div>
-    <div class="cd-right fr"></div>
+    <div class="cd-right fr">
+      <a href="#" class="topImg">
+        <img :src='courseDetail.courseImg'/>
+      </a>
+      <p class="feeType">免费</p>
+      <button class="joinCourse">加入课程</button>
+      <div class="taskCount">
+        <ul>
+          <li>21 个在线动手实验</li>
+          <li>4 个实战场景挑战</li>
+        </ul>
+      </div>
+      <p class="gz">
+        <i></i>关注
+      </p>
+      <img />
+      <img />
+    </div>
   </div>
 </template>
 <script>
+import { getCourseDetail } from "../api/course/course";
 export default {
   name: "CourseDetail",
   data() {
-    return {};
+    return {
+      courseDetail: [],
+      tag: "",
+      studed: 0,
+      courseContent: 0
+    };
   },
-  created() {}
+  created() {
+    let tit = this.$route.query.tit;
+    this.tag = this.$route.query.tag;
+    getCourseDetail(tit).then(res => {
+      this.courseDetail = res.data.data;
+      this.studed = this.courseDetail.studed.length;
+      this.courseContent = this.courseDetail.courseContent.length;
+      console.log(this.courseDetail);
+    });
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -128,6 +153,28 @@ export default {
       padding-bottom: 5px;
       margin-bottom: 20px;
     }
+  }
+  .vip,
+  .xly,
+  .mf {
+    width: 42px;
+    height: 22px;
+    text-align: center;
+    line-height: 22px;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 14px;
+    padding: 2px 6px;
+    margin-left: 15px;
+  }
+  .vip {
+    background: #ffc500;
+  }
+  .xly {
+    background: #f66;
+  }
+  .mf {
+    background: #80c269;
   }
   .cd-left {
     width: 815px;
@@ -187,6 +234,7 @@ export default {
             width: 344px;
             float: left;
             margin-left: 32px;
+            margin-bottom: 15px;
             &:before {
               content: url("../assets/img/duihao.png");
               margin-right: 15px;
@@ -209,48 +257,50 @@ export default {
           min-height: 58px;
           border: 1px solid #eee;
           background-color: #fff;
-          .con-tit {
-            padding: 10px;
-            min-height: 58px;
-            background-color: #f7f7f7;
-            line-height: 1.5;
-            span {
-              margin-left: 12px;
-              color: #999;
-              font-size: 16px;
-              font-weight: 400;
-            }
-            p {
-              margin-left: 20px;
-              max-width: 76%;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              overflow: hidden;
-            }
-            button {
-              background: none;
-              border: none;
-            }
-            .startStu {
-              color: #fff;
-              background-color: #08bf91;
-              border-color: #08bf91;
-              padding: 7px 12px;
-              border-radius: 10px;
-              &:hover {
-                background: #068e6c;
-                border-color: #068e6c;
+          .ccon-list {
+            .con-tit {
+              padding: 10px;
+              min-height: 58px;
+              background-color: #f7f7f7;
+              line-height: 1.5;
+              span {
+                margin-left: 12px;
+                color: #999;
+                font-size: 16px;
+                font-weight: 400;
+              }
+              p {
+                margin-left: 20px;
+                max-width: 76%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+              }
+              button {
+                background: none;
+                border: none;
+              }
+              .startStu {
+                color: #fff;
+                background-color: #08bf91;
+                border-color: #08bf91;
+                padding: 7px 12px;
+                border-radius: 10px;
+                &:hover {
+                  background: #068e6c;
+                  border-color: #068e6c;
+                }
+              }
+              .join {
+                color: #068e6c;
               }
             }
-            .join {
-              color: #068e6c;
+            .con-desc {
+              padding: 10px 20px;
+              color: #a5a5a5;
+              font-size: 14px;
+              background: #fff;
             }
-          }
-          .con-desc {
-            padding: 10px 20px;
-            color: #a5a5a5;
-            font-size: 14px;
-            background: #fff;
           }
         }
       }
@@ -292,8 +342,80 @@ export default {
         }
       }
     }
-    // .course-tea {
-    // }
+    .course-tea {
+      .tea-con {
+        .tea-info {
+          .tea-name {
+            .name {
+              color: #3a3a3a;
+              font-size: 16px;
+            }
+            .course-count {
+              color: #999;
+              margin-left: 5px;
+            }
+          }
+          .tea-desc {
+            margin: 10px 0 0;
+            color: #565656;
+          }
+          .look-all {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #999;
+          }
+        }
+      }
+    }
+  }
+  .cd-right {
+    width: 315px;
+    margin-top: 50px;
+    background: #fff;
+    padding: 5px 5px 0;
+    .topImg {
+      margin-bottom: 20px;
+    }
+    .feeType {
+      font-weight: 500;
+      color: #333;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    .joinCourse {
+      display: block;
+      width: 283px;
+      height: 50px;
+      border-radius: 10px;
+      background: #08bf91;
+      color: #fff;
+      text-align: center;
+      line-height: 50px;
+      border: none;
+      margin: 0 auto;
+      margin-bottom: 20px;
+      outline: none;
+    }
+    .taskCount {
+      padding-left: 10px;
+      box-sizing: border-box;
+      font-size: 14px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 20px;
+      color: #a4a4a4;
+      ul {
+        li {
+          margin-bottom: 10px;
+        }
+      }
+    }
+    .gz {
+      text-align: Center;
+      line-height: 50px;
+      font-size: 16px;
+      color: #a4a4a4;
+    }
   }
 }
 </style>

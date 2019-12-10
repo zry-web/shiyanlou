@@ -4,12 +4,16 @@
       <ul class="course clean">
         <router-link
           :to="{
-          name:'coursedetail'
+          name:'coursedetail',
+          query:{
+            tit: item.title,
+            tag: item.tag
+          }
         }"
           tag="li"
           v-for="item in course.course"
           :key="item._id"
-          target='_blank'
+          target="_blank"
         >
           <a href="#">
             <img :src="item.coverImg" />

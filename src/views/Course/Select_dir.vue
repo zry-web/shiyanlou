@@ -42,6 +42,7 @@ export default {
     });
     getCourse().then(res => {
       this.changeCourse({ course: res.data });
+      console.log(res);
     });
   },
   computed: {
@@ -58,18 +59,6 @@ export default {
       this.ac = id;
     }
   },
-  watch: {
-    // tagName() {
-    //   getCourse(this.tagName, this.dirName).then(res => {
-    //     this.changeCourse({ course: res.data });
-    //   });
-    // },
-    // dirName() {
-    //   getCourse(this.p, this.tag, this.dirName).then(res => {
-    //     this.changeCourse({ course: res.data });
-    //   });
-    // }
-  }
 };
 </script>
 <style scoped>

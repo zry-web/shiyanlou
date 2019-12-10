@@ -23,5 +23,9 @@ export function getCourse(page, tag, category) {
         api = api + 'category=' + category
     }
     return get(api);
+}
 
+export function getCourseDetail(name) {
+    var api = '/api/coursedetail?title=' + name;
+    return get(api);
 }
