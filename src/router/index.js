@@ -8,6 +8,9 @@ import Plus from "../views/plus/Plus.vue";
 import User from "../views/users/User.vue";
 import Vip from "../views/vip/Vip.vue"
 import VueCookies from "vue-cookies";
+import Course from "../views/Course.vue";
+import CourseCard from "../views/Course/Course_card.vue";
+import CourseDetail from "../views/CourseDetail.vue";
 $cookies.config("0", "/");
 Vue.use(VueCookies);
 
@@ -58,6 +61,17 @@ const routes = [
     }
   },
   {
+    path: "/course",
+    name: "course",
+    component: Course,
+    children: [
+      {
+        path: "card",
+        component: CourseCard
+      }
+    ]
+  },
+  {
     path: "/user",
     name: "user",
     component: User,
@@ -102,13 +116,21 @@ const routes = [
     meta: {
       title: 'Sorry，页面走丢了... - 实验楼'
     }
+  },
+  {
+    path: "/coursedetail",
+    name: "coursedetail",
+    component: CourseDetail
+  },
+  {
+    path: "/user/profile",
+    name: "user_profile",
+    component: () => import("../views/users/userprofile.vue")
   }
 ];
 
-
-
-
 const router = new VueRouter({
+  mode: "history",
   routes
 });
 // router.beforeEach((to, from, next) => {

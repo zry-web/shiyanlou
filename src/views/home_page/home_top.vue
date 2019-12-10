@@ -3,7 +3,10 @@
     <div id="navigation_logo_sign">
       <div id="navigation_logo">
         <a id="navigation_logo_a" href="/">
-          <img src="https://static.shiyanlou.com/img/shiyanlou_logo.svg" class="home_img" />
+          <img
+            src="https://static.shiyanlou.com/img/shiyanlou_logo.svg"
+            class="home_img"
+          />
         </a>
         <span id="logo_text">做实验，学编程</span>
       </div>
@@ -32,10 +35,13 @@
               </a>
             </li>
             <li class="navigation_feature_li avatar_li">
-              <router-link class="navigation_feature_a navigation_avatar_a" :to="{name:'user'}">
+              <router-link
+                class="navigation_feature_a navigation_avatar_a"
+                :to="{ name: 'user_course' }"
+              >
                 <img
                   class="navigation_avatar_img"
-                  :title="$cookies.get('token') ? userlist.username : 'Avatar'"
+                  :title="$cookies.get('token') ? userlist.nickname : 'Avatar'"
                 />
               </router-link>
             </li>
@@ -46,20 +52,25 @@
     <div id="selection_bar">
       <ul id="selection_menu">
         <li id="all_courses_li" class="navigation_li">
-          <a id="all_courses_button">
+          <router-link class='allCourse' :to="{name:'course'}">
             <i id="all_courses_i" class="fa fa-th"></i>
             全部课程
-          </a>
+          </router-link>
           <div class="to_lists">
             <ul class="to_list">
-              <li v-for="(nav, index) in lists" :key="index" class="course_categories_li">
+              <li
+                v-for="(nav, index) in lists"
+                :key="index"
+                class="course_categories_li"
+              >
                 <div class="course_categories_div">
                   <a class="main_course_button course_button">{{ nav.name }}</a>
                   <a
                     v-for="(sub, s_index) in nav.tag.slice(0, 2)"
                     :key="s_index"
                     class="course_button"
-                  >{{ sub.name }}</a>
+                    >{{ sub.name }}</a
+                  >
                 </div>
                 <div class="www">
                   <p class="www_p">{{ nav.name }}</p>
@@ -79,9 +90,7 @@
                     class="sub_course_p"
                   >
                     <a target="_blank" class="sub_recommend_course_a">
-                      {{
-                      recom.name
-                      }}
+                      {{ recom.name }}
                     </a>
                   </p>
                 </div>
@@ -95,10 +104,20 @@
           </div>
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
-          <router-link id="trail_button" class="sub_selection_a" :to="{ name: 'paths' }">路径</router-link>
+          <router-link
+            id="trail_button"
+            class="sub_selection_a"
+            :to="{ name: 'paths' }"
+            >路径</router-link
+          >
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
-          <router-link :to="{ name: 'Bootcamp' }" id="trail_button" class="sub_selection_a">训练营</router-link>
+          <router-link
+            :to="{ name: 'Bootcamp' }"
+            id="trail_button"
+            class="sub_selection_a"
+            >训练营</router-link
+          >
         </li>
         <li id="lou_puls_li" class="sub_selection_li navigation_li">
           <router-link
@@ -106,7 +125,8 @@
             id="lou_puls_button"
             class="sub_selection_a"
             :to="{ name: 'plus' }"
-          >楼+</router-link>
+            >楼+</router-link
+          >
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
           <router-link :to="{name:'vip'}" id="VIP_button" class="sub_selection_a">会员</router-link>
@@ -377,7 +397,12 @@ export default {
   font-size: 16px;
   position: relative;
 }
-
+#all_courses_li .allCourse{
+  display:inline-block;
+  width:260px;
+  padding:20px 18px;
+  color:#fff;
+}
 #all_courses_i {
   color: #fff;
 }

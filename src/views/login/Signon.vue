@@ -21,15 +21,11 @@
       </div>
     </div>
     <div class="custom_control_div">
-      <div>
-        <input
-          type="checkbox"
-          name="autologin"
-          value="true"
-          class="autologinbutton"
-        />
+      <!-- <div>
+        <input type="checkbox" name="autologin" value="true" class="autologinbutton" />
         <label class="autologin_label">下次自动登录</label>
-      </div>
+      </div> -->
+      <el-checkbox v-model="checked">备选项</el-checkbox>
       <div>
         <a
           class="forget_password"
@@ -66,7 +62,8 @@ export default {
         password: ""
       },
       msg: "",
-      isMsg: false
+      isMsg: false,
+      checked: false
     };
   },
   computed: {
@@ -83,12 +80,15 @@ export default {
       login(this.user).then(res => {
         if (res.data.code == 1) {
           $cookies.set("token", res.data.token);
-          this.clickclose("true");
+          this.clickclose(true);
           this.gettoken($cookies.get("token"));
           // this.$router();
         } else {
           this.msg = res.data.msg;
-          this.isMsg = "true";
+          this.isMsg = true;
+          setTimeout(() => {
+            this.isMsg = false;
+          }, 3000);
         }
       });
     }

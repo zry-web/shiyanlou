@@ -9,7 +9,10 @@
           />
         </a>
         <ul class="scroll_selection_menu">
-          <li id="courses_li" class="scroll_sub_selection_li scroll_navigation_li">
+          <li
+            id="courses_li"
+            class="scroll_sub_selection_li scroll_navigation_li"
+          >
             <a tag="a" id="courses_button" class="scroll_sub_selection_a">
               课程
               <span class="spread"></span>
@@ -23,21 +26,51 @@
               </li>
             </ul>
           </li>
+<<<<<<< HEAD
           <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li">
             <router-link
               :to="{ name: 'Bootcamp' }"
               id="lou_puls_button"
               class="scroll_sub_selection_a"
             >训练营</router-link>
+=======
+          <li
+            id="lou_puls_li"
+            class="scroll_sub_selection_li scroll_navigation_li"
+          >
+            <a id="lou_puls_button" class="scroll_sub_selection_a">训练营</a>
+>>>>>>> 6477149c79965a4d246edaf344d2846a874d6aa8
           </li>
-          <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li"></li>
-          <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li">
+          <li
+            id="lou_puls_li"
+            class="scroll_sub_selection_li scroll_navigation_li"
+          ></li>
+          <li
+            id="lou_puls_li"
+            class="scroll_sub_selection_li scroll_navigation_li"
+          >
             <a id="lou_puls_button" class="scroll_sub_selection_a">楼+</a>
           </li>
+<<<<<<< HEAD
           <li id="trail_li" class="scroll_sub_selection_li scroll_navigation_li">
             <router-link :to="{name:'vip'}" id="VIP_button" class="scroll_sub_selection_a">会员</router-link>
+=======
+          <li
+            id="trail_li"
+            class="scroll_sub_selection_li scroll_navigation_li"
+          >
+            <a
+              href="https://www.shiyanlou.com/vip"
+              id="VIP_button"
+              class="scroll_sub_selection_a"
+              >会员</a
+            >
+>>>>>>> 6477149c79965a4d246edaf344d2846a874d6aa8
           </li>
-          <li id="community_li" class="scroll_sub_selection_li scroll_navigation_li">
+          <li
+            id="community_li"
+            class="scroll_sub_selection_li scroll_navigation_li"
+          >
             <a tag="a" class="scroll_sub_selection_a" id="community_button">
               社区
               <span class="spread"></span>
@@ -83,7 +116,9 @@
 
             <div class="unlogged_in_div">
               <li class="feature_li">
-                <a href="javascript:;" class="feature_a" @click="clicklog()">登录</a>
+                <a href="javascript:;" class="feature_a" @click="clicklog()"
+                  >登录</a
+                >
               </li>
               <li class="feature_li" id="register_li">
                 <a
@@ -91,12 +126,15 @@
                   id="_register_button"
                   class="feature_a"
                   @click="clickreg()"
-                >注册</a>
+                  >注册</a
+                >
               </li>
             </div>
             <div class="logged_div">
               <li class="feature_li history_courses_li">
-                <a href="javascript:;" class="history_courses_a feature_a">我的课程</a>
+                <a href="javascript:;" class="history_courses_a feature_a"
+                  >我的课程</a
+                >
                 <!-- <HistoryCoursesCard class="scroll_bar_history_courses_card"></HistoryCoursesCard> -->
               </li>
               <li class="feature_li">
@@ -109,7 +147,7 @@
                   <img
                     class="avatar_img"
                     :title="
-                      $cookies.get('token') ? userlist.username : 'Avatar'
+                      $cookies.get('token') ? userlist.nickname : 'Avatar'
                     "
                   />
                 </a>

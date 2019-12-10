@@ -61,6 +61,7 @@ export default {};
 .footer {
   background: #333;
   padding-top: 20px;
+  margin-top:80px;
 }
 
 .footer_div {
