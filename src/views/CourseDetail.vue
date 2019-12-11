@@ -47,9 +47,9 @@
           </li>
         </ul>
       </div>
-      <div class="course-pre">
+      <div class="course-pre" v-if='taskCount || diff || users'>
         <h3>课程介绍</h3>
-        <div class="course-task">
+        <div class="course-task" v-if="taskCount">
           <p>实验任务</p>
           <ul>
             <li v-for="(item, index) in courseDetail.task" :key="index">{{ item.name }}</li>
@@ -57,13 +57,13 @@
         </div>
         <div class="course-knowedge">
           <h6>先学知识</h6>
-          <p v-for='(item, index) in courseDetail.knowledge' :key='index'>{{ item }}</p>
+          <p v-for="(item, index) in courseDetail.knowledge" :key="index">{{ item || '无须提前掌握相关知识' }}</p>
         </div>
-        <div class="course-dif">
+        <div class="course-dif" v-if="diff">
           <h6>课程难度</h6>
           <p>{{ courseDetail.difficulty }}</p>
         </div>
-        <div class="users">
+        <div class="users" v-if="users">
           <h6>面向用户</h6>
           <p>{{ courseDetail.users }}</p>
         </div>
@@ -72,7 +72,7 @@
         <h3>课程教师</h3>
         <div class="tea-con clean">
           <a href="#" class="photo fl">
-            <img :src='courseDetail.teacher.photo' />
+            <img :src="courseDetail.teacher.photo" />
           </a>
           <div class="fl tea-info">
             <p class="tea-name">
@@ -87,7 +87,7 @@
     </div>
     <div class="cd-right fr">
       <a href="#" class="topImg">
-        <img :src='courseDetail.courseImg'/>
+        <img :src="courseDetail.courseImg" />
       </a>
       <p class="feeType">免费</p>
       <button class="joinCourse">加入课程</button>
@@ -114,7 +114,10 @@ export default {
       courseDetail: [],
       tag: "",
       studed: 0,
-      courseContent: 0
+      courseContent: 0,
+      taskCount: 0,
+      diff: "",
+      users: ""
     };
   },
   created() {
@@ -124,6 +127,9 @@ export default {
       this.courseDetail = res.data.data;
       this.studed = this.courseDetail.studed.length;
       this.courseContent = this.courseDetail.courseContent.length;
+      this.taskCount = this.courseDetail.task.length;
+      this.diff = this.courseDetail.difficulty;
+      this.users = this.courseDetail.users;
       console.log(this.courseDetail);
     });
   }
@@ -344,6 +350,11 @@ export default {
     }
     .course-tea {
       .tea-con {
+        .photo img {
+          width: 70px;
+          height: 70px;
+          margin-right: 20px;
+        }
         .tea-info {
           .tea-name {
             .name {
@@ -375,7 +386,11 @@ export default {
     background: #fff;
     padding: 5px 5px 0;
     .topImg {
-      margin-bottom: 20px;
+      img {
+        width: 305px;
+        height: 172px;
+        margin-bottom: 20px;
+      }
     }
     .feeType {
       font-weight: 500;

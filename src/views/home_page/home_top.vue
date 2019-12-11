@@ -122,7 +122,12 @@
               <a class="sub_community_a">讨论</a>
             </li>
             <li class="sub_community_li">
-              <a class="sub_community_a">教程库</a>
+              <router-link
+                :to="{name: 'library'}"
+                tag="a"
+                class="sub_selection_a"
+                id="community_button"
+              >教程库</router-link>
             </li>
             <li class="sub_community_li">
               <a class="sub_community_a">直播</a>

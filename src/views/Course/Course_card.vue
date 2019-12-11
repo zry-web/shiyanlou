@@ -13,7 +13,7 @@
           tag="li"
           v-for="item in course.course"
           :key="item._id"
-          target="_blank"
+          target="_self"
         >
           <a href="#">
             <img :src="item.coverImg" />
