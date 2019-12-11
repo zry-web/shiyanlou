@@ -9,7 +9,6 @@
           :data="data"
         ></contents>
       </div>
-   
   </div>
 </template>
 
@@ -52,7 +51,7 @@ export default {
   margin-left: auto;
   margin-right: auto;
   padding-top: 30px;
-  background: #f7f7f7;
+  background: #fff;
   margin-bottom: 30px;
 }
 

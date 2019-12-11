@@ -12,9 +12,7 @@ import Course from '../views/Course.vue';
 import CourseCard from '../views/Course/Course_card.vue';
 import CourseDetail from '../views/CourseDetail.vue';
 import Library from '../views/Library.vue';
-import Course from "../views/Course.vue";
-import CourseCard from "../views/Course/Course_card.vue";
-import CourseDetail from "../views/CourseDetail.vue";
+
 $cookies.config("0", "/");
 Vue.use(VueCookies);
 
@@ -33,7 +31,10 @@ const routes = [
   {
     path: "/paths",
     name: "Paths",
-    component: Paths
+    component: Paths,
+    meta: {
+      title: 'IT工程师学习路线_养成路径_实验楼学习路径 - 实验楼'
+    }
   },
   {
     path: "/bootcamp",
@@ -78,6 +79,16 @@ const routes = [
       }
     ]
   },
+
+
+  //   {
+  //     path: '/courses/reports/:id',
+  //     name: 'report',
+  //     component: ,
+  //     meta: {
+  //         title: '实验楼'
+  //     }
+  // },
   {
     path: "/user",
     name: "user",
@@ -138,7 +149,7 @@ const routes = [
   {
     path: "/library",
     name: "library",
-    component: Library
+    component: Library,
     path: "/user/profile",
     name: "user_profile",
     component: () => import("../views/users/userprofile.vue")
@@ -160,6 +171,8 @@ router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */
   if (to.meta.title) {
     document.title = to.meta.title;
+  } else {
+    document.title = 实验楼
   }
   next()
 });
