@@ -71,11 +71,14 @@
           </p>
         </div>
         <p class="vip-purchase relative no-margin">
+          <Bot3></Bot3>
+          <!-- <button type="button" class="btn btn-purchase btn-danger" v-show="long">立即抢购</button>
           <button
             type="button"
             class="btn btn-purchase btn-danger btn-lg"
+            v-show="!long"
             @click="clickclose(false)"
-          >登录并开通</button>
+          >登录并开通</button>-->
           <img
             alt="价格描述"
             src="https://dn-simplecloud.shiyanlou.com/course/1575858839722_pc-会员福利提示.png"
@@ -99,9 +102,10 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
+import Bot3 from "./button2";
 export default {
-  methods: {
-    ...mapActions("login", ["clickclose"])
+  components: {
+    Bot3
   }
 };
 </script>

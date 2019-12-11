@@ -8,7 +8,8 @@
 <script>
 import Banner from "../views/paths/Banner";
 import Content from "../views/paths/Content";
-import Panel from "../views/paths/Panel"
+import Panel from "../views/paths/Panel";
+
 export default {
   name: "Paths",
   components: {
@@ -19,7 +20,7 @@ export default {
 };
 </script>
 <style scoped>
-.full-page{
-    width: 100%;
+.full-page {
+  width: 100%;
 }
 </style>
