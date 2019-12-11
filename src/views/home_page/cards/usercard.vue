@@ -32,7 +32,7 @@
         <a tag="a" class="user_operation_button">我的主页</a>
         <a tag="a" :to="{ name: 'userProfile' }" class="user_operation_button">个人设置</a>
         <a tag="p" to="#" class="user_operation_button vip_user_operation_button">会员中心</a>
-        <a tag="p" to="#" class="user_operation_button">我要投稿</a>
+        <a tag="p" to="#" class="user_operation_button">成为作者</a>
       </div>
       <div class="exit_button">
         <a href="javascript:;" @click="log_out">退出登录</a>
