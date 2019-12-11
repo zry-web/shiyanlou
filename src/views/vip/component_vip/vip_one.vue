@@ -75,12 +75,15 @@
                 </p>
               </div>
               <p data-v-44f36620 class="vip-purchase relative no-margin">
+                <Bot2></Bot2>
+                <!-- <button type="button" class="btn btn-purchase btn-danger" v-show="long">立即抢购</button>
                 <button
                   data-v-44f36620
                   type="button"
                   class="btn btn-purchase btn-warning btn-lg"
                   @click="clickclose(false)"
-                >登录并开通</button>
+                  v-show="!long"
+                >登录并开通</button>-->
                 <!---->
               </p>
               <div class="sales-progress">
@@ -108,13 +111,11 @@
 </template>
 <script>
 import Vip2 from "./vippp";
-import { mapState, mapActions } from "vuex";
+import Bot2 from "./button2";
 export default {
-  methods: {
-    ...mapActions("login", ["clickclose"])
-  },
   components: {
-    Vip2
+    Vip2,
+    Bot2
   }
 };
 </script>
@@ -269,15 +270,6 @@ export default {
   text-decoration: line-through;
 }
 
-.btn-purchase {
-  position: relative;
-  margin-left: 80px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  width: 55%;
-  color: #fff;
-  border-radius: 25px;
-}
 .progress {
   width: 70%;
   margin-left: 16%;
