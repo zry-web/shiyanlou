@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Paths from "../views/Paths.vue";
 import Bootcamp from "../views/Bootcamp.vue";
+import Detail from "../views/Detail.vue";
 import Louplus from "../views/Louplus.vue";
 import Plus from "../views/plus/Plus.vue";
 import User from "../views/users/User.vue";
@@ -48,6 +49,11 @@ const routes = [
     component: Plus
   },
   {
+    path: "/detail",
+    name: "Detail",
+    component: Detail
+  },
+  {
     path: "/user",
     name: "user",
     component: User,
@@ -85,9 +91,6 @@ const routes = [
     ]
   }
 ];
-
-
-
 
 const router = new VueRouter({
   routes

@@ -15,3 +15,7 @@ export function tagMassage() {
 export function oneMassage(names) {
   return get("/api/course/bootcamp?category" + names);
 }
+
+export function getPaths() {
+  return get("/api/path");
+}
