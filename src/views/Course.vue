@@ -87,7 +87,7 @@ export default {
   float: right;
 }
 #course_page {
-  margin: 92px auto 20px;
+  margin: 20px auto 20px;
   max-width: 1140px;
 }
 #course_page .course-sele {
