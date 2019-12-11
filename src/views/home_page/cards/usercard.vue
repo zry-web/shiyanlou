@@ -35,7 +35,7 @@
         <a tag="p" to="#" class="user_operation_button">成为作者</a>
       </div>
       <div class="exit_button">
-        <a href="javascript:;" @click="log_out">退出登录</a>
+        <a href="javascript:;">退出登录</a>
       </div>
     </div>
   </div>

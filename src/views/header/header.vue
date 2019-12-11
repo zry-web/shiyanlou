@@ -16,10 +16,10 @@
             </a>
             <ul class="scroll_sub_ul">
               <li class="scroll_sub_li">
-                <a tag="a" class="scroll_sub_a">全部课程</a>
+                <router-link tag="a" class="scroll_sub_a" :to="{name:'course'}">全部课程</router-link>
               </li>
               <li class="scroll_sub_li">
-                <router-link :to="{ name: 'paths' }" class="scroll_sub_a">学习路径</router-link>
+                <router-link :to="{ name: 'Paths' }" class="scroll_sub_a">学习路径</router-link>
               </li>
             </ul>
           </li>
@@ -32,7 +32,11 @@
           </li>
           <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li"></li>
           <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li">
-            <a id="lou_puls_button" class="scroll_sub_selection_a">楼+</a>
+            <router-link
+              id="lou_puls_button"
+              class="scroll_sub_selection_a"
+              :to="{ name: 'plus' }"
+            >楼+</router-link>
           </li>
           <li id="trail_li" class="scroll_sub_selection_li scroll_navigation_li">
             <router-link :to="{name:'vip'}" id="VIP_button" class="scroll_sub_selection_a">会员</router-link>
@@ -81,7 +85,7 @@
               </div>
             </li>
 
-            <div class="unlogged_in_div">
+            <div class="unlogged_in_div" v-if="!login_state">
               <li class="feature_li">
                 <a href="javascript:;" class="feature_a" @click="clicklog()">登录</a>
               </li>
@@ -94,10 +98,10 @@
                 >注册</a>
               </li>
             </div>
-            <div class="logged_div">
+            <div class="logged_div" v-if="login_state">
               <li class="feature_li history_courses_li">
                 <a href="javascript:;" class="history_courses_a feature_a">我的课程</a>
-                <!-- <HistoryCoursesCard class="scroll_bar_history_courses_card"></HistoryCoursesCard> -->
+                <HistoryCoursesCard class="scroll_bar_history_courses_card"></HistoryCoursesCard>
               </li>
               <li class="feature_li">
                 <a href="javascript:;" class="feature_a bell_a">
@@ -105,14 +109,15 @@
                 </a>
               </li>
               <li class="feature_li avatar_li">
-                <a tag="a" class="feature_a avatar_a">
+                <router-link tag="a" class="feature_a avatar_a" :to="{ name: 'user_course' }">
                   <img
                     class="avatar_img"
                     :title="
                       $cookies.get('token') ? userlist.nickname : 'Avatar'
                     "
                   />
-                </a>
+                </router-link>
+                <UserCard class="user_card"></UserCard>
               </li>
             </div>
           </ul>
@@ -126,10 +131,18 @@ import { mapActions, mapState } from "vuex";
 import { getuser } from "../../api/login/login";
 import Vue from "vue";
 import VueCookies from "vue-cookies";
+import HistoryCoursesCard from "../home_page/cards/userid";
+import UserCard from "../home_page/cards/usercard";
 $cookies.config("0", "/");
 Vue.use(VueCookies);
 export default {
-  components: {},
+  computed: {
+    ...mapState("login", ["token"])
+  },
+  components: {
+    HistoryCoursesCard,
+    UserCard
+  },
   // computed: {
   //   ...mapState({
   //     token: state => state.login.token
@@ -158,6 +171,7 @@ export default {
     //     this.isshou = true;
     //   } else this.isshou = false;
     // },
+
     clickreg() {
       this.clickclose(false), this.changeclick("up");
     },
@@ -172,6 +186,11 @@ export default {
     getuser(user).then(res => {
       this.userlist = res.data.data;
     });
+    if (this.token) {
+      this.login_state = true;
+    } else {
+      this.login_state = false;
+    }
   }
 };
 </script>
@@ -212,7 +231,7 @@ export default {
 
 .scroll_navigation_img {
   display: block;
-  width: 150px;
+  width: 120px;
 }
 
 .scroll_selection_menu {
@@ -221,15 +240,16 @@ export default {
 
 .scroll_sub_selection_li {
   margin-top: 5px;
-  padding: 25px 10px;
+  padding: 18px 10px;
 }
 
 /* 导航区域子菜单 */
 
 .scroll_sub_selection_a {
   color: #3a3a3a;
-  font-size: 14px;
-  /*padding: 20px 15px;*/
+  position: relative;
+  font-size: 16px;
+  padding: 20px 15px;
   line-height: 1.9;
 }
 
@@ -240,7 +260,7 @@ export default {
 .scroll_sub_ul {
   display: none;
   position: absolute;
-  top: 73px;
+  top: 57px;
   width: 150px;
   background: #fff;
   padding: 0;
@@ -300,7 +320,7 @@ export default {
 
 .feature_li {
   padding: 10px 15px 7px 15px;
-  margin-top: 5px;
+  margin-top: 12px;
   border-radius: 6px;
 }
 
@@ -338,6 +358,12 @@ export default {
   padding-top: 10px;
 }
 
+.avatar_li:hover .user_card {
+  visibility: visible;
+  position: absolute;
+  right: 0;
+  opacity: 1;
+}
 .avatar_a {
   display: block;
 }
