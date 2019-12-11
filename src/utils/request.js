@@ -12,3 +12,7 @@ export function get(url, config) {
 export function post(url, data, config) {
   return instance.post(url, data, config);
 }
+
+export function put(url, data, config) {
+  return instance.put(url, data, config);
+}

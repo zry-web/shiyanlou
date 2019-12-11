@@ -18,15 +18,11 @@
               <div class="container content-container">
                 <div class="row-wrapper">
                   <div class="form-row form-group laty">
-                    <label
-                      for="avatar"
-                      class="col-lg-1 col-form-label"
-                      id="user-avatar__BV_label"
-                    >头像</label>
+                    <label for="avatar" class="col-form-label" id="user-avatar__BV_label">头像</label>
                     <el-upload
                       class="avatar-uploader"
-                      action="http://122.51.169.217:3000/user/img"
-                      name="img"
+                      action="http://122.51.169.217:3000/file_upload"
+                      name="file"
                       :show-file-list="false"
                       :on-success="handleAvatarSuccess"
                       :before-upload="beforeAvatarUpload"
@@ -38,28 +34,28 @@
                 </div>
                 <div class="row-wrapper">
                   <div class="form-row form-group laty">
-                    <label for="avatar" class="col-lg-1 col-form-label">昵称</label>
+                    <label for="avatar" class="col-form-label">昵称</label>
                     <el-input v-model="nickname" placeholder="用户名(必填)" class="length"></el-input>
                   </div>
                 </div>
                 <div class="row-wrapper">
                   <div class="form-row form-group laty">
-                    <label for="avatar" class="col-lg-1 col-form-label">我的状态</label>
+                    <label for="avatar" class="col-form-label">我的状态</label>
                     <el-radio-group v-model="radio">
                       <el-radio :label="3" class="danxuan">在上学</el-radio>
                       <el-radio :label="6" class="danxuan">在工作</el-radio>
                     </el-radio-group>
                   </div>
                 </div>
-                <div class="row-wrapper" v-show="radio==3">
+                <div class="row-wrapper" v-show="radio == 3">
                   <div class="form-row form-group laty">
-                    <label for="avatar" class="col-lg-1 col-form-label">我的学校</label>
+                    <label for="avatar" class="col-form-label">我的学校</label>
                     <el-input v-model="address" placeholder="填写在读学校" class="length"></el-input>
                   </div>
                 </div>
-                <div class="row-wrapper" v-show="radio==6">
+                <div class="row-wrapper" v-show="radio == 6">
                   <div class="form-row form-group laty">
-                    <label for="avatar" class="col-lg-1 col-form-label">职位</label>
+                    <label for="avatar" class="col-form-label">职位</label>
                     <el-select v-model="vocation" placeholder="请选择活动区域" class="length">
                       <el-option label="其他" value="其他"></el-option>
                       <el-option label="教师" value="教师"></el-option>
@@ -81,7 +77,7 @@
                     </el-select>
                   </div>
                 </div>
-                <el-button type="success">保存</el-button>
+                <el-button type="success" @click="revise()">保存</el-button>
               </div>
             </div>
           </div>
@@ -91,6 +87,9 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
+import { putUserData, getUserData } from "../../api/user/user";
+import { get } from "http";
 export default {
   data() {
     return {
@@ -101,7 +100,19 @@ export default {
       radio: 3
     };
   },
+  computed: {
+    ...mapState({
+      token: state => state.login.token
+    })
+  },
   created() {
+    getUserData({ token: this.token }).then(res => {
+      this.nickname = res.data.data.nickname;
+      if (res.data.data.imgsrc) {
+        this.imageUrl = res.data.data.imgsrc;
+      }
+      this.vocation = res.data.data.vocation;
+    });
     this.imageUrl =
       "https://dn-simplecloud.shiyanlou.com/gravatarim3x7WqIvPML.jpg?imageView2/1/w/200/h/200";
   },
@@ -120,6 +131,15 @@ export default {
         this.$message.error("上传头像图片大小不能超过 2MB!");
       }
       return isJPG && isLt2M;
+    },
+    revise() {
+      putUserData(this.token, {
+        imgsrc: this.imageUrl,
+        nickname: this.nickname,
+        vocation: this.vocation
+      }).then(res => {
+        console.log(res);
+      });
     }
   }
 };
@@ -205,7 +225,9 @@ input[type="file"] {
   margin-bottom: 0;
   font-size: 16px;
   line-height: 1.5;
+  margin-right: 40px;
   font-weight: normal;
+  width: 80px;
 }
 #user-avatar__BV_label {
   font-weight: normal;

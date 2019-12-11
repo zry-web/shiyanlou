@@ -5,10 +5,7 @@
         <div class="container">
           <div class="row">
             <div class="col">
-              <img
-                src="https://static.shiyanlou.com/img/louplus/louplus_logo.png"
-                alt="楼+"
-              />
+              <img src="https://static.shiyanlou.com/img/louplus/louplus_logo.png" alt="楼+" />
               <p>
                 楼+
                 是实验楼精心打造的教学产品，课程由实验楼一线核心研发人员或技术专家制作并录制视频，
@@ -23,7 +20,7 @@
         </div>
       </div>
     </div>
-    <Server></Server>r
+    <Server></Server>
     <Course></Course>
   </div>
 </template>
