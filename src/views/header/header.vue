@@ -26,20 +26,12 @@
               </li>
             </ul>
           </li>
-<<<<<<< HEAD
           <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li">
             <router-link
               :to="{ name: 'Bootcamp' }"
               id="lou_puls_button"
               class="scroll_sub_selection_a"
             >训练营</router-link>
-=======
-          <li
-            id="lou_puls_li"
-            class="scroll_sub_selection_li scroll_navigation_li"
-          >
-            <a id="lou_puls_button" class="scroll_sub_selection_a">训练营</a>
->>>>>>> 6477149c79965a4d246edaf344d2846a874d6aa8
           </li>
           <li
             id="lou_puls_li"
@@ -51,21 +43,8 @@
           >
             <a id="lou_puls_button" class="scroll_sub_selection_a">楼+</a>
           </li>
-<<<<<<< HEAD
           <li id="trail_li" class="scroll_sub_selection_li scroll_navigation_li">
             <router-link :to="{name:'vip'}" id="VIP_button" class="scroll_sub_selection_a">会员</router-link>
-=======
-          <li
-            id="trail_li"
-            class="scroll_sub_selection_li scroll_navigation_li"
-          >
-            <a
-              href="https://www.shiyanlou.com/vip"
-              id="VIP_button"
-              class="scroll_sub_selection_a"
-              >会员</a
-            >
->>>>>>> 6477149c79965a4d246edaf344d2846a874d6aa8
           </li>
           <li
             id="community_li"
