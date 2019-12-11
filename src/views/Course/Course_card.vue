@@ -10,27 +10,25 @@
             tag: item.tag
           }
         }"
-          tag="li"
+          tag="a"
           v-for="item in course.course"
           :key="item._id"
-          target="_self"
+          target="_blank"
         >
-          <a href="#">
-            <img :src="item.coverImg" />
-            <div class="course-info">
-              <p>{{ item.title }}</p>
-              <span>{{ item.descriptions }}</span>
-            </div>
-            <p class="count">
-              <i class="el-icon-user-solid"></i>
-              {{ item.studentsCount }}
-              <span
-                class="fr course-type"
-                ref="courseType"
-                :class="item.courseType=='会员'?'vip':([item.courseType]==''?'':'train')"
-              >{{ item.courseType }}</span>
-            </p>
-          </a>
+          <img :src="item.coverImg" />
+          <div class="course-info">
+            <p>{{ item.title }}</p>
+            <span>{{ item.descriptions }}</span>
+          </div>
+          <p class="count">
+            <i class="el-icon-user-solid"></i>
+            {{ item.studentsCount }}
+            <span
+              class="fr course-type"
+              ref="courseType"
+              :class="item.courseType=='会员'?'vip':([item.courseType]==''?'':'train')"
+            >{{ item.courseType }}</span>
+          </p>
         </router-link>
       </ul>
       <div class="pageBtn">
@@ -41,6 +39,7 @@
           layout="prev, pager, next"
           :total="course.totalCount"
           :page-size="20"
+          ref="page"
         ></el-pagination>
       </div>
     </h1>
@@ -81,13 +80,18 @@ export default {
       this.courseTotal = res.data.totalCount;
     });
   },
+  mounted() {
+    console.log(this.$refs.page);
+  },
   watch: {
     tagName() {
+      this.$refs.page.internalCurrentPage = 1;
       getCourse(this.p, this.tagName, this.dir).then(res => {
         this.changeCourse({ course: res.data });
       });
     },
     dir() {
+      this.$refs.page.internalCurrentPage = 1;
       this.changeTagName({ tagName: "全部" });
       getCourse(this.p, this.tagName, this.dir).then(res => {
         this.changeCourse({ course: res.data });
@@ -104,7 +108,7 @@ export default {
   width: 1170px;
   margin-left: -15px;
 }
-#course-card .course li {
+#course-card .course a {
   width: 262px;
   float: left;
   position: relative;
@@ -114,15 +118,15 @@ export default {
   margin-right: 15px;
   margin-left: 15px;
 }
-#course-card .course li a {
+#course-card .course a {
   display: block;
 }
-#course-card .course li img {
+#course-card .course a img {
   width: 262px;
   height: 150px;
   position: relative;
 }
-#course-card .course li a .course-info {
+#course-card .course a .course-info {
   width: 262px;
   box-sizing: border-box;
   padding: 20px 10px 0;
@@ -132,7 +136,7 @@ export default {
   background: #fff;
   transition: all 0.3s;
 }
-#course-card .course li a .course-info p {
+#course-card .course a .course-info p {
   width: 240px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -141,13 +145,13 @@ export default {
   color: #666;
   margin-bottom: 10px;
 }
-#course-card .course li a .course-info span {
+#course-card .course a .course-info span {
   display: inline-block;
   width: 240px;
   font-size: 15px;
   color: #666;
 }
-#course-card .course li .count {
+#course-card .course a .count {
   width: 262px;
   position: absolute;
   font-size: 15px;
@@ -159,10 +163,10 @@ export default {
   bottom: 0px;
   line-height: 54px;
 }
-#course-card .course li:hover {
+#course-card .course a:hover {
   box-shadow: 0 4px 20px 4px #ddd;
 }
-#course-card .course li:hover .course-info {
+#course-card .course a:hover .course-info {
   margin-top: -60px;
 }
 

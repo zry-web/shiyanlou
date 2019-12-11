@@ -137,7 +137,11 @@ const routes = [{
   {
     path: "/library",
     name: "library",
-    component: Library
+    component: Library,
+    meta: {
+      title: '教程库-精品编程学习教程库 - 实验楼',
+      content: 'disable'
+    }
   }, {
     path: "/user/profile",
     name: "user_profile",
@@ -167,5 +171,3 @@ router.beforeEach((to, from, next) => {
   }
   next()
 });
-
-export default router;
