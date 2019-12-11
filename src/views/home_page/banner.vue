@@ -7,27 +7,26 @@
           <div class="pic_img">
             <img src="../../assets/img/banner1.jpg" alt />
           </div>
-
         </div>
       </swiper-slide>
       <swiper-slide>
         <div class="pic_o" style="background: rgb(48, 35, 83); ">
           <div class="pic_img">
-          <img src="../../assets/img/banner2.pn.png" alt />
+            <img src="../../assets/img/banner2.pn.png" alt />
           </div>
         </div>
       </swiper-slide>
       <swiper-slide>
         <div class="pic_o" style="background: rgb(32, 80, 212);">
           <div class="pic_img">
-          <img src="../../assets/img/banner3.png" alt />
+            <img src="../../assets/img/banner3.png" alt />
           </div>
         </div>
       </swiper-slide>
       <swiper-slide>
         <div class="pic_o" style="background: rgb(69, 13, 106);">
           <div class="pic_img">
-          <img src="../../assets/img/banner4.png" alt />
+            <img src="../../assets/img/banner4.png" alt />
           </div>
         </div>
       </swiper-slide>
@@ -81,8 +80,9 @@ export default {
   }
 };
 </script>
-<style  scoped>
+<style scoped>
 .pic {
+  margin-left: 0;
   width: 100%;
 }
 .pic_banner {
@@ -94,7 +94,7 @@ export default {
   z-index: 200;
   width: 30px;
   height: 60px;
-  left:30%;
+  left: 30%;
 }
 .br {
   width: 30px;
@@ -106,9 +106,9 @@ export default {
 .pic_o {
   width: 100%;
 }
-.pic_img{
-  margin:0 auto;
-  width:1140px;
-  height:520px;
+.pic_img {
+  margin: 0 auto;
+  width: 1140px;
+  height: 520px;
 }
 </style>

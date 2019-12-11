@@ -1,5 +1,5 @@
 <template>
-  <div class="scroll_bar item-id" v-if="isshou">
+  <div class="scroll_bar item-id">
     <div class="scroll_bar_div">
       <div class="scroll_navigation_div">
         <a class="scroll_navigation_logo_a" href="/">
@@ -16,29 +16,26 @@
             </a>
             <ul class="scroll_sub_ul">
               <li class="scroll_sub_li">
-                <a tag="a" class="scroll_sub_a">免费课</a>
+                <a tag="a" class="scroll_sub_a">全部课程</a>
               </li>
               <li class="scroll_sub_li">
-                <a tag="a" class="scroll_sub_a">会员课</a>
-              </li>
-              <li class="scroll_sub_li">
-                <a href="#11" class="scroll_sub_a">训练营</a>
+                <router-link :to="{ name: 'paths' }" class="scroll_sub_a">学习路径</router-link>
               </li>
             </ul>
           </li>
           <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li">
-            <a id="lou_puls_button" class="scroll_sub_selection_a">训练营</a>
+            <router-link
+              :to="{ name: 'Bootcamp' }"
+              id="lou_puls_button"
+              class="scroll_sub_selection_a"
+            >训练营</router-link>
           </li>
           <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li"></li>
           <li id="lou_puls_li" class="scroll_sub_selection_li scroll_navigation_li">
             <a id="lou_puls_button" class="scroll_sub_selection_a">楼+</a>
           </li>
           <li id="trail_li" class="scroll_sub_selection_li scroll_navigation_li">
-            <a
-              href="https://www.shiyanlou.com/vip"
-              id="VIP_button"
-              class="scroll_sub_selection_a"
-            >会员</a>
+            <router-link :to="{name:'vip'}" id="VIP_button" class="scroll_sub_selection_a">会员</router-link>
           </li>
           <li id="community_li" class="scroll_sub_selection_li scroll_navigation_li">
             <a tag="a" class="scroll_sub_selection_a" id="community_button">
@@ -112,7 +109,7 @@
                   <img
                     class="avatar_img"
                     :title="
-                      $cookies.get('token') ? userlist.username : 'Avatar'
+                      $cookies.get('token') ? userlist.nickname : 'Avatar'
                     "
                   />
                 </a>
@@ -144,23 +141,23 @@ export default {
       userlist: []
     };
   },
-  mounted() {
-    window.addEventListener("scroll", this.handleScroll);
-  },
+  // mounted() {
+  //   window.addEventListener("scroll", this.handleScroll);
+  // },
   destroyed() {
     window.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
     ...mapActions("login", ["clickclose", "changeclick"]),
-    handleScroll() {
-      var scrollTop =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
-      if (scrollTop > 100) {
-        this.isshou = true;
-      } else this.isshou = false;
-    },
+    // handleScroll() {
+    //   var scrollTop =
+    //     window.pageYOffset ||
+    //     document.documentElement.scrollTop ||
+    //     document.body.scrollTop;
+    //   if (scrollTop > 100) {
+    //     this.isshou = true;
+    //   } else this.isshou = false;
+    // },
     clickreg() {
       this.clickclose(false), this.changeclick("up");
     },
@@ -181,7 +178,8 @@ export default {
 <style type="text/css" scoped>
 .item-id {
   position: sticky;
-  top: 0;
+  z-index: 1211;
+  top: 73px;
 }
 .scroll_bar {
   /*position: fixed;*/
@@ -189,7 +187,7 @@ export default {
   height: 73px;
   background: #fff;
   width: 100%;
-  z-index: 100;
+  box-shadow: #333 4px 0 20px;
 }
 
 .scroll_bar_div {
@@ -222,14 +220,15 @@ export default {
 }
 
 .scroll_sub_selection_li {
-  padding: 20px 15px;
+  margin-top: 5px;
+  padding: 25px 10px;
 }
 
 /* 导航区域子菜单 */
 
 .scroll_sub_selection_a {
   color: #3a3a3a;
-  font-size: 16px;
+  font-size: 14px;
   /*padding: 20px 15px;*/
   line-height: 1.9;
 }
@@ -249,7 +248,7 @@ export default {
   box-shadow: 0 15px 16px 0 rgba(0, 0, 0, 0.18);
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
-  z-index: 10;
+  z-index: 1000;
 }
 
 #community_li:hover ul {
@@ -269,7 +268,7 @@ export default {
   margin-left: 2px;
   vertical-align: middle;
   border-top: 4px dashed;
-  border-top: 4px solid \9;
+  border-top: 4px solid;
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
 }
@@ -278,8 +277,8 @@ export default {
   display: block;
   color: #3a3a3a;
   width: 90%;
-  padding: 15px 0 15px 15px;
-  font-size: 16px;
+  padding: 15px 0 15px 10px;
+  font-size: 14px;
 }
 
 .scroll_sub_a:hover {

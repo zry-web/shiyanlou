@@ -7,12 +7,16 @@
         <div class="chat_tools_div">
           <div class="wechat_qr_div">
             <a href="javascript:;">
-              <i class="fab fa-weixin"></i>
+              <i class="iconfont icon-weibo">
+                <img src="../../assets/img/weixin.png" alt class="weitu" />
+              </i>
             </a>
           </div>
           <div class="weibo_div">
             <a href="javascript:;">
-              <i class="fab fa-weibo"></i>
+              <i class="iconfont icon-weixin">
+                <img src="../../assets/img/weibo.png" alt class="weitu" />
+              </i>
             </a>
           </div>
         </div>
@@ -61,6 +65,11 @@ export default {};
 .footer {
   background: #333;
   padding-top: 20px;
+  margin-top: 80px;
+}
+.weitu {
+  display: block;
+  width: 32px;
 }
 
 .footer_div {
@@ -141,10 +150,10 @@ export default {};
 }
 
 .fa-weixin {
-  color: #36bd4c;
+  background: #36bd4c;
 }
 
 .fa-weibo {
-  color: #ee4451;
+  background: #ee4451;
 }
 </style>

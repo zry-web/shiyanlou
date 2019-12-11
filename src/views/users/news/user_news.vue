@@ -73,6 +73,12 @@ export default {
     test(num) {
       this.num = num;
     }
+  },
+  created() {
+    this.num = location.href.slice(
+      location.href.length - 1,
+      location.href.length
+    );
   }
 };
 </script>

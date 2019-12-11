@@ -21,27 +21,20 @@
       </div>
     </div>
     <div class="custom_control_div">
-      <div>
-        <input
-          type="checkbox"
-          name="autologin"
-          value="true"
-          class="autologinbutton"
-        />
+      <!-- <div>
+        <input type="checkbox" name="autologin" value="true" class="autologinbutton" />
         <label class="autologin_label">下次自动登录</label>
-      </div>
+      </div>-->
+      <el-checkbox v-model="checked">备选项</el-checkbox>
       <div>
         <a
           class="forget_password"
           target="_blank"
           href="https://www.shiyanlou.com/user/forget-password/"
-          >忘记密码</a
-        >
+        >忘记密码</a>
       </div>
     </div>
-    <a class="enter_button" href="javascript:;" @click="loginhandl()"
-      >进入实验楼</a
-    >
+    <a class="enter_button" href="javascript:;" @click="loginhandl()">进入实验楼</a>
     <div class="more_log">
       <a href="#">短信验证码登录</a>
       <a href="#">海外手机登录</a>
@@ -66,7 +59,8 @@ export default {
         password: ""
       },
       msg: "",
-      isMsg: false
+      isMsg: false,
+      checked: false
     };
   },
   computed: {
@@ -83,12 +77,15 @@ export default {
       login(this.user).then(res => {
         if (res.data.code == 1) {
           $cookies.set("token", res.data.token);
-          this.clickclose("true");
+          this.clickclose(true);
           this.gettoken($cookies.get("token"));
-          // this.$router();
+          window.location.reload();
         } else {
           this.msg = res.data.msg;
-          this.isMsg = "true";
+          this.isMsg = true;
+          setTimeout(() => {
+            this.isMsg = false;
+          }, 3000);
         }
       });
     }

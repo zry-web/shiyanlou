@@ -3,11 +3,17 @@
         Path 中用的Card。
   -->
   <div class="float_card_div">
-    <router-link :to="{name: 'coursePath', params: {id: data.id}}" tag="a" class="float_card_a">
+    <router-link
+      :to="{ name: 'Paths', params: { id: data.id } }"
+      tag="a"
+      class="float_card_a"
+    >
       <img :src="data.pathCourseImg" class="float_card_img" />
       <div class="float_card_text_div">
         <p class="float_card_text_p">{{ data.pathCourseTit }}</p>
-        <p class="float_card_text_p float_card_text_information">{{ data.pathCourseCount }}</p>
+        <p class="float_card_text_p float_card_text_information">
+          {{ data.pathCourseCount }}
+        </p>
       </div>
     </router-link>
   </div>

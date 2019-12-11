@@ -14,7 +14,7 @@
             <a href="#2" id="tab_button">企业版</a>
           </li>
 
-          <div class="navigation_bar_unlogged_in_div">
+          <div class="navigation_bar_unlogged_in_div" v-if="!login_state">
             <li class="navigation_li">
               <a href="#" id="sign_button" @click="clicklog()">登录</a>
             </li>
@@ -22,22 +22,27 @@
               <a href="#" id="register_button" @click="clickreg()">注册</a>
             </li>
           </div>
-          <div class="navigation_bar_logged_div">
-            <li class="navigation_feature_li history_courses_li">
+          <div class="navigation_bar_logged_div" v-if="login_state">
+            <li class="navigation_feature_li history_courses_li peopel">
               <a href="javascript:;" class="navigation_feature_a">我的课程</a>
+              <HistoryCoursesCard class="history_courses_card"></HistoryCoursesCard>
             </li>
             <li class="navigation_feature_li">
               <a href="javascript:;" class="navigation_feature_a bell_a">
-                <i class="far fa-bell"></i>
+                <img src="../../assets/img/铃铛.png" alt class="pic" />
               </a>
             </li>
             <li class="navigation_feature_li avatar_li">
-              <router-link class="navigation_feature_a navigation_avatar_a" :to="{name:'user'}">
+              <router-link
+                class="navigation_feature_a navigation_avatar_a"
+                :to="{ name: 'user_course' }"
+              >
                 <img
                   class="navigation_avatar_img"
-                  :title="$cookies.get('token') ? userlist.username : 'Avatar'"
+                  :title="$cookies.get('token') ? userlist.nickname : 'Avatar'"
                 />
               </router-link>
+              <UserCard class="user_card"></UserCard>
             </li>
           </div>
         </ul>
@@ -46,10 +51,10 @@
     <div id="selection_bar">
       <ul id="selection_menu">
         <li id="all_courses_li" class="navigation_li">
-          <a id="all_courses_button">
+          <router-link class="allCourse" :to="{name:'course'}">
             <i id="all_courses_i" class="fa fa-th"></i>
             全部课程
-          </a>
+          </router-link>
           <div class="to_lists">
             <ul class="to_list">
               <li v-for="(nav, index) in lists" :key="index" class="course_categories_li">
@@ -78,11 +83,7 @@
                     :key="r_index"
                     class="sub_course_p"
                   >
-                    <a target="_blank" class="sub_recommend_course_a">
-                      {{
-                      recom.name
-                      }}
-                    </a>
+                    <a target="_blank" class="sub_recommend_course_a">{{ recom.name }}</a>
                   </p>
                 </div>
               </li>
@@ -109,7 +110,7 @@
           >楼+</router-link>
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
-          <a href="#6" id="VIP_button" class="sub_selection_a">会员</a>
+          <router-link :to="{name:'vip'}" id="VIP_button" class="sub_selection_a">会员</router-link>
         </li>
         <li id="community_li" class="sub_selection_li navigation_li">
           <a id="community_button" class="sub_selection_a">
@@ -121,7 +122,12 @@
               <a class="sub_community_a">讨论</a>
             </li>
             <li class="sub_community_li">
-              <a class="sub_community_a">教程库</a>
+              <router-link
+                :to="{name: 'library'}"
+                tag="a"
+                class="sub_selection_a"
+                id="community_button"
+              >教程库</router-link>
             </li>
             <li class="sub_community_li">
               <a class="sub_community_a">直播</a>
@@ -151,7 +157,9 @@
 <script type="text/javascript">
 import { getuser } from "../../api/login/login";
 import { lists, get_content, get_content_3 } from "../../api/home/home_header";
-import { mapActions } from "vuex";
+import HistoryCoursesCard from "./cards/userid";
+import UserCard from "./cards/usercard";
+import { mapActions, mapState } from "vuex";
 import Vue from "vue";
 import VueCookies from "vue-cookies";
 $cookies.config("0", "/");
@@ -161,8 +169,12 @@ export default {
     return {
       lists: [],
       nav: [],
-      userlist: []
+      userlist: [],
+      login_state: false
     };
+  },
+  computed: {
+    ...mapState("login", ["token"])
   },
   async created() {
     lists().then(res => {
@@ -175,6 +187,13 @@ export default {
         this.userlist = res.data.data;
       });
     });
+
+    if (this.token) {
+      this.login_state = true;
+    } else {
+      this.login_state = false;
+    }
+
     get_content_3("category=后端开发").then(res => {
       let newData = [];
       let tempList = [];
@@ -198,6 +217,10 @@ export default {
     clicklog() {
       this.clickclose(false), this.changeclick("on");
     }
+  },
+  components: {
+    HistoryCoursesCard,
+    UserCard
   }
 };
 </script>
@@ -316,14 +339,22 @@ export default {
 .navigation_bar_logged_div {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .navigation_feature_li {
   padding: 20px 15px;
 }
-
+.people {
+  position: relative;
+}
+.pic {
+  display: block;
+  width: 40px;
+}
 .navigation_feature_a {
   text-align: center;
+
   /*padding: 26px 15px;*/
   line-height: 32px;
   color: #3a3a3a;
@@ -356,6 +387,8 @@ export default {
 
 .avatar_li:hover .user_card {
   visibility: visible;
+  position: absolute;
+  right: 0;
   opacity: 1;
 }
 
@@ -377,7 +410,12 @@ export default {
   font-size: 16px;
   position: relative;
 }
-
+#all_courses_li .allCourse {
+  display: inline-block;
+  width: 260px;
+  padding: 20px 18px;
+  color: #fff;
+}
 #all_courses_i {
   color: #fff;
 }
@@ -491,7 +529,7 @@ export default {
 .to_lists {
   width: 260px;
   position: absolute;
-  z-index: 14;
+  z-index: 12;
 }
 .to_list {
   width: 260px;
@@ -500,7 +538,8 @@ export default {
 }
 .course_categories_li {
   height: 58px;
-  padding: 18px 12px 0;
+  padding: 14px 12px 0;
+  background: rgba(102, 102, 102, 0.4);
   margin-top: -1px;
   position: relative;
 }
@@ -607,7 +646,8 @@ export default {
 
 /* footer div 里的一些设置 */
 .course_categories_footer {
-  padding: 18px 12px 0;
+  padding: 18px 12px 18px;
+  background: rgba(102, 102, 102, 0.6);
 }
 .course_categories_footer_div {
   display: flex;
