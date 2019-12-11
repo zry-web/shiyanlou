@@ -17,7 +17,6 @@ export default {
   components: {
     Banner,
     Index,
-
     Faq
   }
 };

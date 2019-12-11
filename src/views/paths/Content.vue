@@ -1,32 +1,11 @@
 <template>
   <div class="container">
     <div class="path-container">
-      <div class="col-sm-12 col-md-3">
+      <div class="col-sm-12 col-md-3" v-for="(item,index) in list" :key="index">
         <a href class="path-item">
-          <img src="https://dn-simplecloud.shiyanlou.com/1487741005890.png" />
-          <div class="path-name">新手入门</div>
-          <div class="path-courses">6门课程</div>
-        </a>
-      </div>
-      <div class="col-sm-12 col-md-3">
-        <a href class="path-item">
-          <img src="https://dn-simplecloud.shiyanlou.com/1487741005890.png" />
-          <div class="path-name">新手入门</div>
-          <div class="path-courses">6门课程</div>
-        </a>
-      </div>
-      <div class="col-sm-12 col-md-3">
-        <a href class="path-item">
-          <img src="https://dn-simplecloud.shiyanlou.com/1487741005890.png" />
-          <div class="path-name">新手入门</div>
-          <div class="path-courses">6门课程</div>
-        </a>
-      </div>
-      <div class="col-sm-12 col-md-3">
-        <a href class="path-item">
-          <img src="https://dn-simplecloud.shiyanlou.com/1487741005890.png" />
-          <div class="path-name">新手入门</div>
-          <div class="path-courses">6门课程</div>
+          <img :src="item.pathCourseImg" />
+          <div class="path-name">{{item.pathCourseTit}}</div>
+          <div class="path-courses">{{item.pathCourseCount}}</div>
         </a>
       </div>
     </div>
@@ -35,8 +14,22 @@
 
 
 <script>
-export default {};
-</script>>
+import { getPaths } from "../../api/services/move";
+
+export default {
+  data() {
+    return {
+      list: []
+    };
+  },
+
+  async created() {
+    const res = await getPaths();
+    this.list = res.data.data[0].pathCourse;
+    console.log(this.list);
+  }
+};
+</script>
 <style scoped>
 .path-container {
   width: 100%;

@@ -42,13 +42,15 @@ export default {
   methods: {
     roll() {
       let newspace = 1300;
+      clearInterval(this.timer);
+
       this.timer = setInterval(() => {
         let oldspace =
           document.documentElement.scrollTop || document.body.scrollTop;
         let speed = Math.ceil((newspace - oldspace) / 10);
         document.documentElement.scrollTop = document.body.scrollTop =
           oldspace + speed;
-        if (oldspace >= newspace) {
+        if (oldspace >= newspace - 20) {
           clearInterval(this.timer._id);
         }
       }, 20);

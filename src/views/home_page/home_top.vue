@@ -3,10 +3,7 @@
     <div id="navigation_logo_sign">
       <div id="navigation_logo">
         <a id="navigation_logo_a" href="/">
-          <img
-            src="https://static.shiyanlou.com/img/shiyanlou_logo.svg"
-            class="home_img"
-          />
+          <img src="https://static.shiyanlou.com/img/shiyanlou_logo.svg" class="home_img" />
         </a>
         <span id="logo_text">做实验，学编程</span>
       </div>
@@ -17,7 +14,7 @@
             <a href="#2" id="tab_button">企业版</a>
           </li>
 
-          <div class="navigation_bar_unlogged_in_div">
+          <div class="navigation_bar_unlogged_in_div" v-if="!login_state">
             <li class="navigation_li">
               <a href="#" id="sign_button" @click="clicklog()">登录</a>
             </li>
@@ -25,13 +22,14 @@
               <a href="#" id="register_button" @click="clickreg()">注册</a>
             </li>
           </div>
-          <div class="navigation_bar_logged_div">
-            <li class="navigation_feature_li history_courses_li">
+          <div class="navigation_bar_logged_div" v-if="login_state">
+            <li class="navigation_feature_li history_courses_li peopel">
               <a href="javascript:;" class="navigation_feature_a">我的课程</a>
+              <HistoryCoursesCard class="history_courses_card"></HistoryCoursesCard>
             </li>
             <li class="navigation_feature_li">
               <a href="javascript:;" class="navigation_feature_a bell_a">
-                <i class="far fa-bell"></i>
+                <img src="../../assets/img/铃铛.png" alt class="pic" />
               </a>
             </li>
             <li class="navigation_feature_li avatar_li">
@@ -44,6 +42,7 @@
                   :title="$cookies.get('token') ? userlist.nickname : 'Avatar'"
                 />
               </router-link>
+              <UserCard class="user_card"></UserCard>
             </li>
           </div>
         </ul>
@@ -58,19 +57,14 @@
           </router-link>
           <div class="to_lists">
             <ul class="to_list">
-              <li
-                v-for="(nav, index) in lists"
-                :key="index"
-                class="course_categories_li"
-              >
+              <li v-for="(nav, index) in lists" :key="index" class="course_categories_li">
                 <div class="course_categories_div">
                   <a class="main_course_button course_button">{{ nav.name }}</a>
                   <a
                     v-for="(sub, s_index) in nav.tag.slice(0, 2)"
                     :key="s_index"
                     class="course_button"
-                    >{{ sub.name }}</a
-                  >
+                  >{{ sub.name }}</a>
                 </div>
                 <div class="www">
                   <p class="www_p">{{ nav.name }}</p>
@@ -89,9 +83,7 @@
                     :key="r_index"
                     class="sub_course_p"
                   >
-                    <a target="_blank" class="sub_recommend_course_a">
-                      {{ recom.name }}
-                    </a>
+                    <a target="_blank" class="sub_recommend_course_a">{{ recom.name }}</a>
                   </p>
                 </div>
               </li>
@@ -104,20 +96,10 @@
           </div>
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
-          <router-link
-            id="trail_button"
-            class="sub_selection_a"
-            :to="{ name: 'paths' }"
-            >路径</router-link
-          >
+          <router-link id="trail_button" class="sub_selection_a" :to="{ name: 'paths' }">路径</router-link>
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
-          <router-link
-            :to="{ name: 'Bootcamp' }"
-            id="trail_button"
-            class="sub_selection_a"
-            >训练营</router-link
-          >
+          <router-link :to="{ name: 'Bootcamp' }" id="trail_button" class="sub_selection_a">训练营</router-link>
         </li>
         <li id="lou_puls_li" class="sub_selection_li navigation_li">
           <router-link
@@ -125,8 +107,7 @@
             id="lou_puls_button"
             class="sub_selection_a"
             :to="{ name: 'plus' }"
-            >楼+</router-link
-          >
+          >楼+</router-link>
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
           <router-link :to="{name:'vip'}" id="VIP_button" class="sub_selection_a">会员</router-link>
@@ -176,7 +157,9 @@
 <script type="text/javascript">
 import { getuser } from "../../api/login/login";
 import { lists, get_content, get_content_3 } from "../../api/home/home_header";
-import { mapActions } from "vuex";
+import HistoryCoursesCard from "./cards/userid";
+import UserCard from "./cards/usercard";
+import { mapActions, mapState } from "vuex";
 import Vue from "vue";
 import VueCookies from "vue-cookies";
 $cookies.config("0", "/");
@@ -186,8 +169,12 @@ export default {
     return {
       lists: [],
       nav: [],
-      userlist: []
+      userlist: [],
+      login_state: false
     };
+  },
+  computed: {
+    ...mapState("login", ["token"])
   },
   async created() {
     lists().then(res => {
@@ -200,6 +187,13 @@ export default {
         this.userlist = res.data.data;
       });
     });
+
+    if (this.token) {
+      this.login_state = true;
+    } else {
+      this.login_state = false;
+    }
+
     get_content_3("category=后端开发").then(res => {
       let newData = [];
       let tempList = [];
@@ -223,6 +217,10 @@ export default {
     clicklog() {
       this.clickclose(false), this.changeclick("on");
     }
+  },
+  components: {
+    HistoryCoursesCard,
+    UserCard
   }
 };
 </script>
@@ -341,14 +339,22 @@ export default {
 .navigation_bar_logged_div {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .navigation_feature_li {
   padding: 20px 15px;
 }
-
+.people {
+  position: relative;
+}
+.pic {
+  display: block;
+  width: 40px;
+}
 .navigation_feature_a {
   text-align: center;
+
   /*padding: 26px 15px;*/
   line-height: 32px;
   color: #3a3a3a;
@@ -381,6 +387,8 @@ export default {
 
 .avatar_li:hover .user_card {
   visibility: visible;
+  position: absolute;
+  right: 0;
   opacity: 1;
 }
 
@@ -521,7 +529,7 @@ export default {
 .to_lists {
   width: 260px;
   position: absolute;
-  z-index: 14;
+  z-index: 12;
 }
 .to_list {
   width: 260px;

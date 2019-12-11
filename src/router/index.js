@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Paths from "../views/Paths.vue";
 import Bootcamp from "../views/Bootcamp.vue";
+import Detail from "../views/Detail.vue";
 import Louplus from "../views/Louplus.vue";
 import Plus from "../views/plus/Plus.vue";
 import User from "../views/users/User.vue";
@@ -21,16 +22,10 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
-  },
-  {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    component: Home,
+    meta: {
+      title: "在线做实验，高效学编程 - 实验楼"
+    }
   },
   {
     path: "/paths",
@@ -40,7 +35,10 @@ const routes = [
   {
     path: "/bootcamp",
     name: "Bootcamp",
-    component: Bootcamp
+    component: Bootcamp,
+    meta: {
+      title: "训练营"
+    }
   },
   {
     path: "/louplus",
@@ -50,7 +48,10 @@ const routes = [
   {
     path: "/plus",
     name: "plus",
-    component: Plus
+    component: Plus,
+    meta: {
+      title: "实验楼+ 课程"
+    }
   },
   {
     path: "/vip",
@@ -64,6 +65,9 @@ const routes = [
     path: "/course",
     name: "course",
     component: Course,
+    meta: {
+      title: "精选项目课程_IT热门课程_实验楼课程 - 实验楼"
+    },
     children: [
       {
         path: "card",
@@ -72,9 +76,17 @@ const routes = [
     ]
   },
   {
+    path: "/detail",
+    name: "Detail",
+    component: Detail
+  },
+  {
     path: "/user",
     name: "user",
     component: User,
+    meta: {
+      title: "用户信息"
+    },
     children: [
       {
         path: "/user/1",
@@ -119,12 +131,19 @@ const routes = [
   {
     path: "/coursedetail",
     name: "coursedetail",
-    component: CourseDetail
+    component: CourseDetail,
+    meta: {
+      title: "课程详情"
+    }
   },
   {
     path: "/library",
     name: "library",
-    component: Library
+    component: Library,
+    meta: {
+      title: "教程库-精品编程学习教程库 - 实验楼",
+      content: "disable"
+    }
   },
   {
     path: "/user/profile",
@@ -141,3 +160,17 @@ const router = new VueRouter({
 //   next();
 // });
 export default router;
+router.beforeEach((to, from, next) => {
+  /* 路由发生变化修改页面meta */
+  if (to.meta.content) {
+    let head = document.getElementsByTagName("head");
+    let meta = document.createElement("meta");
+    meta.content = to.meta.content;
+    head[0].appendChild(meta);
+  }
+  /* 路由发生变化修改页面title */
+  if (to.meta.title) {
+    document.title = to.meta.title;
+  }
+  next();
+});

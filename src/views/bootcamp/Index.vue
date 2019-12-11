@@ -6,7 +6,7 @@
           <div class="tit col-sm-12 col-md-1">方向：</div>
           <div class="lists col-sm-12 col-md-11">
             <div class="list-item active" @click="alltag()">全部</div>
-            <div v-for="item in lists" :key="item._id">
+            <div v-for="item in list1" :key="item._id">
               <div class="list-item" @click="tagMasseges(item.name)">{{ item.name }}</div>
             </div>
           </div>
@@ -20,15 +20,15 @@
               class="list-item"
               v-for="(item1,index) in list2"
               :key="index"
-              @click="tagMasseges2(item1.tag)"
+             
             >{{item1.name}}</div>
           </div>
         </div>
       </div>
       <div style="padding:20px 0 30px">
         <div class="pic row">
-          <div class="course-pic col-3" v-for="item in list" :key="item._id">
-            <a href target="_blank" class="course-link">
+          <div class="course-pic col-3" v-for="item in list3" :key="item._id">
+            <router-link target="_blank" class="course-link" :to="{name:'Detail'}">
               <div class="course-item">
                 <img :src="item.coverImg" alt />
                 <div class="course-body">
@@ -50,7 +50,7 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </router-link>
           </div>
         </div>
         <el-pagination
@@ -76,29 +76,29 @@ import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   data() {
     return {
-      list2: [],
-      list3: [],
-      list: [],
-      pages: 1
+      list: []
     };
   },
   computed: {
-    ...mapState("bootcamp", ["lists"])
+    ...mapState("bootcamp", ["list1", "list2", "list3", "pages", "a"])
   },
   async created() {
     // 初始化的时候获取所有的tag标签
-    this.getAllTag();
+    this.alltag();
   },
   methods: {
-    ...mapActions("bootcamp", {
-      getAllTag: "alltag"
-    }),
+    ...mapActions("bootcamp", [
+      "alltag",
+      "tagMasseges",
+      "picMasseges",
+      "pageChange"
+    ])
 
-    async pageChange(p) {
-      const result = await picMessage(p);
-      this.list = result.data.course;
-      this.pages = result.data.pages;
-    }
+    // async pageChange(p) {
+    //   const result = await picMessage(p);
+    //   this.list = result.data.course;
+    //   this.pages = result.data.pages;
+    // }
   }
 };
 </script>

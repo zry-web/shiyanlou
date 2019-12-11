@@ -1,16 +1,26 @@
 <template>
   <div id="library" class="clean">
     <div class="left fl">
-      <router-link tag="li" class="allLib" :to="{name:'library'}">
+      <button class="allLib" @click="showAll">
         <i class="el-icon-s-unfold"></i>全部教程
-      </router-link>
+      </button>
       <ul>
         <li v-for="(item, index) in data" :key="index">
-          <button>{{ item.topic}}</button>
-          <button class="smlFont">{{ item.tags[0].name }}</button>
-          <button class="smlFont">{{ item.tags[1].name }}</button>
+          <button @click="changeClass(item.topic)">{{ item.topic }}</button>
+          <button
+            @click="changeClass2(item.topic, item.tags[0].name)"
+            class="smlFont"
+          >{{ item.tags[0].name }}</button>
+          <button
+            @click="changeClass2(item.topic, item.tags[1].name)"
+            class="smlFont"
+          >{{ item.tags[1].name }}</button>
           <div class="hideList clean">
-            <p v-for="(item2, index) in item.tags" :key="index">
+            <p
+              v-for="(item2, index) in item.tags"
+              :key="index"
+              @click="changeClass2(item.topic, item2.name)"
+            >
               <img :src="item2.picture_url" />
               <span>{{ item2.name }}</span>
             </p>
@@ -19,11 +29,11 @@
       </ul>
       <button class="more">推荐更多优质教程</button>
     </div>
-    <div class="right fr">
+    <div v-show="right1" class="right fr">
       <div class="right-item" v-for="(item3, index) in dataright" :key="index">
         <div class="title clean">
           <h3 class="fl">{{ item3.topic }}</h3>
-          <span class="fr">更多</span>
+          <span class="fr" @click='changeClass(item3.topic)'>更多</span>
         </div>
         <div class="con clean">
           <div class="rig-item clean fl" v-for="(item4, index) in item3.books" :key="index">
@@ -39,6 +49,26 @@
         </div>
       </div>
     </div>
+    <div v-show="right2" class="right fr">
+      <div class="right-item">
+        <div class="title clean">
+          <h3 class="fl">{{ name }}</h3>
+          <span class="fr">更多</span>
+        </div>
+        <div class="con clean">
+          <div class="rig-item clean fl" v-for="(item, index) in dataright2" :key="index">
+            <div class="item-img fl">
+              <img :src="item.tags[0].picture_url" />
+              <span></span>
+            </div>
+            <div class="item-info fl">
+              <p>{{item.name}}</p>
+              <span>共{{item.chapters_count}}章节</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -48,15 +78,56 @@ export default {
   data() {
     return {
       data: "",
-      dataright: ""
+      dataright: "",
+      dataright2: [],
+      name: "",
+      right1: true,
+      right2: false
     };
+  },
+  methods: {
+    changeClass(name) {
+      this.right1 = true;
+      this.right2 = false;
+      getLibraryList().then(res => {
+        this.dataright = res.data.data[0].blocks.filter(value => {
+          return value.topic == name;
+        });
+      });
+    },
+    changeClass2(name, tag) {
+      this.right2 = true;
+      this.right1 = false;
+      this.name = name;
+      this.dataright2.list = [];
+      getLibraryList().then(res => {
+        var resault = res.data.data[0].blocks.filter(value => {
+          return value.topic == name;
+        });
+        let resault2 = [];
+        resault[0].books.forEach(item => {
+          if (item.tags[0].name == tag) {
+            resault2.push(item);
+          }
+        });
+        this.dataright2 = resault2;
+        console.log(this.dataright2);
+      });
+    },
+    showAll() {
+      this.right1 = true;
+      this.right2 = false;
+      getLibraryList().then(res => {
+        this.data = res.data.data[0].nav;
+        this.dataright = res.data.data[0].blocks;
+      });
+    }
   },
   created() {
     getLibraryList().then(res => {
-      console.log(res);
+      // console.log(res);
       this.data = res.data.data[0].nav;
       this.dataright = res.data.data[0].blocks;
-      console.log(this.dataright);
     });
   }
 };
@@ -71,12 +142,15 @@ export default {
   .left {
     width: 262.5px;
     .allLib {
+      width: 100%;
       padding: 16px 14px;
       background: #08bf91;
       color: #fff;
       font-size: 16px;
       box-sizing: border-box;
       cursor: pointer;
+      border: none;
+      text-align: left;
       i {
         margin-right: 5px;
       }
@@ -173,9 +247,13 @@ export default {
           color: #666;
         }
         span {
+          cursor:pointer;
           font-size: 16px;
           color: #08bf91;
           margin-right: 15px;
+          &:hover{
+            text-decoration:underline;
+          }
         }
       }
       .con {

@@ -178,6 +178,7 @@ export default {
 <style type="text/css" scoped>
 .item-id {
   position: sticky;
+  z-index: 1211;
   top: 73px;
 }
 .scroll_bar {
@@ -186,7 +187,6 @@ export default {
   height: 73px;
   background: #fff;
   width: 100%;
-  z-index: 100;
   box-shadow: #333 4px 0 20px;
 }
 
@@ -220,14 +220,15 @@ export default {
 }
 
 .scroll_sub_selection_li {
-  padding: 20px 15px;
+  margin-top: 5px;
+  padding: 25px 10px;
 }
 
 /* 导航区域子菜单 */
 
 .scroll_sub_selection_a {
   color: #3a3a3a;
-  font-size: 16px;
+  font-size: 14px;
   /*padding: 20px 15px;*/
   line-height: 1.9;
 }
@@ -247,7 +248,7 @@ export default {
   box-shadow: 0 15px 16px 0 rgba(0, 0, 0, 0.18);
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
-  z-index: 10;
+  z-index: 1000;
 }
 
 #community_li:hover ul {
@@ -267,7 +268,7 @@ export default {
   margin-left: 2px;
   vertical-align: middle;
   border-top: 4px dashed;
-  border-top: 4px solid \9;
+  border-top: 4px solid;
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
 }
@@ -276,8 +277,8 @@ export default {
   display: block;
   color: #3a3a3a;
   width: 90%;
-  padding: 15px 0 15px 15px;
-  font-size: 16px;
+  padding: 15px 0 15px 10px;
+  font-size: 14px;
 }
 
 .scroll_sub_a:hover {
