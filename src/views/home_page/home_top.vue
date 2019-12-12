@@ -59,12 +59,16 @@
             <ul class="to_list">
               <li v-for="(nav, index) in lists" :key="index" class="course_categories_li">
                 <div class="course_categories_div">
-                  <a class="main_course_button course_button">{{ nav.name }}</a>
-                  <a
+                  <router-link
+                    class="main_course_button course_button"
+                    :to="{ name: 'course', query: {category: nav.name} }"
+                  >{{ nav.name }}</router-link>
+                  <router-link
                     v-for="(sub, s_index) in nav.tag.slice(0, 2)"
                     :key="s_index"
+                    :to="{ name: 'course', query: {category: nav.name, tag: sub.name} }"
                     class="course_button"
-                  >{{ sub.name }}</a>
+                  >{{ sub.name }}</router-link>
                 </div>
                 <div class="www">
                   <p class="www_p">{{ nav.name }}</p>
@@ -96,7 +100,7 @@
           </div>
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
-          <router-link id="trail_button" class="sub_selection_a" :to="{ name: 'paths' }">路径</router-link>
+          <router-link id="trail_button" class="sub_selection_a" :to="{ name: 'Paths' }">路径</router-link>
         </li>
         <li id="trail_li" class="sub_selection_li navigation_li">
           <router-link :to="{ name: 'Bootcamp' }" id="trail_button" class="sub_selection_a">训练营</router-link>
@@ -122,12 +126,7 @@
               <a class="sub_community_a">讨论</a>
             </li>
             <li class="sub_community_li">
-              <router-link
-                :to="{name: 'library'}"
-                tag="a"
-                class="sub_selection_a"
-                id="community_button"
-              >教程库</router-link>
+              <a class="sub_community_a" href="/library">教程库</a>
             </li>
             <li class="sub_community_li">
               <a class="sub_community_a">直播</a>
@@ -139,7 +138,7 @@
         </li>
       </ul>
       <div id="search_bar">
-        <label id="search_button">
+        <label id="search_button" @click="search()">
           <i class="fa fa-search"></i>
         </label>
         <input
@@ -148,6 +147,8 @@
           id="search_input"
           autocomplete="off"
           placeholder="搜索 课程/问答"
+          v-model="searchs"
+          @keyup.enter="search()"
         />
       </div>
     </div>
@@ -170,7 +171,8 @@ export default {
       lists: [],
       nav: [],
       userlist: [],
-      login_state: false
+      login_state: false,
+      searchs: ""
     };
   },
   computed: {
@@ -194,19 +196,18 @@ export default {
       this.login_state = false;
     }
 
-    get_content_3("category=后端开发").then(res => {
-      let newData = [];
-      let tempList = [];
-      for (let [index, course] of res.data.course.entries()) {
-        tempList.push(course);
-        if ((index + 1) % 4 === 0) {
-          newData.push(tempList);
-          tempList = [];
-        }
-      }
-      res.data.course = newData;
-      console.log(res.data.course);
-    });
+    // get_content_3("category=后端开发").then(res => {
+    //   let newData = [];
+    //   let tempList = [];
+    //   for (let [index, course] of res.data.course.entries()) {
+    //     tempList.push(course);
+    //     if ((index + 1) % 4 === 0) {
+    //       newData.push(tempList);
+    //       tempList = [];
+    //     }
+    //   }
+    //   res.data.course = newData;
+    // });
   },
   methods: {
     ...mapActions("login", ["clickclose", "changeclick"]),
@@ -216,6 +217,12 @@ export default {
     },
     clicklog() {
       this.clickclose(false), this.changeclick("on");
+    },
+    search: function() {
+      this.$router.push({
+        name: "search",
+        query: { keywords: this.searchs }
+      });
     }
   },
   components: {
@@ -227,13 +234,13 @@ export default {
 
 <style type="text/css" scoped>
 .home_img {
-  width: 150px;
+  width: 120px;
 }
 /*总导航区域*/
 #navigation_bar {
   display: flex;
   flex-wrap: wrap;
-  background: #f7f7f7;
+  background: #fff;
   height: 144px;
   width: 1170px;
   margin-left: auto;
@@ -448,7 +455,6 @@ export default {
   width: 100%;
   clear: left;
   font-size: 16px;
-  /*padding: 15px 0 15px 15px;*/
 }
 
 .sub_community_a {

@@ -135,6 +135,7 @@ export default {
   position: absolute;
   background: #fff;
   transition: all 0.3s;
+  top: 130px;
 }
 #course-card .course a .course-info p {
   width: 240px;

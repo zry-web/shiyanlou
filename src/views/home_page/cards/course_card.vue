@@ -1,7 +1,17 @@
 <template>
   <div class="course_card_div">
     <div class="course_div">
-      <router-link tag="a" class="course_img_a" :to="{ name: 'courses', params: {id: data._id} }">
+      <router-link
+        tag="a"
+        class="course_img_a"
+        :to="{
+          name:'coursedetail',
+          query:{
+            tit: data.title,
+            tag: data.tag
+          }
+       }"
+      >
         <div class="course_img_div">
           <img :src="data.coverImg" class="course_img_img" />
         </div>

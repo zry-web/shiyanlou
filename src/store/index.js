@@ -5,6 +5,7 @@ import course from './modules/course/course';
 import home from "./modules/home/home";
 import scrollBar from "./modules/scroll/scroll"
 import bootcamp from "./modules/bootcamp/bootcamp";
+import search from "./modules/search/search"
 
 
 Vue.use(Vuex);
@@ -19,7 +20,9 @@ export default new Vuex.Store({
     home,
     scrollBar,
     bootcamp,
-    scrollBar
+    scrollBar,
+    search
+
 
   }
 });

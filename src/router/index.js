@@ -13,6 +13,10 @@ import Course from "../views/Course.vue";
 import CourseCard from "../views/Course/Course_card.vue";
 import CourseDetail from "../views/CourseDetail.vue";
 import Library from "../views/Library.vue";
+import Pathdetail from "../views/Pathdetail.vue";
+import Search from "../views/search/search";
+import AsAuthor from "../views/AsAuthor.vue";
+
 $cookies.config("0", "/");
 Vue.use(VueCookies);
 
@@ -30,7 +34,18 @@ const routes = [
   {
     path: "/paths",
     name: "Paths",
-    component: Paths
+    component: Paths,
+    meta: {
+      title: "路径"
+    }
+  },
+  {
+    path: "/pathdetail",
+    name: "Pathdetail",
+    component: Pathdetail,
+    meta: {
+      title: "IT工程师学习路线_养成路径_实验楼学习路径 - 实验楼"
+    }
   },
   {
     path: "/bootcamp",
@@ -80,6 +95,15 @@ const routes = [
     name: "Detail",
     component: Detail
   },
+
+  //   {
+  //     path: '/courses/reports/:id',
+  //     name: 'report',
+  //     component: ,
+  //     meta: {
+  //         title: '实验楼'
+  //     }
+  // },
   {
     path: "/user",
     name: "user",
@@ -136,6 +160,17 @@ const routes = [
       title: "课程详情"
     }
   },
+
+  //search
+  {
+    path: "/search",
+    name: "search",
+    component: Search,
+    meta: {
+      title: "搜索"
+    }
+  },
+
   {
     path: "/library",
     name: "library",
@@ -149,6 +184,11 @@ const routes = [
     path: "/user/profile",
     name: "user_profile",
     component: () => import("../views/users/userprofile.vue")
+  },
+  {
+    path: "/asauthor",
+    name: "asauthor",
+    component: AsAuthor
   }
 ];
 
@@ -170,6 +210,8 @@ router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */
   if (to.meta.title) {
     document.title = to.meta.title;
+  } else {
+    document.title = "实验楼";
   }
   next();
 });
