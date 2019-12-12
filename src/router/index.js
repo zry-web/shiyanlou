@@ -7,15 +7,13 @@ import Detail from "../views/Detail.vue";
 import Louplus from "../views/Louplus.vue";
 import Plus from "../views/plus/Plus.vue";
 import User from "../views/users/User.vue";
-import Vip from "../views/vip/Vip.vue"
+import Vip from "../views/vip/Vip.vue";
 import VueCookies from "vue-cookies";
-import Course from '../views/Course.vue';
-import CourseCard from '../views/Course/Course_card.vue';
-import CourseDetail from '../views/CourseDetail.vue';
-import Library from '../views/Library.vue';
 import Course from "../views/Course.vue";
 import CourseCard from "../views/Course/Course_card.vue";
 import CourseDetail from "../views/CourseDetail.vue";
+import Library from "../views/Library.vue";
+import Pathdetail from "../views/Pathdetail.vue";
 $cookies.config("0", "/");
 Vue.use(VueCookies);
 
@@ -27,21 +25,31 @@ const routes = [
     name: "Home",
     component: Home,
     meta: {
-      title: '在线做实验，高效学编程 - 实验楼'
+      title: "在线做实验，高效学编程 - 实验楼"
     }
-
   },
   {
     path: "/paths",
     name: "Paths",
-    component: Paths
+    component: Paths,
+    meta: {
+      title: "路径"
+    }
+  },
+  {
+    path: "/pathdetail",
+    name: "Pathdetail",
+    component: Pathdetail,
+    meta: {
+      title: "路径详情"
+    }
   },
   {
     path: "/bootcamp",
     name: "Bootcamp",
     component: Bootcamp,
     meta: {
-      title: '训练营'
+      title: "训练营"
     }
   },
   {
@@ -54,7 +62,7 @@ const routes = [
     name: "plus",
     component: Plus,
     meta: {
-      title: '实验楼+ 课程'
+      title: "实验楼+ 课程"
     }
   },
   {
@@ -62,7 +70,7 @@ const routes = [
     name: "vip",
     component: Vip,
     meta: {
-      title: '会员'
+      title: "会员"
     }
   },
   {
@@ -70,7 +78,7 @@ const routes = [
     name: "course",
     component: Course,
     meta: {
-      title: '精选项目课程_IT热门课程_实验楼课程 - 实验楼'
+      title: "精选项目课程_IT热门课程_实验楼课程 - 实验楼"
     },
     children: [
       {
@@ -89,7 +97,7 @@ const routes = [
     name: "user",
     component: User,
     meta: {
-      title: '用户信息'
+      title: "用户信息"
     },
     children: [
       {
@@ -123,14 +131,13 @@ const routes = [
         component: () => import("../views/users/news/user_courses.vue")
       }
     ]
-
   },
   {
-    path: '*',
-    name: 'notfound',
+    path: "*",
+    name: "notfound",
     component: () => import("@/views/404.vue"),
     meta: {
-      title: 'Sorry，页面走丢了... - 实验楼'
+      title: "Sorry，页面走丢了... - 实验楼"
     }
   },
   {
@@ -138,13 +145,13 @@ const routes = [
     name: "coursedetail",
     component: CourseDetail,
     meta: {
-      title: '课程详情'
-    },
+      title: "课程详情"
+    }
   },
   {
     path: "/library",
     name: "library",
-    component: Library
+    component: Library,
     path: "/user/profile",
     name: "user_profile",
     component: () => import("../views/users/userprofile.vue")
@@ -158,16 +165,16 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面meta */
   if (to.meta.content) {
-    let head = document.getElementsByTagName('head');
-    let meta = document.createElement('meta');
+    let head = document.getElementsByTagName("head");
+    let meta = document.createElement("meta");
     meta.content = to.meta.content;
-    head[0].appendChild(meta)
+    head[0].appendChild(meta);
   }
   /* 路由发生变化修改页面title */
   if (to.meta.title) {
     document.title = to.meta.title;
   }
-  next()
+  next();
 });
 
 export default router;
