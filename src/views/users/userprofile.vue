@@ -14,7 +14,7 @@
             </div>
           </div>
           <div class="col-lg-9">
-            <div class="common-content">
+            <div class="com-content">
               <div class="container content-container">
                 <div class="row-wrapper">
                   <div class="form-row form-group laty">
@@ -138,7 +138,7 @@ export default {
         nickname: this.nickname,
         vocation: this.vocation
       }).then(res => {
-        console.log(res);
+        this.$router.push("/user/1");
       });
     }
   }
@@ -173,7 +173,7 @@ export default {
 .tab-title-active {
   background: #efefef;
 }
-.common-content {
+.com-content {
   height: 100%;
   min-height: 700px;
   margin-bottom: 10px;

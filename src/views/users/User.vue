@@ -46,6 +46,7 @@ export default {
   data() {
     return {
       list: [],
+      usercourse: [],
       imgsrc:
         "https://dn-simplecloud.shiyanlou.com/gravatarim3x7WqIvPML.jpg?imageView2/1/w/200/h/200"
     };

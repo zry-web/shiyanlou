@@ -1,6 +1,10 @@
 import { get, post, put } from "../../utils/request";
+export function getUserList(token) {
+  return get(`/UserCourse?id=${token}`);
+}
+
 export function getUserData(token) {
-  return post("user/list", token);
+  return post("/user/list", token);
 }
 
 export function save(id) {

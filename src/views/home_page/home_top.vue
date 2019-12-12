@@ -39,6 +39,7 @@
               >
                 <img
                   class="navigation_avatar_img"
+                  :src="imgsrc"
                   :title="$cookies.get('token') ? userlist.nickname : 'Avatar'"
                 />
               </router-link>
@@ -158,6 +159,8 @@
 <script type="text/javascript">
 import { getuser } from "../../api/login/login";
 import { lists, get_content, get_content_3 } from "../../api/home/home_header";
+import { getUserData } from "../../api/user/user";
+
 import HistoryCoursesCard from "./cards/userid";
 import UserCard from "./cards/usercard";
 import { mapActions, mapState } from "vuex";
@@ -172,7 +175,8 @@ export default {
       nav: [],
       userlist: [],
       login_state: false,
-      searchs: ""
+      searchs: "",
+      imgsrc: ""
     };
   },
   computed: {
@@ -196,18 +200,13 @@ export default {
       this.login_state = false;
     }
 
-    // get_content_3("category=后端开发").then(res => {
-    //   let newData = [];
-    //   let tempList = [];
-    //   for (let [index, course] of res.data.course.entries()) {
-    //     tempList.push(course);
-    //     if ((index + 1) % 4 === 0) {
-    //       newData.push(tempList);
-    //       tempList = [];
-    //     }
-    //   }
-    //   res.data.course = newData;
-    // });
+    getUserData({ token: this.token }).then(res => {
+      if (res.data.data.imgsrc) {
+        this.imgsrc = res.data.data.imgsrc;
+      }
+    });
+    this.imgsrc =
+      "https://dn-simplecloud.shiyanlou.com/gravatarim3x7WqIvPML.jpg?imageView2/1/w/200/h/200";
   },
   methods: {
     ...mapActions("login", ["clickclose", "changeclick"]),

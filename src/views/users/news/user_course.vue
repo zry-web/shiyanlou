@@ -7,7 +7,7 @@
             class="tab-item"
             :class="change==1 ? 'tab-item-active':''"
             @click="changeactive(1)"
-          >历史学习(1)</span>
+          >历史学习({{usercourse.length}})</span>
           <span
             class="tab-item"
             :class="change==2 ? 'tab-item-active':''"
@@ -25,19 +25,22 @@
       </div>
       <div class="data-loading" v-show="change == 1">
         <div class="data-content">
-          <div class="row">
+          <div class="row" v-for="(item, index) in usercourse" :key="index">
             <div class="col-lg-4">
               <a href="#">
-                <img src="https://dn-simplecloud.shiyanlou.com/ncn1.jpg" alt="Linux 基础入门（新版）" />
+                <img :src="item.courseImg" :alt="item.title" />
               </a>
             </div>
             <div class="col">
               <div class="course-title">
                 <span>
-                  <a href="#" class="course-name">Linux 基础入门（新版）</a>
-                  <span class="course-tag free">免费</span>
+                  <a href="#" class="course-name">{{item.title}}</a>
+                  <span
+                    class="course-tag"
+                    :class="item.feeType=='免费'?'free':(item.feeType=='会员'?'vip':'xunlian')"
+                  >{{item.feeType}}</span>
                 </span>
-                <span class="course-shangci">上次学到：基本概念及操作</span>
+                <span class="course-shangci">上次学到：{{item.name}}</span>
               </div>
               <div class="course-related">
                 <span>
@@ -79,13 +82,14 @@
   </div>
 </template>
 <script>
-import { putUserData, saves } from "../../../api/user/user";
+import { putUserData, getUserData, getUserList } from "../../../api/user/user";
 import { mapState } from "vuex";
 import { log } from "util";
 export default {
   data() {
     return {
-      change: 1
+      change: 1,
+      usercourse: []
     };
   },
   computed: {
@@ -100,6 +104,12 @@ export default {
     //     console.log(res);
     //   });
     // }
+  },
+  created() {
+    getUserList(this.token).then(res => {
+      this.usercourse = res.data;
+      console.log(this.usercourse);
+    });
   }
 };
 </script>
@@ -163,6 +173,12 @@ export default {
 }
 .free {
   background: #80c269;
+}
+.vip {
+  background: #ffc500;
+}
+.xunlina {
+  background: #f66;
 }
 .course-title > span {
   display: block;

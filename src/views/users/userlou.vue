@@ -14,10 +14,7 @@
               <span>当前楼层</span>
               <span class="level-num">
                 <i>1 楼</i>
-                <img
-                  src="https://static.shiyanlou.com/frontend/dist/img/6c8e136.png"
-                  alt
-                />
+                <img src="https://static.shiyanlou.com/frontend/dist/img/6c8e136.png" alt />
               </span>
               <p>距 2 楼还需 30 分钟有效学习时间</p>
             </li>
@@ -70,7 +67,7 @@
       </div>
     </div>
     <div class="content-right clo-md-9">
-      <div class="common-content">
+      <div class="common-content maxheight">
         <div class="user-heatmap">
           <div class="user-record-head">
             <div class="user-record-title">我的学习记录</div>

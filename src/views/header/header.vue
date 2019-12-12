@@ -114,6 +114,7 @@
                 <router-link tag="a" class="feature_a avatar_a" :to="{ name: 'user_course' }">
                   <img
                     class="avatar_img"
+                    :src="imgsrc"
                     :title="
                       $cookies.get('token') ? userlist.nickname : 'Avatar'
                     "
@@ -131,6 +132,7 @@
 <script type="text/javascript">
 import { mapActions, mapState } from "vuex";
 import { getuser } from "../../api/login/login";
+import { getUserData } from "../../api/user/user";
 import Vue from "vue";
 import VueCookies from "vue-cookies";
 import HistoryCoursesCard from "../home_page/cards/userid";
@@ -154,7 +156,8 @@ export default {
     return {
       isshou: false,
       userlist: [],
-      searchs: ""
+      searchs: "",
+      imgsrc: ""
     };
   },
   // mounted() {
@@ -200,6 +203,13 @@ export default {
     } else {
       this.login_state = false;
     }
+    getUserData({ token: this.token }).then(res => {
+      if (res.data.data.imgsrc) {
+        this.imgsrc = res.data.data.imgsrc;
+      }
+    });
+    this.imgsrc =
+      "https://dn-simplecloud.shiyanlou.com/gravatarim3x7WqIvPML.jpg?imageView2/1/w/200/h/200";
   }
 };
 </script>
