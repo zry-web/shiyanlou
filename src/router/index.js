@@ -9,25 +9,20 @@ import Plus from "../views/plus/Plus.vue";
 import User from "../views/users/User.vue";
 import Vip from "../views/vip/Vip.vue";
 import VueCookies from "vue-cookies";
-<<<<<<< HEAD
 import Course from "../views/Course.vue";
-import CourseCard from "../views/Course/Course_card.vue";
-import CourseDetail from "../views/CourseDetail.vue";
 import Library from "../views/Library.vue";
 import Pathdetail from "../views/Pathdetail.vue";
-=======
-import Course from '../views/Course.vue';
-import CourseCard from '../views/Course/Course_card.vue';
-import CourseDetail from '../views/CourseDetail.vue';
-import Library from '../views/Library.vue';
-import AsAuthor from '../views/AsAuthor.vue';
->>>>>>> 183dca90ce5e49aacfe0173d3fa0b4cd24977e7f
+import CourseCard from "../views/Course/Course_card.vue";
+import CourseDetail from "../views/CourseDetail.vue";
+import AsAuthor from "../views/AsAuthor.vue";
+
 $cookies.config("0", "/");
 Vue.use(VueCookies);
 
 Vue.use(VueRouter);
 
-const routes = [{
+const routes = [
+  {
     path: "/",
     name: "Home",
     component: Home,
@@ -40,7 +35,6 @@ const routes = [{
     name: "Paths",
     component: Paths,
     meta: {
-<<<<<<< HEAD
       title: "路径"
     }
   },
@@ -50,9 +44,6 @@ const routes = [{
     component: Pathdetail,
     meta: {
       title: "路径详情"
-=======
-      title: 'IT工程师学习路线_养成路径_实验楼学习路径 - 实验楼'
->>>>>>> 183dca90ce5e49aacfe0173d3fa0b4cd24977e7f
     }
   },
   {
@@ -91,17 +82,18 @@ const routes = [{
     meta: {
       title: "精选项目课程_IT热门课程_实验楼课程 - 实验楼"
     },
-    children: [{
-      path: "card",
-      component: CourseCard
-    }]
+    children: [
+      {
+        path: "card",
+        component: CourseCard
+      }
+    ]
   },
   {
     path: "/detail",
     name: "Detail",
     component: Detail
   },
-
 
   //   {
   //     path: '/courses/reports/:id',
@@ -118,7 +110,8 @@ const routes = [{
     meta: {
       title: "用户信息"
     },
-    children: [{
+    children: [
+      {
         path: "/user/1",
         name: "user_course",
         component: () => import("../views/users/news/user_course.vue")
@@ -170,21 +163,20 @@ const routes = [{
     path: "/library",
     name: "library",
     component: Library,
-<<<<<<< HEAD
-=======
+
     meta: {
-      title: '教程库-精品编程学习教程库 - 实验楼',
-      content: 'disable'
+      title: "教程库-精品编程学习教程库 - 实验楼",
+      content: "disable"
     }
-  }, {
->>>>>>> 183dca90ce5e49aacfe0173d3fa0b4cd24977e7f
+  },
+  {
     path: "/user/profile",
     name: "user_profile",
     component: () => import("../views/users/userprofile.vue")
   },
   {
-    path: '/asauthor',
-    name: 'asauthor',
+    path: "/asauthor",
+    name: "asauthor",
     component: AsAuthor
   }
 ];
@@ -196,7 +188,7 @@ const router = new VueRouter({
 // router.beforeEach((to, from, next) => {
 //   next();
 // });
-export default router;
+
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面meta */
   if (to.meta.content) {
@@ -209,14 +201,10 @@ router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title;
   } else {
-    document.title = '实验楼'
+    document.title = "实验楼";
   }
-<<<<<<< HEAD
+
   next();
 });
 
 export default router;
-=======
-  next()
-});
->>>>>>> 183dca90ce5e49aacfe0173d3fa0b4cd24977e7f

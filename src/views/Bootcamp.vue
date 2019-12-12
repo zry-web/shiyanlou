@@ -2,7 +2,6 @@
   <div class="full-page">
     <Banner></Banner>
     <Index></Index>
-
     <Faq></Faq>
   </div>
 </template>
