@@ -44,6 +44,7 @@
 import Vue from "vue";
 import VueCookies from "vue-cookies";
 import { getUserData } from "../../../api/user/user";
+import { mapState } from "vuex";
 
 Vue.use(VueCookies);
 import { mapActions } from "vuex";
@@ -68,12 +69,16 @@ export default {
   },
   created() {
     getUserData({ token: this.token }).then(res => {
+      console.log(res);
       if (res.data.data.imgsrc) {
         this.imgsrc = res.data.data.imgsrc;
       }
     });
     this.imgsrc =
       "https://dn-simplecloud.shiyanlou.com/gravatarim3x7WqIvPML.jpg?imageView2/1/w/200/h/200";
+  },
+  computed: {
+    ...mapState('login', ['token'])
   }
 };
 </script>

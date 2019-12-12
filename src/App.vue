@@ -2,9 +2,7 @@
   <div id="app">
     <Login></Login>
 
-    <transition name="header_transition">
-      <Header v-show="show_index_scroll_bar"></Header>
-    </transition>
+    <Header v-show="show_index_scroll_bar"></Header>
     <div class="min">
       <router-view></router-view>
     </div>
