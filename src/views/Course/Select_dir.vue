@@ -42,7 +42,6 @@ export default {
     });
     getCourse().then(res => {
       this.changeCourse({ course: res.data });
-      console.log(res);
     });
   },
   computed: {
