@@ -13,7 +13,7 @@
                   <span>{{ list.nickname }}</span>
                   <span>L1</span>
                   <span @click="govip()" v-show="list.vip == 0">开通会员</span>
-                  <a href="/user/profile">
+                  <a href="#/user/profile">
                     <span class="el-icon-edit-outline edit"></span>
                   </a>
                 </div>

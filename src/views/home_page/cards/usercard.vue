@@ -52,9 +52,10 @@ export default {
     log_out() {
       if (this.$cookies.isKey("token")) {
         this.$cookies.remove("token");
-      } else {
         let token = "";
         this.logout(token);
+        window.location.reload();
+      } else {
       }
     }
   }
