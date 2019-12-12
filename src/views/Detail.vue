@@ -7,6 +7,7 @@
     <Pinglun></Pinglun>
     <Pics></Pics>
     <Sides></Sides>
+    <Tops></Tops>
   </div>
 </template>
 <script>
@@ -17,6 +18,7 @@ import MyDesc from "../views/detail/Mydesc";
 import Pinglun from "../views/detail/Pinglun";
 import Pics from "../views/detail/Pics";
 import Sides from "../views/detail/Detail-side";
+import Tops from "../views/detail/Detail-top";
 export default {
   name: "Detail",
   components: {
@@ -26,7 +28,8 @@ export default {
     MyDesc,
     Pinglun,
     Pics,
-    Sides
+    Sides,
+    Tops
   }
 };
 </script>

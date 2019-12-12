@@ -52,7 +52,7 @@
                 <a tag="a" class="scroll_sub_a">讨论</a>
               </li>
               <li class="scroll_sub_li">
-                <a tag="a" class="scroll_sub_a">教程库</a>
+                <a tag="a" class="scroll_sub_a" href="#/library">教程库</a>
               </li>
               <li class="scroll_sub_li">
                 <a tag="a" class="scroll_sub_a">直播</a>
@@ -78,8 +78,10 @@
                   id="_search_input"
                   autocomplete="off"
                   placeholder="搜索 课程/问答"
+                  v-model="searchs"
+                  @keyup.enter="search()"
                 />
-                <label id="_search_button">
+                <label id="search_button" @click="search()">
                   <i class="fa fa-search"></i>
                 </label>
               </div>
@@ -151,7 +153,8 @@ export default {
   data() {
     return {
       isshou: false,
-      userlist: []
+      userlist: [],
+      searchs: ""
     };
   },
   // mounted() {
@@ -171,6 +174,12 @@ export default {
     //     this.isshou = true;
     //   } else this.isshou = false;
     // },
+    search: function() {
+      this.$router.push({
+        name: "search",
+        query: { keywords: this.searchs }
+      });
+    },
 
     clickreg() {
       this.clickclose(false), this.changeclick("up");

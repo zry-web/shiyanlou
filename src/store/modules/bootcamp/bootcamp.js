@@ -9,10 +9,7 @@ export default {
     list1: {},
     list2: [],
     list3: [],
-    pages: 1,
-    category: "",
-    it: "1",
-    allTag: "1"
+    pages: 1
   },
 
   mutations: {
@@ -35,6 +32,7 @@ export default {
     getpages(state, payload) {
       state.list3 = payload.course;
       state.pages = payload.pages;
+      console.log(state.pages);
     }
   },
 
@@ -48,19 +46,18 @@ export default {
     },
     async tagMasseges({ commit }, payload) {
       const res = await allMessage();
-      const arr = [];
-      res.data.forEach(i => {
-        if (payload == i.name) {
-          arr = i.tag;
-        }
-      });
-      commit("gettag", arr);
+      // const arr = [];
+      // res.data.forEach(i => {
+      //   if (payload == i.name) {
+      //     arr = i.tag;
+      //   }
+      // });
+      // commit("gettag", arr);
     },
     async pageChange({ commit }, payload) {
-      const result = await picMessage(p);
-
-      // this.pages = result.data.pages;
-      commit("getpages", res.data);
+      const result = await picMessage(payload);
+      console.log(result);
+      commit("getpages", result.data);
     }
   }
 };

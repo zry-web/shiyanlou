@@ -16,12 +16,7 @@
           <div class="tit col-sm-12 col-md-1">标签：</div>
           <div class="lists col-sm-12 col-md-11">
             <div class="list-item active">全部</div>
-            <div
-              class="list-item"
-              v-for="(item1,index) in list2"
-              :key="index"
-             
-            >{{item1.name}}</div>
+            <div class="list-item" v-for="(item1,index) in list2" :key="index">{{item1.name}}</div>
           </div>
         </div>
       </div>
@@ -75,12 +70,10 @@ import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   data() {
-    return {
-      list: []
-    };
+    return {};
   },
   computed: {
-    ...mapState("bootcamp", ["list1", "list2", "list3", "pages", "a"])
+    ...mapState("bootcamp", ["list1", "list2", "list3", "pages"])
   },
   async created() {
     // 初始化的时候获取所有的tag标签

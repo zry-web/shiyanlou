@@ -6,26 +6,23 @@
           <div class="col-lg-12">
             <div class="user-info">
               <a href class="user-image">
-                <img
-                  src="https://dn-simplecloud.shiyanlou.com/gravatarim3x7WqIvPML.jpg?imageView2/1/w/200/h/200"
-                  alt
-                />
+                <img :src="imgsrc" alt />
               </a>
               <div class="user-detail">
                 <div class="user-mate">
                   <span>{{ list.nickname }}</span>
                   <span>L1</span>
-                  <span>开通会员</span>
-                  <a href="/user/profile"
-                    ><span class="el-icon-edit-outline edit"></span
-                  ></a>
+                  <span @click="govip()" v-show="list.vip == 0">开通会员</span>
+                  <a href="#/user/profile">
+                    <span class="el-icon-edit-outline edit"></span>
+                  </a>
                 </div>
-                <span class="user-join"
-                  >{{
-                    String(list.createdAt).substring(0, 10)
+                <span class="user-join">
+                  {{
+                  String(list.createdAt).substring(0, 10)
                   }}
-                  加入实验楼</span
-                >
+                  加入实验楼
+                </span>
               </div>
               <div class="user-medals">
                 <span>还没有获得勋章</span>
@@ -48,7 +45,9 @@ export default {
   },
   data() {
     return {
-      list: []
+      list: [],
+      imgsrc:
+        "https://dn-simplecloud.shiyanlou.com/gravatarim3x7WqIvPML.jpg?imageView2/1/w/200/h/200"
     };
   },
   computed: {
@@ -59,9 +58,15 @@ export default {
   created() {
     getUserData({ token: this.token }).then(res => {
       this.list = res.data.data;
-      console.log(this.token);
-      console.log(res);
+      if (res.data.data.imgsrc) {
+        this.imgsrc = res.data.data.imgsrc;
+      }
     });
+  },
+  methods: {
+    govip() {
+      this.$router.push("/vip");
+    }
   }
 };
 </script>

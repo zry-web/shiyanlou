@@ -2,16 +2,22 @@
   <div class="container">
     <div class="path-container">
       <div class="col-sm-12 col-md-3" v-for="(item,index) in list" :key="index">
-        <a href class="path-item">
+        <router-link
+          href
+          class="path-item"
+          :to="{name:'Pathdetail',
+          query:{
+          pathCourseTit:item.pathCourseTit
+        }}"
+        >
           <img :src="item.pathCourseImg" />
           <div class="path-name">{{item.pathCourseTit}}</div>
           <div class="path-courses">{{item.pathCourseCount}}</div>
-        </a>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
-
 
 <script>
 import { getPaths } from "../../api/services/move";

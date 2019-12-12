@@ -126,12 +126,7 @@
               <a class="sub_community_a">讨论</a>
             </li>
             <li class="sub_community_li">
-              <router-link
-                :to="{name: 'library'}"
-                tag="a"
-                class="sub_selection_a"
-                id="community_button"
-              >教程库</router-link>
+              <a class="sub_community_a" href="#/library">教程库</a>
             </li>
             <li class="sub_community_li">
               <a class="sub_community_a">直播</a>
@@ -143,7 +138,7 @@
         </li>
       </ul>
       <div id="search_bar">
-        <label id="search_button">
+        <label id="search_button" @click="search()">
           <i class="fa fa-search"></i>
         </label>
         <input
@@ -152,6 +147,8 @@
           id="search_input"
           autocomplete="off"
           placeholder="搜索 课程/问答"
+          v-model="searchs"
+          @keyup.enter="search()"
         />
       </div>
     </div>
@@ -174,7 +171,8 @@ export default {
       lists: [],
       nav: [],
       userlist: [],
-      login_state: false
+      login_state: false,
+      searchs: ""
     };
   },
   computed: {
@@ -219,6 +217,12 @@ export default {
     },
     clicklog() {
       this.clickclose(false), this.changeclick("on");
+    },
+    search: function() {
+      this.$router.push({
+        name: "search",
+        query: { keywords: this.searchs }
+      });
     }
   },
   components: {
@@ -451,7 +455,6 @@ export default {
   width: 100%;
   clear: left;
   font-size: 16px;
-  /*padding: 15px 0 15px 15px;*/
 }
 
 .sub_community_a {
