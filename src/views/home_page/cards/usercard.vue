@@ -35,11 +35,7 @@
         <router-link tag="p" :to="{name:'asauthor'}" class="user_operation_button">成为作者</router-link>
       </div>
       <div class="exit_button">
-<<<<<<< HEAD
         <a href="javascript:;" @click="log_out()">退出登录</a>
-=======
-        <a href="javascript:;">退出登录</a>
->>>>>>> 6e013c815215aa24a6dfdb0b27e174564181acb7
       </div>
     </div>
   </div>
