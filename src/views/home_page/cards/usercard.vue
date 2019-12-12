@@ -94,9 +94,6 @@ export default {
   z-index: 999 !important;
 }
 
-/* triangle arrow with css
-https://stackoverflow.com/questions/27221086/how-to-create-a-triangle-arrow-shape-with-border-pointing-right
- */
 .arrow {
   width: 0;
   height: 0;

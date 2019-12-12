@@ -76,15 +76,6 @@
               </div>
               <p data-v-44f36620 class="vip-purchase relative no-margin">
                 <Bot2></Bot2>
-                <!-- <button type="button" class="btn btn-purchase btn-danger" v-show="long">立即抢购</button>
-                <button
-                  data-v-44f36620
-                  type="button"
-                  class="btn btn-purchase btn-warning btn-lg"
-                  @click="clickclose(false)"
-                  v-show="!long"
-                >登录并开通</button>-->
-                <!---->
               </p>
               <div class="sales-progress">
                 <div>
