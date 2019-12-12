@@ -118,7 +118,7 @@ export default {
   },
   methods: {
     handleAvatarSuccess(res, file) {
-      this.imageUrl = URL.createObjectURL(file.raw);
+      this.imageUrl = "http://122.51.169.217:3000" + res.info;
     },
     beforeAvatarUpload(file) {
       const isJPG = file.type === "image/jpeg";

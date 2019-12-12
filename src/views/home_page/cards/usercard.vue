@@ -35,15 +35,30 @@
         <a tag="p" to="#" class="user_operation_button">我要投稿</a>
       </div>
       <div class="exit_button">
-        <a href="javascript:;" @click="log_out">退出登录</a>
+        <a href="javascript:;" @click="log_out()">退出登录</a>
       </div>
     </div>
   </div>
 </template>
 <script type="text/javascript">
+import Vue from "vue";
+import VueCookies from "vue-cookies";
+Vue.use(VueCookies);
 import { mapActions } from "vuex";
 
-export default {};
+export default {
+  methods: {
+    ...mapActions("login", ["logout"]),
+    log_out() {
+      if (this.$cookies.isKey("token")) {
+        this.$cookies.remove("token");
+      } else {
+        let token = "";
+        this.logout(token);
+      }
+    }
+  }
+};
 </script>
 <style type="text/css" scoped>
 .user_card_div {
