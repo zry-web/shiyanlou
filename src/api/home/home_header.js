@@ -12,7 +12,7 @@ export default {
         return get("/api/course?" + id)
     },
     get_content_5(word) {
-        return get("/api/course" + word)
+        return get("/api/course?" + word)
     },
     // get_content_5() {
     //     return get("/api/course/bootcamp")

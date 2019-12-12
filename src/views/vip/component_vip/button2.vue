@@ -1,6 +1,11 @@
 <template>
   <div>
-    <button type="button" class="btn btn-purchase btn-danger" v-show="long">立即抢购</button>
+    <button
+      type="button"
+      class="btn btn-purchase btn-danger"
+      v-show="long"
+      @click="vip_s(true)"
+    >立即抢购</button>
     <button
       data-v-44f36620
       type="button"
@@ -22,7 +27,8 @@ export default {
     ...mapState("login", ["token"])
   },
   methods: {
-    ...mapActions("login", ["clickclose"])
+    ...mapActions("login", ["clickclose"]),
+    ...mapActions("scrollBar", ["vip_s"])
   },
 
   created() {

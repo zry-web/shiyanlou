@@ -50,7 +50,6 @@ export default {
   },
   mounted: function() {
     this.$store.dispatch("home/get_data");
-    
   }
 };
 </script>

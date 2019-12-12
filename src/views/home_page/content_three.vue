@@ -2,7 +2,7 @@
   <div class="recently_recommend_courses">
     <Title
       class="recently_recommend_course_div_title"
-      :title="'近期好课 |'"
+      :title="'近期好课 | '"
       :description="'及时学习，跟进时代的脚步'"
     ></Title>
 

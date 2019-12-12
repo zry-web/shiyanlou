@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <Server></Server>r
+    <Server></Server>
     <Course></Course>
   </div>
 </template>

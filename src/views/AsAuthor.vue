@@ -51,10 +51,7 @@
       </ul>
     </div>
     <div class="show">
-      <h3>优秀投稿项目展示</h3>
-      <div class="pro">
-        <router-link :to="coursedetail"></router-link>
-      </div>
+      <img src='@/assets/img/show.png'>
     </div>
     <div class="contribute">
       <h2>投稿方式</h2>
@@ -162,12 +159,10 @@ export default {
   .show {
     background: #fff;
     padding: 100px;
-    h3 {
-      margin-bottom: 60px;
-      color: #333;
-      font-size: 30px;
-      text-align: center;
+    img{
+      width:100%;
     }
+    
   }
   .contribute {
     padding: 100px;

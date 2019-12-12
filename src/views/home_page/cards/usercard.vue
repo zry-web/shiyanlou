@@ -8,7 +8,7 @@
                     avatar <p></p>
         -->
         <a tag="a">
-          <img class="avatar" />
+          <img class="avatar" :src="imgsrc" />
         </a>
         <div class="base_info_card">
           <div class="base_info_card_header">
@@ -29,21 +29,53 @@
                     3 4
                     flex wrap 50% 50%
         -->
-        <a tag="a" class="user_operation_button">我的主页</a>
-        <a tag="a" :to="{ name: 'userProfile' }" class="user_operation_button">个人设置</a>
-        <a tag="p" to="#" class="user_operation_button vip_user_operation_button">会员中心</a>
+        <a tag="a" class="user_operation_button" href="#/user/1">我的主页</a>
+        <a tag="a" class="user_operation_button" href="#/user/profile">个人设置</a>
+        <a tag="p" href="#/vip" class="user_operation_button vip_user_operation_button">会员中心</a>
         <router-link tag="p" :to="{name:'asauthor'}" class="user_operation_button">成为作者</router-link>
       </div>
       <div class="exit_button">
-        <a href="javascript:;">退出登录</a>
+        <a href="javascript:;" @click="log_out()">退出登录</a>
       </div>
     </div>
   </div>
 </template>
 <script type="text/javascript">
+import Vue from "vue";
+import VueCookies from "vue-cookies";
+import { getUserData } from "../../../api/user/user";
+
+Vue.use(VueCookies);
 import { mapActions } from "vuex";
 
-export default {};
+export default {
+  data() {
+    return {
+      imgsrc: ""
+    };
+  },
+  methods: {
+    ...mapActions("login", ["logout"]),
+    log_out() {
+      if (this.$cookies.isKey("token")) {
+        this.$cookies.remove("token");
+        let token = "";
+        this.logout(token);
+        window.location.reload();
+      } else {
+      }
+    }
+  },
+  created() {
+    getUserData({ token: this.token }).then(res => {
+      if (res.data.data.imgsrc) {
+        this.imgsrc = res.data.data.imgsrc;
+      }
+    });
+    this.imgsrc =
+      "https://dn-simplecloud.shiyanlou.com/gravatarim3x7WqIvPML.jpg?imageView2/1/w/200/h/200";
+  }
+};
 </script>
 <style type="text/css" scoped>
 .user_card_div {
@@ -62,9 +94,6 @@ export default {};
   z-index: 999 !important;
 }
 
-/* triangle arrow with css
-https://stackoverflow.com/questions/27221086/how-to-create-a-triangle-arrow-shape-with-border-pointing-right
- */
 .arrow {
   width: 0;
   height: 0;

@@ -52,7 +52,7 @@
                 <a tag="a" class="scroll_sub_a">讨论</a>
               </li>
               <li class="scroll_sub_li">
-                <a tag="a" class="scroll_sub_a">教程库</a>
+                <a tag="a" class="scroll_sub_a" href="#/library">教程库</a>
               </li>
               <li class="scroll_sub_li">
                 <a tag="a" class="scroll_sub_a">直播</a>
@@ -78,8 +78,10 @@
                   id="_search_input"
                   autocomplete="off"
                   placeholder="搜索 课程/问答"
+                  v-model="searchs"
+                  @keyup.enter="search()"
                 />
-                <label id="_search_button">
+                <label id="search_button" @click="search()">
                   <i class="fa fa-search"></i>
                 </label>
               </div>
@@ -112,6 +114,7 @@
                 <router-link tag="a" class="feature_a avatar_a" :to="{ name: 'user_course' }">
                   <img
                     class="avatar_img"
+                    :src="imgsrc"
                     :title="
                       $cookies.get('token') ? userlist.nickname : 'Avatar'
                     "
@@ -129,6 +132,7 @@
 <script type="text/javascript">
 import { mapActions, mapState } from "vuex";
 import { getuser } from "../../api/login/login";
+import { getUserData } from "../../api/user/user";
 import Vue from "vue";
 import VueCookies from "vue-cookies";
 import HistoryCoursesCard from "../home_page/cards/userid";
@@ -151,7 +155,9 @@ export default {
   data() {
     return {
       isshou: false,
-      userlist: []
+      userlist: [],
+      searchs: "",
+      imgsrc: ""
     };
   },
   // mounted() {
@@ -171,6 +177,12 @@ export default {
     //     this.isshou = true;
     //   } else this.isshou = false;
     // },
+    search: function() {
+      this.$router.push({
+        name: "search",
+        query: { keywords: this.searchs }
+      });
+    },
 
     clickreg() {
       this.clickclose(false), this.changeclick("up");
@@ -191,6 +203,13 @@ export default {
     } else {
       this.login_state = false;
     }
+    getUserData({ token: this.token }).then(res => {
+      if (res.data.data.imgsrc) {
+        this.imgsrc = res.data.data.imgsrc;
+      }
+    });
+    this.imgsrc =
+      "https://dn-simplecloud.shiyanlou.com/gravatarim3x7WqIvPML.jpg?imageView2/1/w/200/h/200";
   }
 };
 </script>

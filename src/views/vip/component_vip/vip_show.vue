@@ -37,7 +37,7 @@ export default {
       }
     },
     roll() {
-      let newspace = 580;
+      let newspace = 560;
       clearInterval(this.timer);
 
       this.timer = setInterval(() => {
@@ -46,7 +46,7 @@ export default {
         let speed = Math.ceil((newspace - oldspace) / 10);
         document.documentElement.scrollTop = document.body.scrollTop =
           oldspace + speed;
-        if (oldspace >= newspace - 20) {
+        if (oldspace <= newspace + 20) {
           clearInterval(this.timer);
         }
       }, 20);

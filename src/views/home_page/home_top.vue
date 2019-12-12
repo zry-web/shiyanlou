@@ -39,6 +39,7 @@
               >
                 <img
                   class="navigation_avatar_img"
+                  :src="imgsrc"
                   :title="$cookies.get('token') ? userlist.nickname : 'Avatar'"
                 />
               </router-link>
@@ -126,12 +127,7 @@
               <a class="sub_community_a">讨论</a>
             </li>
             <li class="sub_community_li">
-              <router-link
-                :to="{name: 'library'}"
-                tag="a"
-                class="sub_selection_a"
-                id="community_button"
-              >教程库</router-link>
+              <a class="sub_community_a" href="#/library">教程库</a>
             </li>
             <li class="sub_community_li">
               <a class="sub_community_a">直播</a>
@@ -143,7 +139,7 @@
         </li>
       </ul>
       <div id="search_bar">
-        <label id="search_button">
+        <label id="search_button" @click="search()">
           <i class="fa fa-search"></i>
         </label>
         <input
@@ -152,6 +148,8 @@
           id="search_input"
           autocomplete="off"
           placeholder="搜索 课程/问答"
+          v-model="searchs"
+          @keyup.enter="search()"
         />
       </div>
     </div>
@@ -161,6 +159,8 @@
 <script type="text/javascript">
 import { getuser } from "../../api/login/login";
 import { lists, get_content, get_content_3 } from "../../api/home/home_header";
+import { getUserData } from "../../api/user/user";
+
 import HistoryCoursesCard from "./cards/userid";
 import UserCard from "./cards/usercard";
 import { mapActions, mapState } from "vuex";
@@ -174,7 +174,9 @@ export default {
       lists: [],
       nav: [],
       userlist: [],
-      login_state: false
+      login_state: false,
+      searchs: "",
+      imgsrc: ""
     };
   },
   computed: {
@@ -198,18 +200,13 @@ export default {
       this.login_state = false;
     }
 
-    // get_content_3("category=后端开发").then(res => {
-    //   let newData = [];
-    //   let tempList = [];
-    //   for (let [index, course] of res.data.course.entries()) {
-    //     tempList.push(course);
-    //     if ((index + 1) % 4 === 0) {
-    //       newData.push(tempList);
-    //       tempList = [];
-    //     }
-    //   }
-    //   res.data.course = newData;
-    // });
+    getUserData({ token: this.token }).then(res => {
+      if (res.data.data.imgsrc) {
+        this.imgsrc = res.data.data.imgsrc;
+      }
+    });
+    this.imgsrc =
+      "https://dn-simplecloud.shiyanlou.com/gravatarim3x7WqIvPML.jpg?imageView2/1/w/200/h/200";
   },
   methods: {
     ...mapActions("login", ["clickclose", "changeclick"]),
@@ -219,6 +216,12 @@ export default {
     },
     clicklog() {
       this.clickclose(false), this.changeclick("on");
+    },
+    search: function() {
+      this.$router.push({
+        name: "search",
+        query: { keywords: this.searchs }
+      });
     }
   },
   components: {
@@ -451,7 +454,6 @@ export default {
   width: 100%;
   clear: left;
   font-size: 16px;
-  /*padding: 15px 0 15px 15px;*/
 }
 
 .sub_community_a {
@@ -555,13 +557,13 @@ export default {
   align-items: center;
 }
 .course_button {
-  font-size: 12px;
+  font-size: 11px;
   color: #fff;
   margin-right: 10px;
   margin-left: 5px;
 }
 .main_course_button {
-  font-size: 16px;
+  font-size: 14px;
 }
 .course_categories_li:hover {
   background: #fff;

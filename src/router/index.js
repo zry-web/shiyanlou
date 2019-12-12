@@ -12,8 +12,12 @@ import VueCookies from "vue-cookies";
 import Course from "../views/Course.vue";
 import Library from "../views/Library.vue";
 import Pathdetail from "../views/Pathdetail.vue";
+<<<<<<< HEAD
 import CourseCard from "../views/Course/Course_card.vue";
 import CourseDetail from "../views/CourseDetail.vue";
+=======
+import Search from "../views/search/search";
+>>>>>>> 3b6dc4ab916da39605e37fc21bd232f0d7d303a7
 import AsAuthor from "../views/AsAuthor.vue";
 
 $cookies.config("0", "/");
@@ -43,7 +47,11 @@ const routes = [
     name: "Pathdetail",
     component: Pathdetail,
     meta: {
+<<<<<<< HEAD
       title: "路径详情"
+=======
+      title: "IT工程师学习路线_养成路径_实验楼学习路径 - 实验楼"
+>>>>>>> 3b6dc4ab916da39605e37fc21bd232f0d7d303a7
     }
   },
   {
@@ -159,11 +167,25 @@ const routes = [
       title: "课程详情"
     }
   },
+
+  //search
+  {
+    path: "/search",
+    name: "search",
+    component: Search,
+    meta: {
+      title: "搜索"
+    }
+  },
+
   {
     path: "/library",
     name: "library",
     component: Library,
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3b6dc4ab916da39605e37fc21bd232f0d7d303a7
     meta: {
       title: "教程库-精品编程学习教程库 - 实验楼",
       content: "disable"
@@ -182,7 +204,6 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: "history",
   routes
 });
 // router.beforeEach((to, from, next) => {
@@ -203,8 +224,13 @@ router.beforeEach((to, from, next) => {
   } else {
     document.title = "实验楼";
   }
+<<<<<<< HEAD
 
   next();
 });
 
 export default router;
+=======
+  next();
+});
+>>>>>>> 3b6dc4ab916da39605e37fc21bd232f0d7d303a7
