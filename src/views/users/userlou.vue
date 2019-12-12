@@ -169,8 +169,8 @@ export default {
   letter-spacing: 0;
 }
 .content-right {
-  flex: 2 0 75%;
-  max-width: 80%;
+  flex: 1 0 75%;
+  max-width: 73%;
   padding: 0 5px;
 }
 .common-content {
