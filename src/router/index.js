@@ -9,23 +9,14 @@ import Plus from "../views/plus/Plus.vue";
 import User from "../views/users/User.vue";
 import Vip from "../views/vip/Vip.vue";
 import VueCookies from "vue-cookies";
-<<<<<<< HEAD
 import Course from "../views/Course.vue";
 import CourseCard from "../views/Course/Course_card.vue";
 import CourseDetail from "../views/CourseDetail.vue";
 import Library from "../views/Library.vue";
 import Pathdetail from "../views/Pathdetail.vue";
-=======
-import Course from '../views/Course.vue';
-import CourseCard from '../views/Course/Course_card.vue';
-import CourseDetail from '../views/CourseDetail.vue';
-import Library from '../views/Library.vue';
-<<<<<<< HEAD
 import Search from '../views/search/search';
-=======
 import AsAuthor from '../views/AsAuthor.vue';
->>>>>>> 183dca90ce5e49aacfe0173d3fa0b4cd24977e7f
->>>>>>> 281b2af2758a375e99422793928e49ea5ac300d5
+
 $cookies.config("0", "/");
 Vue.use(VueCookies);
 
@@ -44,7 +35,6 @@ const routes = [{
   name: "Paths",
   component: Paths,
   meta: {
-<<<<<<< HEAD
     title: "路径"
   }
 },
@@ -53,10 +43,7 @@ const routes = [{
   name: "Pathdetail",
   component: Pathdetail,
   meta: {
-    title: "路径详情"
-=======
-      title: 'IT工程师学习路线_养成路径_实验楼学习路径 - 实验楼'
->>>>>>> 183dca90ce5e49aacfe0173d3fa0b4cd24977e7f
+    title: 'IT工程师学习路线_养成路径_实验楼学习路径 - 实验楼'
   }
 },
 {
@@ -181,15 +168,7 @@ const routes = [{
 
   }
 },
-{
-  path: "/library",
-  name: "library",
-  component: Library,
-  meta: {
-    title: '教程库-精品编程学习教程库 - 实验楼',
-    content: 'disable'
-  }
-},
+
 {
   path: "/library",
   name: "library",
@@ -222,11 +201,6 @@ export default router;
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面meta */
   if (to.meta.content) {
-
-    let head = document.getElementsByTagName('head');
-    let meta = document.createElement('meta');
-    head[0].appendChild(meta)
-
     let head = document.getElementsByTagName("head");
     let meta = document.createElement("meta");
     meta.content = to.meta.content;
