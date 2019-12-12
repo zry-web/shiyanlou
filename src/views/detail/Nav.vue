@@ -28,27 +28,28 @@
             <span>/</span>
           </li>
           <li class="nav-item">
-            <span>Flask实现一个问答社区</span>
+            <span>{{list.title}}</span>
           </li>
         </ul>
         <div class="flask-content">
           <div class="flask-header">
-            <h1>Flask 实现一个问答社区</h1>
+            <h1>{{list.title}}</h1>
             <span class="bootcamp">训练营</span>
           </div>
           <div class="flask-body">
             <p class="info-meta">
-              <span>3 人学过</span>
+              <span>{{list.studentCount}}</span>
               <i></i>
-              <span>13人关注</span>
+              <span>{{list.attentionCount}}</span>
               <i></i>
-              <span>作者: 余漪</span>
+              <span>{{list.author}}</span>
             </p>
             <p class="info-desc">
-              从零开始实现一个完整的问答社区项目，包含用户评论、点赞、回复、签到，
+              <!-- 从零开始实现一个完整的问答社区项目，包含用户评论、点赞、回复、签到，
               收藏、加精、置顶、搜索，登录注册和邮件激活、密码找回等功能。
               本课程主要使用 Flask 完成问答社区项目，适合对 Web 开发有一定基础，
-              想进一步加强理解与运用的同学。
+              想进一步加强理解与运用的同学。-->
+              {{list.descriptions}}
             </p>
           </div>
         </div>
@@ -58,7 +59,30 @@
 </template>
 
 <script>
-export default {};
+import { bootcampDetail } from "../../api/plus/plus";
+export default {
+  data() {
+    return {
+      list: [],
+      list1: []
+    };
+  },
+  async created() {
+    // this.$route可以获取当前的路由实例
+    //  此对象上包含有路由的信息
+    //    路径、地址、参数、名字
+    // console.log(this.$route);
+    // this.$route.query 可以获取url中传递的参数
+    //this.$router.push({
+    //     name:'',
+    //     query:{}
+    // }),获取
+    const res = await bootcampDetail(this.$route.query.title);
+    console.log(res);
+    this.list = res.data.data;
+    console.log(res.data.data);
+  }
+};
 </script>>
 <style scoped>
 .full-page {

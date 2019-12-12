@@ -1,5 +1,5 @@
 <template>
-  <div class="full-page">
+  <div class="full-page" :style="show">
     <div class="container">
       <div class="side-content">
         <div class="side-body">
@@ -85,22 +85,39 @@
 export default {
   data() {
     return {
-      isActive: false
+      // show2: {
+      //   position: "fixed",
+      //   top: "137px"
+      // },
+      show: {
+        position: "absoult",
+        top: "137px"
+      }
     };
   },
-  mounted: function() {
-    window.addEventListener("scroll", this.handleScroll, true); // 监听（绑定）滚轮滚动事件
-  },
   methods: {
-    handleScroll: function() {
+    vip_scroll() {
       let scrollTop =
-        document.documentElement.clientHeight || document.body.clientHeight;
-      if (scrollTop > 60) {
-        this.isActive = true;
+        document.documentElement.scrollTop ||
+        window.pageYOffset ||
+        document.body.scrollTop;
+      console.log(scrollTop);
+
+      if (scrollTop > 137 && scrollTo) {
+        this.show = {
+          position: "fixed",
+          top: "10px"
+        };
       } else {
-        this.isActive = false;
+        this.show = {
+          position: "absoult",
+          top: "137px"
+        };
       }
     }
+  },
+  mounted() {
+    window.addEventListener("scroll", this.vip_scroll);
   }
 };
 </script>
@@ -109,6 +126,7 @@ export default {
   position: absolute;
   top: 137px;
   left: 900px;
+  z-index: 1230;
 }
 .side-content {
   width: 100%;
@@ -116,10 +134,10 @@ export default {
   padding: 15px;
   background: #fff;
   margin-left: -100px;
-  width: 27.6%;
+  width: 28.6%;
 }
 .side-content {
-  padding: 10px 0;
+  padding: 0px 0;
   font-size: 14px;
 }
 .side-top {

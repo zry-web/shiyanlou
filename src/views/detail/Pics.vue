@@ -41,6 +41,74 @@
                 </div>
               </div>
             </div>
+            <div class="col-sm-12 col-md-4">
+              <div class="item-shadow">
+                <div class="pic-item">
+                  <a href target="_blank">
+                    <div class="course-item">
+                      <div class="item-top">
+                        <img
+                          src="https://dn-simplecloud.shiyanlou.com/course/1542592561365_【370】-【Python图片转字符画】.png"
+                          alt
+                        />
+                      </div>
+                      <div class="item-buttom">
+                        <div class="item-info">
+                          <h6 class="course-name">Python 图片转字符画</h6>
+                          <div class="course-desc">
+                            本课程用 50 行 Python 代码完成图片转字符画
+                            小工具。通过本实验将学习到 Linux 命令行操作
+                            ，Python 基础，pillow 库的使用，argparse
+                            库的使用。本课程难度简单，属于 Python
+                            中基础课程。
+                          </div>
+                        </div>
+                        <div class="course-data">
+                          <span class="course-count">
+                            <i></i>
+                            <span>86249</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+              <div class="item-shadow">
+                <div class="pic-item">
+                  <a href target="_blank">
+                    <div class="course-item">
+                      <div class="item-top">
+                        <img
+                          src="https://dn-simplecloud.shiyanlou.com/course/1542592561365_【370】-【Python图片转字符画】.png"
+                          alt
+                        />
+                      </div>
+                      <div class="item-buttom">
+                        <div class="item-info">
+                          <h6 class="course-name">Python 图片转字符画</h6>
+                          <div class="course-desc">
+                            本课程用 50 行 Python 代码完成图片转字符画
+                            小工具。通过本实验将学习到 Linux 命令行操作
+                            ，Python 基础，pillow 库的使用，argparse
+                            库的使用。本课程难度简单，属于 Python
+                            中基础课程。
+                          </div>
+                        </div>
+                        <div class="course-data">
+                          <span class="course-count">
+                            <i></i>
+                            <span>86249</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

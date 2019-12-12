@@ -43,8 +43,8 @@
           </div>
           <div class="body-right">
             <p class="teacher-info">
-              <span class="name">余漪</span>
-              <span class="count">共发布过 1 门课程</span>
+              <span class="name">{{list.name}}</span>
+              <span class="count">{{list.release}}</span>
             </p>
             <a href target="_blank" class="view-course">查看老师的所有课程 ></a>
           </div>
@@ -54,7 +54,30 @@
   </div>
 </template>
 <script>
-export default {};
+import { bootcampDetail } from "../../api/plus/plus";
+export default {
+  data() {
+    return {
+      list: [],
+      list1: []
+    };
+  },
+  async created() {
+    // this.$route可以获取当前的路由实例
+    //  此对象上包含有路由的信息
+    //    路径、地址、参数、名字
+    // console.log(this.$route);
+    // this.$route.query 可以获取url中传递的参数
+    //this.$router.push({
+    //     name:'',
+    //     query:{}
+    // }),获取
+    const res = await bootcampDetail(this.$route.query.title);
+    console.log(res);
+    this.list = res.data.data.teacher;
+    console.log(res.data.data.teacher);
+  }
+};
 </script>
 
 <style scoped>

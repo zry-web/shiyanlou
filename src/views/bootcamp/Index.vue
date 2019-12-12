@@ -23,7 +23,13 @@
       <div style="padding:20px 0 30px">
         <div class="pic row">
           <div class="course-pic col-3" v-for="item in list3" :key="item._id">
-            <router-link target="_blank" class="course-link" :to="{name:'Detail'}">
+            <router-link
+              target="_blank"
+              class="course-link"
+              :to="{name:'Detail', query: {
+              title: item.title
+            }}"
+            >
               <div class="course-item">
                 <img :src="item.coverImg" alt />
                 <div class="course-body">

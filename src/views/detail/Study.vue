@@ -6,28 +6,12 @@
           <span>你将学到的</span>
         </div>
         <div class="study-body">
-          <div class="row">
-            <div class="col-points col-sm-12 col-md-6">
+          <div class="rows" v-for="(item,index) in list" :key="index">
+            <div class="col-points">
               <ul class="col-ul">
                 <li>
                   <i>√</i>
-                  <span>Flask 蓝图</span>
-                </li>
-                <li>
-                  <i>√</i>
-                  <span>Flask-Mail 发送邮件</span>
-                </li>
-              </ul>
-            </div>
-            <div class="col-points col-sm-12 col-md-6">
-              <ul class="col-ul">
-                <li>
-                  <i>√</i>
-                  <span>Flask-Uploads 文件上传</span>
-                </li>
-                <li>
-                  <i>√</i>
-                  <span>Whoosh 搜索功能</span>
+                  <span>{{item.name}}</span>
                 </li>
               </ul>
             </div>
@@ -38,7 +22,30 @@
   </div>
 </template>
 <script>
-export default {};
+import { bootcampDetail } from "../../api/plus/plus";
+export default {
+  data() {
+    return {
+      list: [],
+      list1: []
+    };
+  },
+  async created() {
+    // this.$route可以获取当前的路由实例
+    //  此对象上包含有路由的信息
+    //    路径、地址、参数、名字
+    // console.log(this.$route);
+    // this.$route.query 可以获取url中传递的参数
+    //this.$router.push({
+    //     name:'',
+    //     query:{}
+    // }),获取
+    const res = await bootcampDetail(this.$route.query.title);
+    console.log(res);
+    this.list = res.data.data.studed;
+    console.log(res.data.data.studed);
+  }
+};
 </script>
 <style scoped>
 .container {
@@ -73,19 +80,21 @@ export default {};
   padding: 20px 0;
   background-color: #f7f7f7;
 }
-.row {
+.rows {
   display: flex;
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
 }
 .col-points {
-  flex: 0 0 50%;
-  max-width: 50%;
+  width: 100%;
 }
 .col-ul {
   margin: 0;
   padding-left: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
 .col-ul li {
   color: #565656;

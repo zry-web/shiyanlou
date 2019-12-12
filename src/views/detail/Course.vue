@@ -23,21 +23,21 @@
               </div>
             </div>
           </div>
-          <div class="course-item">
+          <div class="course-item" v-for="(item,index) in list" :key="index">
             <div class="item-top">
               <div class="top-left">
                 <span class="span-img">
                   <img src alt />
                 </span>
-                <span class="span-index">实验 1</span>
-                <span class="span-txt">TensorFlow 2 基础概念语法</span>
+                <span class="span-index">{{item.conType}}</span>
+                <span class="span-txt">{{item.cName}}</span>
               </div>
               <div class="top-right">
                 <a href>需加入课程后学习，点击加入</a>
               </div>
             </div>
             <div class="item-bottom">
-              <p>知识点: 1.TensorFlow2简介 2.张量 3.EagerExecution 4.自动微分 5.常用模块</p>
+              <p>{{item.cDescriptions}}</p>
             </div>
           </div>
         </div>
@@ -46,7 +46,29 @@
   </div>
 </template>
 <script>
-export default {};
+import { bootcampDetail } from "../../api/plus/plus";
+export default {
+  data() {
+    return {
+      list: []
+    };
+  },
+  async created() {
+    // this.$route可以获取当前的路由实例
+    //  此对象上包含有路由的信息
+    //    路径、地址、参数、名字
+    // console.log(this.$route);
+    // this.$route.query 可以获取url中传递的参数
+    //this.$router.push({
+    //     name:'',
+    //     query:{}
+    // }),获取
+    const res = await bootcampDetail(this.$route.query.title);
+    console.log(res);
+    this.list = res.data.data.courseContent;
+    console.log(res.data.data.courseContent);
+  }
+};
 </script>
 <style scoped>
 .container {

@@ -3,21 +3,19 @@
     <div class="container">
       <div class="pic row">
         <div class="course-pic col-3" v-for="item in list" :key="item._id">
-          <a href target="_blank" class="course-link">
+          <router-link
+            target="_blank"
+            class="course-link"
+            :to="{name:'Detail',
+          query:{
+          title:1
+        }}"
+          >
             <div class="course-item">
               <img :src="item.coverImg" alt />
               <div class="course-body">
                 <p class="course-name">{{item.title}}</p>
-                <p class="course-dec">
-                  <!-- 本训练营项目是使用 Vue.js
-                    实现一个简易的富文本编辑器应用。通过本项目的实战学习，
-                    你将掌握 Vue.js
-                    框架使用，数据绑定操作，组件式开发等。课程将涉及 Vuex
-                    的使用， 让你了解全局状态管理的作用与优势。与其他 Vue
-                    项目不同，这是一个纯前端的项目， 主要学习 Vue
-                  框架的使用与原生 JS 编写，同时了解 DOM 的相关知识。-->
-                  {{item.descriptions}}
-                </p>
+                <p class="course-dec">{{item.descriptions}}</p>
               </div>
               <div class="course-footer">
                 <div class="footer-info status-normal">
@@ -34,7 +32,7 @@
                 </div>
               </div>
             </div>
-          </a>
+          </router-link>
         </div>
       </div>
       <el-pagination
@@ -61,6 +59,7 @@ export default {
     const result = await picMessage(1);
     this.list = result.data.course;
     this.pages = result.data.pages;
+    console.log(this.list.title);
     // console.log(this.list);
   },
   methods: {
