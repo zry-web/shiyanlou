@@ -13,6 +13,7 @@ import Course from '../views/Course.vue';
 import CourseCard from '../views/Course/Course_card.vue';
 import CourseDetail from '../views/CourseDetail.vue';
 import Library from '../views/Library.vue';
+import Search from '../views/search/search';
 $cookies.config("0", "/");
 Vue.use(VueCookies);
 
@@ -146,6 +147,15 @@ const routes = [{
   meta: {
     title: '课程详情'
   },
+},//search
+{
+  path: "/search",
+  name: "search",
+  component: Search,
+  meta: {
+    title: '搜索',
+
+  }
 },
 {
   path: "/library",
@@ -175,14 +185,13 @@ router.beforeEach((to, from, next) => {
   if (to.meta.content) {
     let head = document.getElementsByTagName('head');
     let meta = document.createElement('meta');
-    meta.content = to.meta.content;
     head[0].appendChild(meta)
   }
   /* 路由发生变化修改页面title */
   if (to.meta.title) {
     document.title = to.meta.title;
   } else {
-    document.title = 实验楼
+    document.title = '实验楼'
   }
   next()
 });

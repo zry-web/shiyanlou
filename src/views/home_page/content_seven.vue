@@ -1,6 +1,6 @@
 <template>
   <div class="backend_course_div">
-    <Title class="backend_course_div_title" :title="'基本功 |'" :description="'行业专家打造的免费基础课程，注册即可学习'"></Title>
+    <Title class="backend_course_div_title" :title="'基本功 | '" :description="'行业专家打造的免费基础课程，注册即可学习'"></Title>
     <div class="backend_stretch_card_div">
       <CourseCard
         class="backend_course_card"
