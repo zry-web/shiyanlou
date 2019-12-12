@@ -38,7 +38,7 @@ export default {
         后端开发: "course",
         云计算与大数据: "course",
         "训练营强化 | ": "Bootcamp",
-        "学习路径 |     ": "Paths"
+        "学习路径 | ": "Paths"
       }
     };
   }

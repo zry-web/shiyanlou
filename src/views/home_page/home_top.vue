@@ -558,13 +558,13 @@ export default {
   align-items: center;
 }
 .course_button {
-  font-size: 12px;
+  font-size: 11px;
   color: #fff;
   margin-right: 10px;
   margin-left: 5px;
 }
 .main_course_button {
-  font-size: 16px;
+  font-size: 14px;
 }
 .course_categories_li:hover {
   background: #fff;
