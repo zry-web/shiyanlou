@@ -1,7 +1,3 @@
-import {
-  reg,
-  login
-} from "../../../api/login/login";
 import Vue from "vue";
 import VueCookies from "vue-cookies";
 $cookies.config("0", "/");
@@ -21,21 +17,23 @@ const mutations = {
   },
   getToken(state, payload) {
     state.token = payload;
+  },
+  logOut(state, payload) {
+    state.token = payload;
   }
 };
 const actions = {
   changeclick(context, onOrUp) {
     context.commit("change_on_up_state", onOrUp);
   },
-  clickclose({
-    commit
-  }, payload) {
+  clickclose({ commit }, payload) {
     commit("clickClose", payload);
   },
-  gettoken({
-    commit
-  }, payload) {
+  gettoken({ commit }, payload) {
     commit("getToken", payload);
+  },
+  logout({ commit }, payload) {
+    commit("logOut", payload);
   }
 };
 export default {

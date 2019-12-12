@@ -79,16 +79,27 @@
   </div>
 </template>
 <script>
+import { putUserData, saves } from "../../../api/user/user";
+import { mapState } from "vuex";
+import { log } from "util";
 export default {
   data() {
     return {
       change: 1
     };
   },
+  computed: {
+    ...mapState("login", ["token"])
+  },
   methods: {
     changeactive(num) {
       this.change = num;
     }
+    // getuser() {
+    //   saves(this.token).then(res => {
+    //     console.log(res);
+    //   });
+    // }
   }
 };
 </script>

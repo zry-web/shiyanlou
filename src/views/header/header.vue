@@ -52,7 +52,7 @@
                 <a tag="a" class="scroll_sub_a">讨论</a>
               </li>
               <li class="scroll_sub_li">
-                <a tag="a" class="scroll_sub_a" href="/library">教程库</a>
+                <a tag="a" class="scroll_sub_a" href="#/library">教程库</a>
               </li>
               <li class="scroll_sub_li">
                 <a tag="a" class="scroll_sub_a">直播</a>

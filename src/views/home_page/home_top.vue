@@ -126,7 +126,7 @@
               <a class="sub_community_a">讨论</a>
             </li>
             <li class="sub_community_li">
-              <a class="sub_community_a" href="/library">教程库</a>
+              <a class="sub_community_a" href="#/library">教程库</a>
             </li>
             <li class="sub_community_li">
               <a class="sub_community_a">直播</a>

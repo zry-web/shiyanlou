@@ -47,7 +47,7 @@
           </li>
         </ul>
       </div>
-      <div class="course-pre" v-if='taskCount || diff || users'>
+      <div class="course-pre" v-if="taskCount || diff || users">
         <h3>课程介绍</h3>
         <div class="course-task" v-if="taskCount">
           <p>实验任务</p>
@@ -90,7 +90,7 @@
         <img :src="courseDetail.courseImg" />
       </a>
       <p class="feeType">免费</p>
-      <button class="joinCourse">加入课程</button>
+      <button class="joinCourse" @click="addList()">加入课程</button>
       <div class="taskCount">
         <ul>
           <li>21 个在线动手实验</li>
@@ -106,7 +106,8 @@
   </div>
 </template>
 <script>
-import { getCourseDetail } from "../api/course/course";
+import { mapState } from "vuex";
+import { getCourseDetail, addUserList } from "../api/course/course";
 export default {
   name: "CourseDetail",
   data() {
@@ -132,6 +133,22 @@ export default {
       this.users = this.courseDetail.users;
       console.log(this.courseDetail);
     });
+  },
+  computed: {
+    ...mapState("login", ["token"])
+  },
+  methods: {
+    addList() {
+      addUserList({
+        user: this.token,
+        title: this.courseDetail.title,
+        feeType: this.courseDetail.feeType,
+        name: this.courseDetail.courseContent[0].cDescriptions,
+        courseImg: this.courseDetail.courseImg
+      }).then(res => {
+        console.log(res);
+      });
+    }
   }
 };
 </script>
